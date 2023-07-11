@@ -1,0 +1,75 @@
+typeS/react 로 만들기
+스타일컴포넌트 사용
+
+yarn add sass
+yarn add styled-components
+yarn add axios
+yarn add styled-reset
+yarn add react-router-dom 
+yarn add @reduxjs/toolkit
+yarn add react-redux
+
+강아지 - 유기견 //개밀리
+음식
+여행
+음료수(카페)
+
+1. 주제 정하기
+2. 기획 - 기능, 구조 선정
+3. 기획 - 디자인 대충 정하기
+4. 코딩
+
+
+
+
+메인
+
+리스트 형식 조금
+지식 조금
+소통방 조금
+
+////
+
+메뉴
+
+홈 
+입양지식
+  ㄴ 퀴즈 - 애플워치 뱃지
+  ㄴ 설명
+마이페이지 - (로그인 했을 때만 보이게 / 로그인 상태가 아닌 경우에는 로그인 페이지) & !로그인 - 입양X
+  ㄴ 관심 등록
+  ㄴ 회원가입
+  ㄴ 조회
+리스트 //미정 - 상세페이지 > 문의하기(버튼-팝업) 
+  ㄴ 입양이 처음이라면? 
+  ㄴ 1차 입양 신청서
+로그인한 사람들끼리 소통방 (게시글)
+지도 - 내 주변 보호센터 (네이버, 카카오 api) 주변에 가까운 유기동물보호센터 뜨게
+
+
+///
+
+Home
+Knowledge 지식
+Quiz 퀴즈
+Description 설명
+Map 지도
+Commu 소통방
+Login
+Logout
+Join
+MyPage
+Adoption
+
+///
+
+slice
+계정
+유기견 - 데이터 수정 및 관련
+소통방
+
+///
+
+디자인
+메인
+https://www.oktomato.net/oktomato/main/main.do
