@@ -20,3 +20,51 @@ export const InnerContainer = styled.div`
    box-sizing: border-box;
    position: relative;
 `;
+export const HeaderContainer = styled.header`
+   position: fixed;
+   left: 50%;
+   transform: translateX(-50%);
+   top: 0;
+   width: 1400px;
+   height: 110px;
+   z-index: 100;
+   .inner {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: -110px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: 0.3s;
+      &.on {
+         top: 0;
+      }
+      h1 {
+         position: absolute;
+         left: 0;
+         top: 50%;
+         transform: translateY(-50%);
+      }
+      .gnb {
+         ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            li {
+               margin-right: 50px;
+               &:last-child {
+                  margin-right: 0;
+               }
+            }
+         }
+      }
+      .sub-nav {
+         position: absolute;
+         right: 0;
+         top: 50%;
+         transform: translateY(-50%);
+      }
+   }
+`;
