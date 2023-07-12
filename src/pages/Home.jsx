@@ -11,10 +11,10 @@ const Home = memo(() => {
             <Slide>
                <Visual />
             </Slide>
-            <Slide></Slide>
             <Slide>
                <VisualText />
             </Slide>
+            <Slide></Slide>
          </FullPage>
       </>
    );

@@ -11,7 +11,7 @@ const Layout = memo(() => {
          <MainContainer>
             <Outlet />
          </MainContainer>
-         <Footer />
+         {/* <Footer /> */}
       </WrapContainer>
    );
 });
