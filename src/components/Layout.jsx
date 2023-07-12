@@ -3,6 +3,8 @@ import Header from './Header';
 import Footer from './Footer';
 import { Outlet } from 'react-router-dom';
 import { MainContainer, WrapContainer } from '../styled/GamilyStyle';
+import GoTopBtn from './GoTopBtn';
+import InfoBubble from './InfoBubble';
 
 const Layout = memo(() => {
    return (
@@ -11,6 +13,8 @@ const Layout = memo(() => {
          <MainContainer>
             <Outlet />
          </MainContainer>
+         <GoTopBtn />
+         <InfoBubble />
          <Footer />
       </WrapContainer>
    );

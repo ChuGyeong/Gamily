@@ -11,7 +11,7 @@ const Home = memo(() => {
             <Slide>
                <Visual />
             </Slide>
-            <Slide></Slide>
+            <Slide>asd</Slide>
             <Slide>
                <VisualText />
             </Slide>
