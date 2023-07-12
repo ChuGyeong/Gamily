@@ -73,7 +73,6 @@ export const HeaderContainer = styled.header`
 export const VisualSection = styled.section`
    width: 100%;
    height: 100vh;
-
    overflow: hidden;
    transition: 0.4s;
    background-color: ${faf0e6};
@@ -90,23 +89,27 @@ export const VisualSection = styled.section`
          url(${props => props.bgimg});
       opacity: ${props => (props.bgimg ? 1 : 0.2)};
       transition: opacity 0.4s;
+      &.on {
+         opacity: 1;
+      }
+      &.off {
+         opacity: 0.2;
+      }
    }
    .text-area {
       height: 100vh;
       width: 1400px;
       margin: auto;
-
-      &:hover h2 span {
-         opacity: 1;
-      }
       h2 {
+         width: 550px;
          font-family: ${fontLogo};
          margin-top: 300px;
          font-size: 120px;
          line-height: 1;
          letter-spacing: -5px;
          -webkit-text-stroke: 3px rgba(255, 255, 255, 0.5);
-         /* mix-blend-mode: difference; */
+         position: relative;
+         z-index: 50;
          span {
             mix-blend-mode: none;
             font-weight: 100;
@@ -131,6 +134,42 @@ export const VisualSection = styled.section`
                box-sizing: border-box;
             }
          }
+         &:hover span {
+            opacity: 1;
+         }
+         &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 5px;
+            width: 50px;
+            height: 50px;
+            background: ${d9b99b};
+            background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
+               url('./images/dog-tracks.png');
+            background-size: 40px;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            z-index: -10;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+         }
+      }
+   }
+   .img-area {
+      position: absolute;
+      top: 25%;
+      left: 200px;
+      width: 100px;
+      height: 130px;
+      border-radius: 50px 50px 0 0;
+      opacity: 0.5;
+      overflow: hidden;
+      img {
+         width: 100px;
+         height: 130px;
+         object-fit: cover;
+         object-position: 50% 50%;
       }
    }
 `;
@@ -165,5 +204,52 @@ export const FooterContainer = styled.footer`
             margin-right: 30px;
          }
       }
+   }
+`;
+export const VisualKnowContainer = styled.div`
+   padding: 50px 0;
+   [data-tooltip] {
+      position: relative;
+   }
+   [data-tooltip]:before,
+   [data-tooltip]:after {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      font-size: 11px;
+      font-family: dotum;
+      letter-spacing: -1px;
+   }
+   [data-tooltip]:before {
+      content: attr(data-tooltip);
+      height: 13px;
+      position: absolute;
+      top: -50px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      color: #fff;
+      background: #025272;
+      box-shadow: 0 3px 8px rgba(165, 165, 165, 0.5);
+   }
+   [data-tooltip]:after {
+      content: '';
+      border-left: 5px solid transparent;
+      top: 2px;
+      border-right: 5px solid transparent;
+      border-top: 5px solid #025272;
+   }
+   [data-tooltip]:not([data-tooltip='']):hover:before {
+      visibility: visible;
+      opacity: 1;
+      top: -30px;
+   }
+   [data-tooltip]:not([data-tooltip='']):hover:after {
+      visibility: visible;
+      opacity: 1;
+      top: -8px;
    }
 `;

@@ -1,8 +1,8 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { InnerContainer, VisualSection } from '../styled/GamilyStyle';
-import { Swiper, SwiperSlide } from 'swiper/react'; // basic
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
-import 'swiper/css'; //basic
+import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
@@ -56,8 +56,8 @@ const Visual = memo(() => {
       <VisualSection bgimg={isBg ? visualData[count].bgImageUrl : undefined}>
          <div className="bg"></div>
          <InnerContainer>
-            <div className="text-area" onMouseOver={mouseOver} onMouseLeave={mouseLeave}>
-               <h2>
+            <div className="text-area">
+               <h2 onMouseOver={mouseOver} onMouseLeave={mouseLeave}>
                   저희의
                   <br />
                   <span>
@@ -80,8 +80,14 @@ const Visual = memo(() => {
                   가
                   <br />
                   되어주세요
+                  <div className="sole"></div>
                </h2>
             </div>
+            {!isBg && (
+               <div className="img-area">
+                  <img src={visualData[count].bgImageUrl} alt="" />
+               </div>
+            )}
          </InnerContainer>
       </VisualSection>
    );
