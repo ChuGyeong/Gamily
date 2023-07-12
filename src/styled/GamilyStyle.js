@@ -252,3 +252,36 @@ export const TextVisualContainer = styled.div`
       height: 100vh;
    }
 `;
+export const FooterContainer = styled.footer`
+   strong {
+      display: block;
+      font-weight: 600;
+      font-size: 18px;
+   }
+   span {
+      display: block;
+   }
+   .box-continer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .info-box {
+      }
+      .link-box {
+         ul {
+            display: flex;
+            li {
+               margin-right: 30px;
+               &:last-child {
+                  margin-right: 0;
+               }
+            }
+         }
+         label {
+            font-weight: 600;
+            font-size: 18px;
+            margin-right: 30px;
+         }
+      }
+   }
+`;
