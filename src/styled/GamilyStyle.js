@@ -1,19 +1,20 @@
 import { styled } from 'styled-components';
-const faf0e6 = '#faf0e6';
-const fff0db = '#fff0db';
-const eed9c4 = '#eed9c4';
-const e4d5b7 = '#e4d5b7';
-const d9b99b = '#d9b99b';
+const mainColor = '#faf0e6';
+const subColor = '#eed9c4';
+const pointColor = '#d9b99b';
 const fontLogo = "'Bagel Fat One', cursive;";
+
 export const WrapContainer = styled.div`
    position: relative;
    width: 100%;
-   background-color: ${faf0e6};
+   /* background-color: ${mainColor}; */
 `;
 export const MainContainer = styled.div`
    position: relative;
    width: 100%;
+   padding: 110px 0 0;
 `;
+
 export const InnerContainer = styled.div`
    padding: 50px 0;
    width: 1400px;
@@ -21,6 +22,8 @@ export const InnerContainer = styled.div`
    box-sizing: border-box;
    position: relative;
 `;
+
+// Header
 export const HeaderContainer = styled.header`
    position: fixed;
    left: 50%;
@@ -41,6 +44,7 @@ export const HeaderContainer = styled.header`
       transition: 0.3s;
       &.on {
          top: 0;
+         background: #fff;
       }
       h1 {
          position: absolute;
@@ -69,109 +73,8 @@ export const HeaderContainer = styled.header`
       }
    }
 `;
-export const VisualSection = styled.section`
-   width: 100%;
-   height: 100vh;
-   overflow: hidden;
-   transition: 0.4s;
-   background-color: ${faf0e6};
-   .bg {
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: 0 50%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
-         url(${props => props.bgimg});
-      opacity: ${props => (props.bgimg ? 1 : 0.2)};
-      transition: opacity 0.4s;
-      &.on {
-         opacity: 1;
-      }
-      &.off {
-         opacity: 0.2;
-      }
-   }
-   .text-area {
-      height: 100vh;
-      width: 1400px;
-      margin: auto;
-      h2 {
-         width: 550px;
-         font-family: ${fontLogo};
-         margin-top: 300px;
-         font-size: 120px;
-         line-height: 1;
-         letter-spacing: -5px;
-         -webkit-text-stroke: 3px rgba(255, 255, 255, 0.5);
-         position: relative;
-         z-index: 50;
-         span {
-            mix-blend-mode: none;
-            font-weight: 100;
-            font-size: 120px;
-            color: #d9b99b;
-            transition: 0.4s;
-            display: inline-block;
-            cursor: pointer;
-            opacity: 0.5;
-         }
-         .mySwiper {
-            display: inline-block;
-            height: 120px;
-            width: 220px;
-            display: flex;
-            overflow: hidden;
-            .swiper-slide {
-               display: flex;
-               align-items: center;
-               justify-content: center;
-               padding-bottom: 5px;
-               box-sizing: border-box;
-            }
-         }
-         &:hover span {
-            opacity: 1;
-         }
-         &::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 5px;
-            width: 50px;
-            height: 50px;
-            background: ${d9b99b};
-            background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
-               url('./images/dog-tracks.png');
-            background-size: 40px;
-            background-repeat: no-repeat;
-            background-position: 50% 50%;
-            z-index: -10;
-            border-radius: 50%;
-            border: 3px solid rgba(255, 255, 255, 0.5);
-         }
-      }
-   }
-   .img-area {
-      position: absolute;
-      top: 25%;
-      left: 200px;
-      width: 100px;
-      height: 130px;
-      border-radius: 50px 50px 0 0;
-      opacity: 0.5;
-      overflow: hidden;
-      img {
-         width: 100px;
-         height: 130px;
-         object-fit: cover;
-         object-position: 50% 50%;
-      }
-   }
-`;
+
+// Footer
 export const FooterContainer = styled.footer`
    strong {
       display: block;
@@ -205,34 +108,38 @@ export const FooterContainer = styled.footer`
       }
    }
 `;
+
+// GoTopBtn
 export const GoTopButton = styled.div`
    position: fixed;
    right: -30px;
    bottom: 30px;
    width: 30px;
    height: 30px;
-   background-color: ${faf0e6};
+   background-color: ${mainColor};
    font-size: 22px;
    cursor: pointer;
    transition: 0.3s;
    display: flex;
    justify-content: center;
    align-items: center;
-   color: ${d9b99b};
+   color: ${pointColor};
    border-radius: 5px;
    &:hover {
-      background-color: ${d9b99b};
-      color: ${faf0e6};
+      background-color: ${pointColor};
+      color: ${mainColor};
    }
    &.on {
       right: 30px;
    }
 `;
+
+// InfoBubble
 export const InfoBubbleContainer = styled.div`
    position: fixed;
    right: -300px;
    bottom: 70px;
-   background: ${faf0e6};
+   background: ${mainColor};
    border-radius: 0.4em;
    width: 280px;
    height: 80px;
@@ -252,7 +159,7 @@ export const InfoBubbleContainer = styled.div`
       width: 0;
       height: 0;
       border: 20px solid transparent;
-      border-left-color: ${faf0e6};
+      border-left-color: ${mainColor};
       border-right: 0;
       border-bottom: 0;
       margin-top: -10px;
@@ -289,6 +196,87 @@ export const InfoBubbleContainer = styled.div`
       }
    }
 `;
+
+// Visual
+export const VisualSection = styled.div`
+   width: 100%;
+   height: 100vh;
+   overflow: hidden;
+   transition: 0.4s;
+   background: ${mainColor};
+   .bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transition: 0.4s;
+      opacity: 0.5;
+   }
+   h2 {
+      margin-top: 300px;
+      width: 550px;
+      font-family: ${fontLogo};
+      font-size: 120px;
+      line-height: 1;
+      letter-spacing: -5px;
+      -webkit-text-stroke: 3px rgba(255, 255, 255, 0.5);
+      position: relative;
+      z-index: 50;
+      span {
+         mix-blend-mode: none;
+         font-weight: 100;
+         font-size: 120px;
+         color: #d9b99b;
+         transition: 0.4s;
+         display: inline-block;
+         cursor: pointer;
+         opacity: 0.5;
+      }
+      .mySwiper {
+         display: inline-block;
+         height: 120px;
+         width: 220px;
+         display: flex;
+         overflow: hidden;
+         .swiper-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 5px;
+            box-sizing: border-box;
+         }
+      }
+      &:hover span {
+         opacity: 1;
+      }
+      &::after {
+         content: '';
+         position: absolute;
+         bottom: 0;
+         right: 5px;
+         width: 50px;
+         height: 50px;
+         background: ${pointColor};
+         background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
+            url('./images/dog-tracks.png');
+         background-size: 40px;
+         background-repeat: no-repeat;
+         background-position: 50% 50%;
+         z-index: -10;
+         border-radius: 50%;
+         border: 3px solid rgba(255, 255, 255, 0.5);
+      }
+   }
+`;
+
+// VisualText
+export const VisualTextContainer = styled.section`
+   width: 100%;
+   height: 100vh;
+`;
+
+// Adoption
 export const AdoptionContainer = styled.div`
    padding-top: 110px;
    h2 {
@@ -311,7 +299,7 @@ export const AdoptionContainer = styled.div`
             box-sizing: border-box;
             background-color: transparent;
             border: none;
-            border-bottom: 2px solid ${d9b99b};
+            border-bottom: 2px solid ${pointColor};
             &:focus {
                outline: none;
             }
@@ -324,7 +312,7 @@ export const AdoptionContainer = styled.div`
             transform: translateY(-50%);
             background: transparent;
             border: none;
-            color: ${d9b99b};
+            color: ${pointColor};
             cursor: pointer;
          }
       }
@@ -372,7 +360,7 @@ export const AdoptionContainer = styled.div`
             display: block;
             padding: 3px 10px;
             border-radius: 30px;
-            background-color: ${eed9c4};
+            background-color: ${subColor};
             margin-right: 15px;
             margin-bottom: 10px;
          }
@@ -395,62 +383,138 @@ export const AdoptionContainer = styled.div`
             justify-content: center;
             align-items: center;
             margin-right: 2%;
-            border: 1px solid ${eed9c4};
+            border: 1px solid ${subColor};
             &:last-child {
                margin-right: 0;
             }
             &:hover {
-               background-color: ${eed9c4};
+               background-color: ${subColor};
             }
          }
       }
    }
 `;
-export const VisualKnowContainer = styled.div`
-   padding: 50px 0;
-   [data-tooltip] {
-      position: relative;
+
+// Store
+export const StoreContainer = styled.div`
+   .product-list {
+      width: 1000px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 50px;
+      li {
+         width: 300px;
+         padding: 20px;
+         box-sizing: border-box;
+         border-radius: 10px;
+         border: 1px solid #eeeeee;
+         .img-area {
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #efefef;
+            img {
+               width: 100%;
+               height: 100%;
+               object-fit: cover;
+               margin-bottom: -10px;
+            }
+         }
+         .text-area {
+            padding: 10px 0;
+            height: 70px;
+            p {
+               &:nth-child(1) {
+                  font-weight: 700;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
+               }
+               &:nth-child(2) {
+                  padding: 5px 0;
+               }
+               &:nth-child(3) {
+                  font-size: 13px;
+                  width: 70px;
+                  text-align: center;
+                  background: ${pointColor};
+                  color: ${mainColor};
+               }
+            }
+         }
+         .btn-area {
+            button {
+               width: 50%;
+               border: none;
+               padding: 10px 0;
+               transition: 0.3s;
+               cursor: pointer;
+               background: ${mainColor};
+               font-weight: 600;
+               &:hover {
+                  background: ${pointColor};
+                  color: ${mainColor};
+               }
+            }
+         }
+      }
    }
-   [data-tooltip]:before,
-   [data-tooltip]:after {
-      visibility: hidden;
-      opacity: 0;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      white-space: nowrap;
-      transition: all 0.2s ease;
-      font-size: 11px;
-      font-family: dotum;
-      letter-spacing: -1px;
+`;
+
+// ProductDetail
+export const ProductContainer = styled.div`
+   .mySwiper {
+      width: 700px;
+      .swiper-slide {
+         width: 100%;
+         img {
+            width: 100%;
+         }
+      }
    }
-   [data-tooltip]:before {
-      content: attr(data-tooltip);
-      height: 13px;
-      position: absolute;
-      top: -50px;
-      padding: 5px 10px;
-      border-radius: 5px;
-      color: #fff;
-      background: #025272;
-      box-shadow: 0 3px 8px rgba(165, 165, 165, 0.5);
+   .mySwiper + p {
+      font-size: 13px;
+      font-weight: 700;
+      color: ${pointColor};
    }
-   [data-tooltip]:after {
-      content: '';
-      border-left: 5px solid transparent;
-      top: 2px;
-      border-right: 5px solid transparent;
-      border-top: 5px solid #025272;
+   h3 {
+      font-weight: 700;
+      font-size: 20px;
    }
-   [data-tooltip]:not([data-tooltip='']):hover:before {
-      visibility: visible;
-      opacity: 1;
-      top: -30px;
+   .star-area + p {
+      border-bottom: 2px solid ${mainColor};
+      margin-bottom: 20px;
+      padding-bottom: 10px;
    }
-   [data-tooltip]:not([data-tooltip='']):hover:after {
-      visibility: visible;
-      opacity: 1;
-      top: -8px;
+   .text-area {
+      strong {
+         display: block;
+         font-weight: 700;
+         font-size: 18px;
+         margin: 5px 0;
+      }
+      ul {
+         li {
+            position: relative;
+            margin-left: 30px;
+            &::after {
+               content: '';
+               background-image: url('../images/dog-tracks.png');
+               background-size: cover;
+               width: 15px;
+               height: 15px;
+               position: absolute;
+               top: 50%;
+               transform: translateY(-50%);
+               left: -30px;
+            }
+         }
+      }
+   }
+   .img-area {
+      margin-top: 50px;
+      text-align: center;
    }
 `;
 
@@ -525,3 +589,52 @@ export const PagingContainer = styled.div`
       }
    }
 `;
+
+// // DogInfoSection
+// export const DogInfoContainer = styled.div`
+//    padding: 50px 0;
+//    [data-tooltip] {
+//       position: relative;
+//    }
+//    [data-tooltip]:before,
+//    [data-tooltip]:after {
+//       visibility: hidden;
+//       opacity: 0;
+//       position: absolute;
+//       left: 50%;
+//       transform: translateX(-50%);
+//       white-space: nowrap;
+//       transition: all 0.2s ease;
+//       font-size: 11px;
+//       font-family: dotum;
+//       letter-spacing: -1px;
+//    }
+//    [data-tooltip]:before {
+//       content: attr(data-tooltip);
+//       height: 13px;
+//       position: absolute;
+//       top: -50px;
+//       padding: 5px 10px;
+//       border-radius: 5px;
+//       color: #fff;
+//       background: #025272;
+//       box-shadow: 0 3px 8px rgba(165, 165, 165, 0.5);
+//    }
+//    [data-tooltip]:after {
+//       content: '';
+//       border-left: 5px solid transparent;
+//       top: 2px;
+//       border-right: 5px solid transparent;
+//       border-top: 5px solid #025272;
+//    }
+//    [data-tooltip]:not([data-tooltip='']):hover:before {
+//       visibility: visible;
+//       opacity: 1;
+//       top: -30px;
+//    }
+//    [data-tooltip]:not([data-tooltip='']):hover:after {
+//       visibility: visible;
+//       opacity: 1;
+//       top: -8px;
+//    }
+// `;

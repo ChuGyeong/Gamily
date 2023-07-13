@@ -10,6 +10,7 @@ import SignUp from './pages/SignUp';
 import Store from './pages/Store';
 import Home from './pages/Home';
 import AdoptionDetail from './pages/AdoptionDetail';
+import ProductDetail from './components/ProductDetail';
 
 const App = () => {
    return (
@@ -22,6 +23,9 @@ const App = () => {
                   <Route path="/knowledge" element={<Knowledge />} />
                   <Route path="/community" element={<Commu />} />
                   <Route path="/store" element={<Store />} />
+                  <Route path="/product">
+                     <Route path=":productId" element={<ProductDetail />} />
+                  </Route>
                   <Route path="/adoption" element={<Adoption />} />
                   <Route path="/adoptiondetail">
                      <Route path=":adoptionId" element={<AdoptionDetail />} />

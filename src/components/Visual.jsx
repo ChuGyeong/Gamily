@@ -7,12 +7,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 const Visual = memo(() => {
-   const visualData = [
-      { text: '엄마', bgImageUrl: './images/visual_0.jpg' },
-      { text: '친구', bgImageUrl: './images/visual_1.jpg' },
-      { text: '형제', bgImageUrl: './images/visual_2.jpg' },
-      { text: '자매', bgImageUrl: './images/visual_3.jpg' },
-   ];
+   const visualData = [{ text: '엄마' }, { text: '친구' }, { text: '형제' }, { text: '자매' }];
 
    const [count, setCount] = useState(0);
    const interval = useRef();
@@ -53,41 +48,34 @@ const Visual = memo(() => {
    };
 
    return (
-      <VisualSection bgimg={isBg ? visualData[count].bgImageUrl : undefined}>
-         <div className="bg"></div>
+      <VisualSection>
+         <div className={`bg ${isBg ? 'on' + count : ''}`}></div>
          <InnerContainer>
-            <div className="text-area">
-               <h2 onMouseOver={mouseOver} onMouseLeave={mouseLeave}>
-                  저희의
-                  <br />
-                  <span>
-                     <Swiper
-                        ref={swiperRef}
-                        className="mySwiper"
-                        loop={true}
-                        autoplay={{
-                           delay: 2000,
-                           disableOnInteraction: true,
-                        }}
-                        touchRatio={0}
-                        direction={'vertical'}
-                        modules={[Autoplay]}>
-                        {visualData.map(item => (
-                           <SwiperSlide key={item.text}>{item.text}</SwiperSlide>
-                        ))}
-                     </Swiper>
-                  </span>
-                  가
-                  <br />
-                  되어주세요
-                  <div className="sole"></div>
-               </h2>
-            </div>
-            {!isBg && (
-               <div className="img-area">
-                  <img src={visualData[count].bgImageUrl} alt="" />
-               </div>
-            )}
+            <h2 onMouseOver={mouseOver} onMouseLeave={mouseLeave}>
+               저희의
+               <br />
+               <span>
+                  <Swiper
+                     ref={swiperRef}
+                     className="mySwiper"
+                     loop={true}
+                     autoplay={{
+                        delay: 2000,
+                        disableOnInteraction: true,
+                     }}
+                     touchRatio={0}
+                     direction={'vertical'}
+                     modules={[Autoplay]}>
+                     {visualData.map(item => (
+                        <SwiperSlide key={item.text}>{item.text}</SwiperSlide>
+                     ))}
+                  </Swiper>
+               </span>
+               가
+               <br />
+               되어주세요
+               <div className="sole"></div>
+            </h2>
          </InnerContainer>
       </VisualSection>
    );
