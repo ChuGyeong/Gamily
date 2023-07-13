@@ -5,11 +5,9 @@ import useDate from '../hooks/useDate';
 
 const InfoBubble = memo(() => {
    const today = useDate();
-   const [isShowBubble, setIsShowBubble] = useState(
-      localStorage.getItem('isBubble') === today() ? false : true || true,
-   );
+   const [isShowBubble, setIsShowBubble] = useState(localStorage.getItem('isBubble') === today ? false : true || true);
    const notWatchOneDay = () => {
-      localStorage.setItem('isBubble', today());
+      localStorage.setItem('isBubble', today);
       setIsShowBubble(false);
    };
    return (

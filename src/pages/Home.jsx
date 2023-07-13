@@ -11,10 +11,7 @@ const Home = memo(() => {
             <Slide>
                <Visual />
             </Slide>
-<<<<<<< HEAD
             <Slide>asd</Slide>
-=======
->>>>>>> a7df5ca0f5819f746182030aba88380c674d59d3
             <Slide>
                <VisualText />
             </Slide>

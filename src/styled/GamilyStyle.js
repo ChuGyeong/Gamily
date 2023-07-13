@@ -453,3 +453,75 @@ export const VisualKnowContainer = styled.div`
       top: -8px;
    }
 `;
+
+export const LoadingContainer = styled.div`
+   padding: 50px;
+   box-sizing: border-box;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   strong {
+      display: block;
+      font-size: 50px;
+      span {
+         position: relative;
+         &:nth-child(1) {
+            animation: loadingDotAni infinite ease-in-out 1.5s;
+         }
+         &:nth-child(2) {
+            animation: loadingDotAni infinite ease-in-out 1.5s 0.3s;
+         }
+         &:nth-child(3) {
+            animation: loadingDotAni infinite ease-in-out 1.5s 0.6s;
+         }
+      }
+   }
+   i {
+      font-size: 100px;
+   }
+   @keyframes loadingDotAni {
+      0% {
+         bottom: 0;
+      }
+      50% {
+         bottom: 10px;
+      }
+      100% {
+         bottom: 0;
+      }
+   }
+`;
+export const PagingContainer = styled.div`
+   display: flex;
+   justify-content: center;
+   button,
+   li {
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      padding: 0;
+      border-radius: 5px;
+      border: 1px solid ${d9b99b};
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 600;
+   }
+   button {
+      &:first-child i:first-child,
+      &:last-child i:first-child {
+         margin-right: -5px;
+      }
+   }
+   ul {
+      display: flex;
+      margin: 0 10px;
+      li {
+         &.active {
+            background-color: ${d9b99b};
+            color: #fff;
+         }
+      }
+   }
+`;
