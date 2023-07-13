@@ -1,8 +1,20 @@
-import { styled } from 'styled-components';
+import { styled, keyframes } from 'styled-components';
 const mainColor = '#faf0e6';
 const subColor = '#eed9c4';
 const pointColor = '#d9b99b';
 const fontLogo = "'Bagel Fat One', cursive;";
+
+const fontOpacity = keyframes`
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
 
 export const WrapContainer = styled.div`
    position: relative;
@@ -397,64 +409,126 @@ export const AdoptionContainer = styled.div`
 
 // Store
 export const StoreContainer = styled.div`
-   .product-list {
+   .time-sale {
+      width: 1000px;
+      margin: auto;
+      background: ${subColor};
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
+      h3 {
+         font-size: 25px;
+         font-weight: 700;
+      }
+      p {
+         vertical-align: middle;
+         i {
+            margin-left: 10px;
+            font-size: 20px;
+         }
+      }
+   }
+   .category {
       width: 1000px;
       margin: auto;
       display: flex;
-      flex-wrap: wrap;
-      gap: 50px;
+      align-items: center;
+      justify-content: space-evenly;
+      background: ${mainColor};
       li {
-         width: 300px;
-         padding: 20px;
+         font-weight: 800;
+         padding: 20px 40px;
          box-sizing: border-box;
-         border-radius: 10px;
-         border: 1px solid #eeeeee;
-         .img-area {
-            width: 100%;
-            border-radius: 20px;
-            overflow: hidden;
-            background: #efefef;
-            img {
+         transition: 0.4s;
+         cursor: pointer;
+         &:hover {
+            background: ${pointColor};
+            color: ${mainColor};
+         }
+      }
+   }
+   .product {
+      width: 1000px;
+      padding: 70px 0;
+      margin: 50px auto;
+      position: relative;
+      .select-area {
+         position: absolute;
+         top: 0;
+         left: 0;
+         select {
+            appearance: none;
+            width: 150px;
+            height: 35px;
+            padding: 5px 30px 5px 10px;
+            border-radius: 4px;
+            outline: 0 none;
+            &:-ms-expand {
+               display: none;
+            }
+            option {
+               background: ${pointColor};
+            }
+         }
+      }
+      .product-list {
+         width: 100%;
+         display: flex;
+         flex-wrap: wrap;
+         gap: 50px;
+         li {
+            width: 300px;
+            padding: 20px;
+            box-sizing: border-box;
+            border-radius: 10px;
+            border: 1px solid #eeeeee;
+            .img-area {
                width: 100%;
-               height: 100%;
-               object-fit: cover;
-               margin-bottom: -10px;
-            }
-         }
-         .text-area {
-            padding: 10px 0;
-            height: 70px;
-            p {
-               &:nth-child(1) {
-                  font-weight: 700;
-                  overflow: hidden;
-                  text-overflow: ellipsis;
-                  white-space: nowrap;
-               }
-               &:nth-child(2) {
-                  padding: 5px 0;
-               }
-               &:nth-child(3) {
-                  font-size: 13px;
-                  width: 70px;
-                  text-align: center;
-                  background: ${pointColor};
-                  color: ${mainColor};
+               border-radius: 20px;
+               overflow: hidden;
+               background: #efefef;
+               img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  margin-bottom: -10px;
                }
             }
-         }
-         .btn-area {
-            button {
-               width: 50%;
-               border: none;
+            .text-area {
                padding: 10px 0;
-               transition: 0.3s;
-               cursor: pointer;
-               background: ${mainColor};
-               font-weight: 600;
-               &:hover {
-                  background: ${pointColor};
-                  color: ${mainColor};
+               height: 70px;
+               p {
+                  &:nth-child(1) {
+                     font-weight: 700;
+                     overflow: hidden;
+                     text-overflow: ellipsis;
+                     white-space: nowrap;
+                  }
+                  &:nth-child(2) {
+                     padding: 5px 0;
+                  }
+                  &:nth-child(3) {
+                     font-size: 13px;
+                     width: 70px;
+                     text-align: center;
+                     background: ${pointColor};
+                     color: ${mainColor};
+                  }
+               }
+            }
+            .btn-area {
+               button {
+                  width: 50%;
+                  border: none;
+                  padding: 10px 0;
+                  transition: 0.3s;
+                  cursor: pointer;
+                  background: ${mainColor};
+                  font-weight: 600;
+                  &:hover {
+                     background: ${pointColor};
+                     color: ${mainColor};
+                  }
                }
             }
          }

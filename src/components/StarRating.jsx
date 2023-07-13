@@ -1,5 +1,3 @@
-import React from 'react';
-import { BsStarFill, BsStarHalf } from 'react-icons/bs';
 
 const StarRating = (rating, color = '#BB1628') => {
    return (
