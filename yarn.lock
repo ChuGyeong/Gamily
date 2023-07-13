@@ -1744,11 +1744,6 @@ core-js-compat@^3.31.0:
   dependencies:
     browserslist "^4.21.9"
 
-core-js@^3.16.2:
-  version "3.31.1"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.31.1.tgz#f2b0eea9be9da0def2c5fece71064a7e5d687653"
-  integrity sha512-2sKLtfq1eFST7l7v62zaqXacPc7uG8ZAya8ogijLhTtaKNcpzpB4TMoTw2Si+8GYKRwFPMMtUT0263QFWFfqyQ==
-
 cross-spawn@^7.0.2:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.3.tgz#f73a85b9d5d41d045551c177e2882d4ac85728a6"
@@ -2144,6 +2139,13 @@ fsevents@~2.3.2:
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.2.tgz#8a526f78b8fdf4623b709e0b975c52c24c02fd1a"
   integrity sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==
 
+fullpage.js@2.9.6:
+  version "2.9.6"
+  resolved "https://registry.yarnpkg.com/fullpage.js/-/fullpage.js-2.9.6.tgz#8ab8ea65fd99c3abd58f0d7be290b83fb1c0999d"
+  integrity sha512-vAQgKXTQMRf93iW/wPA32bZclq3Wn2DF9HGoulP+mEZQpKog7qFIYy+TIBCWHm8HqnPzJS//8emizQqLU2Scwg==
+  dependencies:
+    jquery ">=1.6.0"
+
 function-bind@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
@@ -2483,6 +2485,11 @@ isexe@^2.0.0:
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==
 
+jquery@>=1.6.0:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.7.0.tgz#fe2c01a05da500709006d8790fe21c8a39d75612"
+  integrity sha512-umpJ0/k8X0MvD1ds0P9SfowREz2LenHsQaxSohMZ5OMNEU2r0tf8pdeEFTHMFxWVxKNyU9rTtK3CWzUCTKJUeQ==
+
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -2806,20 +2813,6 @@ react-dom@^18.2.0:
   dependencies:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
-
-react-full-page@^0.1.12:
-  version "0.1.12"
-  resolved "https://registry.yarnpkg.com/react-full-page/-/react-full-page-0.1.12.tgz#59dc3a0e86e56d5783b63c6a48a8d195a347dc78"
-  integrity sha512-Bk6gcxANuWNkeBNmaTUNRcA05zDBqJaTKxlr78dC59gsXhiWPODa8kcrDHClaRAc6JkH16jzbCOO1mNH9Ta1jQ==
-  dependencies:
-    core-js "^3.16.2"
-
-react-gsap@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/react-gsap/-/react-gsap-3.2.1.tgz#15c7a0e06c4cdda6ac36ccfcd49f58ba6c3cfbc5"
-  integrity sha512-IX6XiN1a74hmU385yNZAYV1cFe3/Xmbg8eT99VCjmz7yzQq1qIsR47gkX5rkWeml9KmyEgiIzqArYaipPkKIbw==
-  dependencies:
-    react-is "^16.13.1"
 
 react-icons@^4.10.1:
   version "4.10.1"
