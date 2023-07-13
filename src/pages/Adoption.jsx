@@ -28,8 +28,14 @@ const Adoption = memo(() => {
             <AdoptionForm filter={filter} setFilter={setFilter} />
             {state === 'fulfilled' ? (
                <>
-                  <AdoptionList data={data} />
-                  <AdoptionPaging currentPageNum={currentPageNum} filter={filter} setFilter={setFilter} />
+                  {data && data.length > 0 ? (
+                     <>
+                        <AdoptionList data={data} />
+                        <AdoptionPaging currentPageNum={currentPageNum} filter={filter} setFilter={setFilter} />
+                     </>
+                  ) : (
+                     <p>조회 결과가 없습니다</p>
+                  )}
                </>
             ) : (
                <Loading />

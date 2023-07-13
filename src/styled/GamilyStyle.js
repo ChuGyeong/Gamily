@@ -227,7 +227,7 @@ export const VisualSection = styled.div`
          mix-blend-mode: none;
          font-weight: 100;
          font-size: 120px;
-         color: #d9b99b;
+         color: ${pointColor};
          transition: 0.4s;
          display: inline-block;
          cursor: pointer;
@@ -566,7 +566,7 @@ export const PagingContainer = styled.div`
       height: 30px;
       padding: 0;
       border-radius: 5px;
-      border: 1px solid ${d9b99b};
+      border: 1px solid ${pointColor};
       display: flex;
       justify-content: center;
       align-items: center;
@@ -583,7 +583,7 @@ export const PagingContainer = styled.div`
       margin: 0 10px;
       li {
          &.active {
-            background-color: ${d9b99b};
+            background-color: ${pointColor};
             color: #fff;
          }
       }
