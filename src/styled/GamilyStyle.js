@@ -677,7 +677,13 @@ export const ProductContainer = styled.div`
 `;
 
 export const LoadingContainer = styled.div`
-   padding: 50px;
+   position: fixed;
+   left: 0;
+   top: 0;
+   background-color: #fff;
+   z-index: 1000;
+   width: 100vw;
+   height: 100vh;
    box-sizing: border-box;
    display: flex;
    flex-direction: column;
@@ -692,10 +698,10 @@ export const LoadingContainer = styled.div`
             animation: loadingDotAni infinite ease-in-out 1.5s;
          }
          &:nth-child(2) {
-            animation: loadingDotAni infinite ease-in-out 1.5s 0.3s;
+            animation: loadingDotAni infinite ease-in-out 1.5s 0.15s;
          }
          &:nth-child(3) {
-            animation: loadingDotAni infinite ease-in-out 1.5s 0.6s;
+            animation: loadingDotAni infinite ease-in-out 1.5s 0.3s;
          }
       }
    }
