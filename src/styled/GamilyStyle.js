@@ -1,20 +1,9 @@
 import { styled, keyframes } from 'styled-components';
-const mainColor = '#faf0e6';
-const subColor = '#eed9c4';
-const pointColor = '#d9b99b';
+const mainColor = '#ffc303';
+const subColor = '#1c3761';
+const pointColor = '#e84200';
 const fontLogo = "'Bagel Fat One', cursive;";
-
-const fontOpacity = keyframes`
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-`;
+const bgColor = 'background: #000;';
 
 export const WrapContainer = styled.div`
    position: relative;
@@ -55,7 +44,6 @@ export const HeaderContainer = styled.header`
       transition: 0.3s;
       &.on {
          top: 0;
-         background: #fff;
       }
       h1 {
          position: absolute;
@@ -87,6 +75,11 @@ export const HeaderContainer = styled.header`
 
 // Footer
 export const FooterContainer = styled.footer`
+   background: ${subColor};
+   color: #fff;
+   a {
+      color: #fff;
+   }
    strong {
       display: block;
       font-weight: 600;
@@ -157,7 +150,6 @@ export const InfoBubbleContainer = styled.div`
    padding: 20px;
    box-sizing: border-box;
    transition: 0.3s;
-
    &.on {
       animation: bubble 1s 1;
       right: 30px;
@@ -214,7 +206,6 @@ export const VisualSection = styled.div`
    height: 100vh;
    overflow: hidden;
    transition: 0.4s;
-   background: ${mainColor};
    .bg {
       position: absolute;
       top: 0;
@@ -222,7 +213,11 @@ export const VisualSection = styled.div`
       width: 100%;
       height: 100%;
       transition: 0.4s;
-      opacity: 0.5;
+      /* background-image: url('./images/visual_1.jpg'); */
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      background-size: cover;
+      filter: grayscale(99%);
    }
    h2 {
       margin-top: 300px;
@@ -258,6 +253,7 @@ export const VisualSection = styled.div`
             box-sizing: border-box;
          }
       }
+
       &:hover span {
          opacity: 1;
       }
@@ -278,6 +274,9 @@ export const VisualSection = styled.div`
          border-radius: 50%;
          border: 3px solid rgba(255, 255, 255, 0.5);
       }
+   }
+   &:hover .bg {
+      filter: grayscale(0%);
    }
 `;
 
@@ -370,8 +369,8 @@ export const AdoptionContainer = styled.div`
             font-size: 14px;
             display: block;
             padding: 3px 10px;
-            border-radius: 30px;
-            background-color: ${subColor};
+            border-radius: 10px;
+            background-color: #efefef;
             margin-right: 15px;
             margin-bottom: 10px;
          }
@@ -381,9 +380,8 @@ export const AdoptionContainer = styled.div`
          justify-content: center;
          align-items: center;
          button {
-            width: 49%;
+            width: 50%;
             height: 40px;
-            border-radius: 20px;
             border: none;
             background-color: transparent;
             font-size: 16px;
@@ -393,8 +391,7 @@ export const AdoptionContainer = styled.div`
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-right: 2%;
-            border: 1px solid ${subColor};
+            /* margin-right: 2%; */
             &:last-child {
                margin-right: 0;
             }
@@ -409,9 +406,7 @@ export const AdoptionContainer = styled.div`
 // Store
 export const StoreContainer = styled.div`
    .time-sale {
-      width: 1000px;
-      margin: auto;
-      background: ${subColor};
+      background: ${mainColor};
       text-align: center;
       padding: 20px;
       box-sizing: border-box;
@@ -428,26 +423,27 @@ export const StoreContainer = styled.div`
       }
    }
    .category {
-      width: 1000px;
       margin: auto;
       display: flex;
       align-items: center;
       justify-content: space-evenly;
-      background: ${mainColor};
+      background: ${subColor};
+      color: #fff;
       li {
-         font-weight: 800;
-         padding: 20px 40px;
+         width: 20%;
+         padding: 20px 0;
+         text-align: center;
          box-sizing: border-box;
          transition: 0.4s;
          cursor: pointer;
          &:hover {
-            background: ${pointColor};
-            color: ${mainColor};
+            background: ${mainColor};
+            color: ${subColor};
          }
       }
    }
    .product {
-      width: 1000px;
+      width: 100%;
       padding: 70px 0;
       margin: 50px auto;
       position: relative;
@@ -466,7 +462,7 @@ export const StoreContainer = styled.div`
                display: none;
             }
             option {
-               background: ${pointColor};
+               background: ${mainColor};
             }
          }
       }
@@ -476,11 +472,12 @@ export const StoreContainer = styled.div`
          flex-wrap: wrap;
          gap: 50px;
          li {
-            width: 300px;
+            width: 400px;
             padding: 20px;
             box-sizing: border-box;
             border-radius: 10px;
             border: 1px solid #eeeeee;
+            position: relative;
             .img-area {
                width: 100%;
                border-radius: 20px;
@@ -511,7 +508,11 @@ export const StoreContainer = styled.div`
                      width: 70px;
                      text-align: center;
                      background: ${pointColor};
-                     color: ${mainColor};
+                     color: #fff;
+                     animation: fontOpacity infinite ease-in-out 1.5s;
+                     position: absolute;
+                     top: 20px;
+                     right: 20px;
                   }
                }
             }
@@ -525,12 +526,23 @@ export const StoreContainer = styled.div`
                   background: ${mainColor};
                   font-weight: 600;
                   &:hover {
-                     background: ${pointColor};
-                     color: ${mainColor};
+                     background: ${subColor};
+                     color: #fff;
                   }
                }
             }
          }
+      }
+   }
+   @keyframes fontOpacity {
+      0% {
+         color: ${pointColor};
+      }
+      50% {
+         color: #fff;
+      }
+      100% {
+         color: ${pointColor};
       }
    }
 `;
