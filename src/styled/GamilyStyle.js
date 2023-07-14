@@ -43,10 +43,11 @@ export const WrapContainer = styled.div`
 export const MainContainer = styled.div`
    position: relative;
    width: 100%;
+   padding: 110px 0;
 `;
 
 export const InnerContainer = styled.div`
-   padding: 50px 0;
+   /* padding: 50px 0; */
    width: 1400px;
    margin: auto;
    box-sizing: border-box;
@@ -379,7 +380,6 @@ export const VisualTextContainer = styled.section`
 
 // Adoption
 export const AdoptionContainer = styled.div`
-   padding-top: 110px;
    h2 {
       font-size: 40px;
       font-weight: 600;
@@ -535,8 +535,8 @@ export const StoreContainer = styled.div`
    }
    .product {
       width: 100%;
-      padding: 70px 0;
-      margin: 50px auto;
+      margin-top: 50px;
+      padding-top: 70px;
       position: relative;
       .select-area {
          position: absolute;
@@ -782,6 +782,8 @@ export const NotFoundContainer = styled.div`
       font-size: 80px;
    }
 `;
+
+export const KnowledgeContainer = styled.div``;
 // // DogInfoSection
 // export const DogInfoContainer = styled.div`
 //    padding: 50px 0;
