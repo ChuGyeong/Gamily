@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ParticleButton } from '../styled/GamilyStyle';
+import { ParticleButton } from '../../styled/GamilyStyle';
 
 const ProductItem = memo(({ item }) => {
    const { id, image, title, price, count } = item;

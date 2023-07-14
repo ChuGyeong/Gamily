@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { BsFillCaretLeftFill, BsFillCaretRightFill } from 'react-icons/bs';
-import { PagingContainer } from '../styled/GamilyStyle';
+import { PagingContainer } from '../../styled/GamilyStyle';
 
 const AdoptionPaging = memo(({ currentPageNum, setCurrentPageNum, data, itemsPerPage }) => {
    const totalPages = Math.ceil(data.length / itemsPerPage);

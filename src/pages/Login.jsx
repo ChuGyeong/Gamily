@@ -1,18 +1,19 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
+import { LoginContainer, InnerContainer } from '../styled/GamilyStyle';
 
 const Login = memo(() => {
+   const [isSignUp, setIsSignUp] = useState(false);
+
+   const toggleSignUp = () => {
+      setIsSignUp(!isSignUp);
+   };
+
+   const formClass = isSignUp ? 'moveup' : '';
+
    return (
-      <form>
-         <p>
-            <label>아이디</label>
-            <input type="text" />
-         </p>
-         <p>
-            <label>비밀번호</label>
-            <input type="text" />
-         </p>
-         <button>로그인</button>
-      </form>
+      <LoginContainer>
+         <InnerContainer></InnerContainer>
+      </LoginContainer>
    );
 });
 

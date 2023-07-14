@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAdoptions } from '../store/modules/adoptionSlice';
-import { ParticleButton } from '../styled/GamilyStyle';
+import { getAdoptions } from '../../store/modules/adoptionSlice';
+import { ParticleButton } from '../../styled/GamilyStyle';
 
 const AdoptionFilterBox = memo(({ filter, setFilter, setCurrentPageNum }) => {
    const { sexCd, minWeight, maxWeight, orgCd } = filter;

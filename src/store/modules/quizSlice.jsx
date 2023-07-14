@@ -4,14 +4,13 @@ import axios from 'axios';
 const initialState = {
    data: [],
    loading: true,
-   state: null,
+   status: null,
 };
-export const getProduct = createAsyncThunk('quiz/getQuiz', async () => {
+export const getQuiz = createAsyncThunk('quiz/getQuiz', async () => {
    const res = await axios.get(
       `https://gist.githubusercontent.com/ChuGyeong/1425da871eab0cb6526b51b385524f8b/raw/4e474a84e177b4651bcd41812090f97714fe5309/gamilyQuiz.json`,
    );
-   return res.data;
-   console.log(data);
+   return res.data[0];
 });
 const quizSlice = createSlice({
    name: 'quiz',
@@ -19,16 +18,16 @@ const quizSlice = createSlice({
    reducers: {},
    extraReducers: builder => {
       builder
-         .addCase(getProduct.pending, (state, action) => {
+         .addCase(getQuiz.pending, (state, action) => {
             state.status = 'loading';
             state.loading = true;
          })
-         .addCase(getProduct.fulfilled, (state, action) => {
+         .addCase(getQuiz.fulfilled, (state, action) => {
             state.status = 'fulfilled';
             state.loading = false;
             state.data = action.payload;
          })
-         .addCase(getProduct.rejected, (state, action) => {
+         .addCase(getQuiz.rejected, (state, action) => {
             state.status = 'rejected';
             state.loading = false;
          });

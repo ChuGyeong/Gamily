@@ -13,6 +13,7 @@ import AdoptionDetail from './pages/AdoptionDetail';
 import ProductDetail from './pages/ProductDetail';
 import NotFound from './pages/NotFound';
 import Quiz from './pages/Quiz';
+import QuizDetail from './pages/QuizDetail';
 
 const App = () => {
    return (
@@ -22,9 +23,8 @@ const App = () => {
                <Route path="/" element={<Layout />}>
                   <Route index element={<Home />} />
                   <Route path="/knowledge" element={<Knowledge />} />
-                  <Route path="/quiz">
-                     <Route path=":QuizId" element={<Quiz />} />
-                  </Route>
+                  <Route path="/quiz" element={<Quiz />} />
+                  <Route path="/question/:questionId" element={<QuizDetail />} />
                   <Route path="/community" element={<Commu />} />
                   <Route path="/store" element={<Store />} />
                   <Route path="/product">

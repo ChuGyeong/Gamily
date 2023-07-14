@@ -2,7 +2,9 @@ import { styled, keyframes } from 'styled-components';
 const mainColor = '#ffc303';
 const subColor = '#1c3761';
 const pointColor = '#e84200';
-const fontLogo = "'Bagel Fat One', cursive;";
+const fontBagelFatOne = "'Bagel Fat One', cursive;";
+const fontSmooch = " 'Smooch', cursive;";
+const fontVT323 = " 'VT323', monospace;";
 
 export const ParticleButton = styled.button`
    position: relative;
@@ -240,38 +242,51 @@ export const HeaderContainer = styled.header`
 export const FooterContainer = styled.footer`
    background: ${subColor};
    color: #fff;
+   padding: 30px 0;
+   h2 {
+      margin-bottom: 10px;
+   }
    a {
       color: #fff;
    }
-   strong {
+   strong,
+   label {
       display: block;
       font-weight: 600;
       font-size: 18px;
+      border-bottom: 2px solid #090909;
+      padding-bottom: 5px;
+      margin-bottom: 10px;
    }
    span {
       display: block;
    }
    .box-continer {
-      display: flex;
       justify-content: space-between;
-      align-items: center;
-      .info-box {
+      display: flex;
+   }
+   .link-box {
+      a {
+         margin-right: 10px;
+         &:last-child {
+            margin-right: 0;
+         }
+         i {
+            font-size: 40px;
+         }
       }
-      .link-box {
-         ul {
-            display: flex;
-            li {
-               margin-right: 30px;
-               &:last-child {
-                  margin-right: 0;
-               }
-            }
-         }
-         label {
-            font-weight: 600;
-            font-size: 18px;
-            margin-right: 30px;
-         }
+   }
+   .newsletter-box {
+      text-align: right;
+      p {
+         margin-bottom: 10px;
+         font-size: 14px;
+      }
+      button {
+         background: ${mainColor};
+         border: none;
+         padding: 10px 20px;
+         cursor: pointer;
       }
    }
 `;
@@ -368,6 +383,8 @@ export const InfoBubbleContainer = styled.div`
       align-items: center;
       cursor: pointer;
       border: none;
+      background: ${pointColor};
+      color: #fff;
    }
    @keyframes bubble {
       0% {
@@ -401,7 +418,7 @@ export const VisualSection = styled.div`
    h2 {
       margin-top: 300px;
       width: 550px;
-      font-family: ${fontLogo};
+      font-family: ${fontBagelFatOne};
       font-size: 120px;
       line-height: 1;
       letter-spacing: -5px;
@@ -835,6 +852,7 @@ export const ProductContainer = styled.div`
    }
 `;
 
+// Loading
 export const LoadingContainer = styled.div`
    position: fixed;
    left: 0;
@@ -879,6 +897,8 @@ export const LoadingContainer = styled.div`
       }
    }
 `;
+
+// Paging
 export const PagingContainer = styled.div`
    display: flex;
    justify-content: center;
@@ -913,6 +933,8 @@ export const PagingContainer = styled.div`
       }
    }
 `;
+
+// NotFound
 export const NotFoundContainer = styled.div`
    width: 100vw;
    height: 100vh;
@@ -925,6 +947,7 @@ export const NotFoundContainer = styled.div`
    }
 `;
 
+// Knowledge
 export const KnowledgeContainer = styled.div`
    .text-area {
       border: 1px solid #efefef;
@@ -975,6 +998,88 @@ export const KnowledgeContainer = styled.div`
       }
    }
 `;
+// Quiz
+export const QuizContainer = styled.div`
+   h3 {
+      font-size: 120px;
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: 900;
+      margin-bottom: 30px;
+      font-family: 'Impact';
+      span {
+         &:first-child,
+         &:last-child {
+            color: ${pointColor};
+         }
+         &:nth-child(3n) {
+            color: ${mainColor};
+         }
+         &:nth-child(4n) {
+            color: ${subColor};
+         }
+         &:nth-child(5n) {
+            color: ${pointColor};
+         }
+      }
+   }
+   ul {
+      margin: 100px 0;
+      li {
+         margin-left: 30px;
+         position: relative;
+         margin-bottom: 10px;
+         &::after {
+            content: '';
+            background-image: url('./images/dog-tracks.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: -30px;
+         }
+      }
+   }
+   .contents {
+      display: flex;
+      box-sizing: border-box;
+      div {
+         width: 50%;
+         text-align: center;
+         color: #fff;
+         padding: 50px 0;
+         p {
+            margin-bottom: 30px;
+         }
+         &:first-child {
+            background: ${pointColor};
+         }
+         &:last-child {
+            background: ${subColor};
+         }
+         button {
+            font-size: 15px;
+            background-color: ${mainColor};
+            border: 1px solid #f39c12;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0px 6px 0px #f39c12;
+            transition: all 0.1s;
+            &:active {
+               box-shadow: 0px 2px 0px #d35400;
+               position: relative;
+               top: 2px;
+            }
+         }
+      }
+   }
+`;
+
+export const LoginContainer = styled.div``;
 // // DogInfoSection
 // export const DogInfoContainer = styled.div`
 //    padding: 50px 0;

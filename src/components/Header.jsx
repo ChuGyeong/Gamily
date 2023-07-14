@@ -46,7 +46,7 @@ const Header = () => {
             <div className="content-inner">
                <h1>
                   <Link to={'/'}>
-                     <img src="../../images/logo-removebg.png" />
+                     <img src="../../images/logo.png" />
                   </Link>
                </h1>
                <Navbar />

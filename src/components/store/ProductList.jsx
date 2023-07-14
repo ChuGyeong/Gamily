@@ -1,6 +1,6 @@
 import React, { memo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProduct } from '../store/modules/storeSlice';
+import { getProduct } from '../../store/modules/storeSlice';
 import ProductItem from './ProductItem';
 
 const ProductList = memo(() => {

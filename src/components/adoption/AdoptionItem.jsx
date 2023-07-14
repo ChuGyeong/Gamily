@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { AiOutlineHeart } from 'react-icons/ai';
-import { ParticleButton } from '../styled/GamilyStyle';
+import { ParticleButton } from '../../styled/GamilyStyle';
 
 const AdoptionItem = memo(({ item }) => {
    const {

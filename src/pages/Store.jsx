@@ -1,8 +1,8 @@
 import React, { memo } from 'react';
-import TimeSale from '../components/TimeSale';
+import TimeSale from '../components/store/TimeSale';
 import { StoreContainer, InnerContainer } from '../styled/GamilyStyle';
-import StoreMenu from '../components/StoreMenu';
-import ProductList from '../components/ProductList';
+import StoreMenu from '../components/store/StoreMenu';
+import ProductList from '../components/store/ProductList';
 
 const Store = memo(() => {
    return (
