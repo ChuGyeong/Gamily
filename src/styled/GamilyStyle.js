@@ -89,11 +89,11 @@ export const HeaderContainer = styled.header`
          transform: translateY(-50%);
       }
       .gnb {
-         ul {
+         .main-menu {
             display: flex;
             justify-content: center;
             align-items: center;
-            li {
+            & > li {
                margin-right: 50px;
                position: relative;
                &:focus,
@@ -121,7 +121,7 @@ export const HeaderContainer = styled.header`
                   transition-property: width, left;
                }
                &.on {
-                  a {
+                  & > a {
                      color: ${mainColor};
                   }
                }
@@ -130,6 +130,24 @@ export const HeaderContainer = styled.header`
                }
                &:last-child {
                   margin-right: 0;
+               }
+               .sub-menu {
+                  position: absolute;
+                  display: none;
+                  padding: 5px 0;
+                  &.active {
+                     display: flex;
+                  }
+                  & > li {
+                     height: 30px;
+                     font-size: 12px;
+                     margin-right: 20px;
+                     &.on {
+                        a {
+                           color: ${mainColor};
+                        }
+                     }
+                  }
                }
             }
          }

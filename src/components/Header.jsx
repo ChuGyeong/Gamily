@@ -1,31 +1,47 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
 import { HeaderContainer } from '../styled/GamilyStyle';
 import SubNav from './SubNav';
 
 const Header = () => {
-   const [isHeaderOn, setIsHeaderOn] = useState(true);
+   const [isHeaderOn, setIsHeaderOn] = useState(true); // 헤더 상태
+   const [inHeader, setInHeader] = useState(false); // 헤더 안에 있는지 여부
+   const timerRef = useRef(null); // 타이머 참조
 
    const handleScroll = () => {
       setIsHeaderOn(false);
+      setInHeader(false);
+   };
+
+   const onEnter = () => {
+      setIsHeaderOn(true);
+      setInHeader(true);
    };
 
    useEffect(() => {
-      const timeoutID = setTimeout(() => {
+      timerRef.current = setTimeout(() => {
          setIsHeaderOn(false);
       }, 2000);
-
-      window.addEventListener('scroll', handleScroll);
-
       return () => {
-         clearTimeout(timeoutID);
-         window.removeEventListener('scroll', handleScroll);
+         clearTimeout(timerRef.current);
       };
    }, []);
 
+   useEffect(() => {
+      if (inHeader) {
+         clearTimeout(timerRef.current);
+      }
+   }, [inHeader]);
+
+   useEffect(() => {
+      window.addEventListener('scroll', handleScroll);
+      return () => {
+         window.removeEventListener('scroll', handleScroll);
+      };
+   }, []);
    return (
-      <HeaderContainer onMouseEnter={() => setIsHeaderOn(true)} onMouseLeave={handleScroll}>
+      <HeaderContainer onMouseEnter={onEnter} onMouseLeave={handleScroll}>
          <div className={`inner ${isHeaderOn ? 'on' : ''}`}>
             <div className="content-inner">
                <h1>
