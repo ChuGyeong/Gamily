@@ -7,16 +7,20 @@ import AdoptionForm from '../components/AdoptionForm';
 import Loading from '../components/Loading';
 import AdoptionPaging from '../components/AdoptionPaging';
 
+const itemsPerPage = 12;
+
 const Adoption = memo(() => {
    const { data, state } = useSelector(state => state.adoptionsR);
    const [filter, setFilter] = useState({
-      currentPageNum: 1,
       kindCd: null,
    });
-   const { currentPageNum } = filter;
+   const [currentPageNum, setCurrentPageNum] = useState(1);
+   const startItemNum = itemsPerPage * (currentPageNum - 1);
+   const endItemNum = itemsPerPage * currentPageNum;
    const dispatch = useDispatch();
    useEffect(() => {
       dispatch(getAdoptions(filter));
+      setCurrentPageNum(1);
    }, [filter]);
    useEffect(() => {
       dispatch(getVarietyData());
@@ -30,8 +34,14 @@ const Adoption = memo(() => {
                <>
                   {data && data.length > 0 ? (
                      <>
-                        <AdoptionList data={data} />
-                        <AdoptionPaging currentPageNum={currentPageNum} filter={filter} setFilter={setFilter} />
+                        <AdoptionList data={data.slice(startItemNum, endItemNum)} />
+                        <AdoptionPaging
+                           currentPageNum={currentPageNum}
+                           filter={filter}
+                           setCurrentPageNum={setCurrentPageNum}
+                           data={data}
+                           itemsPerPage={itemsPerPage}
+                        />
                      </>
                   ) : (
                      <p>조회 결과가 없습니다</p>
