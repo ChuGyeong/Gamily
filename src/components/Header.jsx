@@ -1,37 +1,44 @@
-import React, { memo, useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
-import { HeaderContainer, InnerContainer } from '../styled/GamilyStyle';
+import { HeaderContainer } from '../styled/GamilyStyle';
 import SubNav from './SubNav';
 
-const Header = memo(() => {
+const Header = () => {
    const [isHeaderOn, setIsHeaderOn] = useState(true);
+
    const handleScroll = () => {
-      if (window.scrollY < 100) setIsHeaderOn(true);
-      else setIsHeaderOn(false);
+      setIsHeaderOn(false);
    };
+
    useEffect(() => {
-      const timer = setInterval(() => {
-         window.addEventListener('scroll', handleScroll);
-      }, 100);
+      const timeoutID = setTimeout(() => {
+         setIsHeaderOn(false);
+      }, 2000);
+
+      window.addEventListener('scroll', handleScroll);
+
       return () => {
-         clearInterval(timer);
+         clearTimeout(timeoutID);
          window.removeEventListener('scroll', handleScroll);
       };
    }, []);
+
    return (
       <HeaderContainer onMouseEnter={() => setIsHeaderOn(true)} onMouseLeave={handleScroll}>
          <div className={`inner ${isHeaderOn ? 'on' : ''}`}>
-            <h1>
-               <Link to={'/'}>
-                  <img src="../../public/images/logo-removebg.png" />
-               </Link>
-            </h1>
-            <Navbar />
-            <SubNav />
+            <div className="content-inner">
+               <h1>
+                  <Link to={'/'}>
+                     <img src="./images/logo-removebg.png" />
+                  </Link>
+               </h1>
+               <Navbar />
+               <SubNav />
+            </div>
          </div>
       </HeaderContainer>
    );
-});
+};
 
 export default Header;

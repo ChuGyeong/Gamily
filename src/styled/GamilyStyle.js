@@ -29,19 +29,26 @@ export const HeaderContainer = styled.header`
    left: 50%;
    transform: translateX(-50%);
    top: 0;
-   width: 1400px;
+   width: 100%;
    height: 110px;
    z-index: 100;
+
    .inner {
       width: 100%;
       height: 100%;
       position: absolute;
-      left: 0;
+      left: 50%;
       top: -110px;
+      transform: translateX(-50%);
       display: flex;
       justify-content: center;
       align-items: center;
       transition: 0.3s;
+      background-color: ${subColor};
+      .content-inner {
+         width: 1400px;
+         position: relative;
+      }
       &.on {
          top: 0;
       }
@@ -58,6 +65,39 @@ export const HeaderContainer = styled.header`
             align-items: center;
             li {
                margin-right: 50px;
+               position: relative;
+               &:focus,
+               &:hover {
+                  color: #fff;
+               }
+
+               &:focus::after,
+               &:hover::after {
+                  width: 100%;
+                  left: 0%;
+               }
+
+               &::after {
+                  content: '';
+                  pointer-events: none;
+                  bottom: -2px;
+                  left: 50%;
+                  position: absolute;
+                  width: 0%;
+                  height: 2px;
+                  background-color: #fff;
+                  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+                  transition-duration: 400ms;
+                  transition-property: width, left;
+               }
+               &.on {
+                  a {
+                     color: ${mainColor};
+                  }
+               }
+               a {
+                  color: #fff;
+               }
                &:last-child {
                   margin-right: 0;
                }
@@ -69,6 +109,9 @@ export const HeaderContainer = styled.header`
          right: 0;
          top: 50%;
          transform: translateY(-50%);
+         a {
+            color: #fff;
+         }
       }
    }
 `;
