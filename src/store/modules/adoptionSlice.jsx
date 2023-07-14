@@ -1,8 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import useDateMinus from '../../hooks/useDateMinus';
-import useDate from '../../hooks/useDate';
-import { useEffect } from 'react';
 
 const getToday = (daysBefore = 0) => {
    const date = new Date();
@@ -21,10 +18,10 @@ const initialState = {
    varietyDataSate: null,
 };
 export const getAdoptions = createAsyncThunk('adoptions/getAdoptions', async filter => {
-   const { currentPageNum, kindCd } = filter;
+   const { kindCd } = filter;
    const twentyDaysAgo = getToday(20); // 20일 전 날짜
    const tenDaysAgo = getToday(10); // 10일 전 날짜
-   let url = `http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic?bgnde=${twentyDaysAgo}&endde=${tenDaysAgo}&pageNo=${currentPageNum}&state=notice&numOfRows=1000&upkind=417000`;
+   let url = `http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic?bgnde=${twentyDaysAgo}&endde=${tenDaysAgo}&pageNo=1&state=notice&numOfRows=1000&upkind=417000`;
    if (kindCd) {
       url += `&kind=${kindCd}`;
    }
