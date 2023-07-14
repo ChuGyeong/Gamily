@@ -753,7 +753,17 @@ export const PagingContainer = styled.div`
       }
    }
 `;
-
+export const NotFoundContainer = styled.div`
+   width: 100vw;
+   height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   span {
+      font-weight: 900;
+      font-size: 80px;
+   }
+`;
 // // DogInfoSection
 // export const DogInfoContainer = styled.div`
 //    padding: 50px 0;
