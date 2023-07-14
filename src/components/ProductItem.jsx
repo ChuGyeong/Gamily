@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ParticleButton } from '../styled/GamilyStyle';
 
 const ProductItem = memo(({ item }) => {
    const { id, image, title, price, count } = item;
@@ -17,8 +18,8 @@ const ProductItem = memo(({ item }) => {
             <p>{count < 5 && '품절임박'}</p>
          </div>
          <div className="btn-area">
-            <button onClick={() => navigate(`/product/${id}`)}>상세정보</button>
-            <button>상품담기</button>
+            <ParticleButton onClick={() => navigate(`/product/${id}`)}>상세정보</ParticleButton>
+            <ParticleButton>상품담기</ParticleButton>
          </div>
       </li>
    );
