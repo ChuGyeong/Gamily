@@ -49,7 +49,7 @@ const Visual = memo(() => {
 
    return (
       <VisualSection>
-         <div className={`bg ${isBg ? 'on' + count : ''}`}></div>
+         <div className="bg"></div>
          <InnerContainer>
             <h2 onMouseOver={mouseOver} onMouseLeave={mouseLeave}>
                저희의
@@ -74,7 +74,6 @@ const Visual = memo(() => {
                가
                <br />
                되어주세요
-               <div className="sole"></div>
             </h2>
          </InnerContainer>
       </VisualSection>

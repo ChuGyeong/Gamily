@@ -16,7 +16,6 @@ const Layout = memo(() => {
          <GoTopBtn />
          <InfoBubble />
          <Footer />
-         {/* <Footer /> */}
       </WrapContainer>
    );
 });
