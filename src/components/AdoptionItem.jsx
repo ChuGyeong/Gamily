@@ -29,7 +29,7 @@ const AdoptionItem = memo(({ item }) => {
             <span>#{age}</span>
             <span>#{kindCd.replace('[개] ', '')}</span>
             <span>#{weight}</span>
-            <span>#{sexCd === 'M' ? '남아' : '여아'}</span>
+            <span>#{sexCd === 'M' ? '남아' : sexCd === 'F' ? '여아' : '미상'}</span>
             <span>#{colorCd}</span>
             <span>#{careNm}</span>
          </div>

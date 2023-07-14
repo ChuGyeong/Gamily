@@ -12,6 +12,7 @@ import Home from './pages/Home';
 import AdoptionDetail from './pages/AdoptionDetail';
 import ProductDetail from './components/ProductDetail';
 import NotFound from './pages/NotFound';
+import Quiz from './pages/Quiz';
 
 const App = () => {
    return (

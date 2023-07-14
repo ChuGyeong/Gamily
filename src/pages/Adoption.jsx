@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useState } from 'react';
 import { AdoptionContainer, InnerContainer } from '../styled/GamilyStyle';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAdoptions, getVarietyData } from '../store/modules/adoptionSlice';
+import { getAdoptions, getOrgData, getVarietyData } from '../store/modules/adoptionSlice';
 import AdoptionList from '../components/AdoptionList';
 import AdoptionForm from '../components/AdoptionForm';
 import Loading from '../components/Loading';
@@ -13,6 +13,10 @@ const Adoption = memo(() => {
    const { data, state } = useSelector(state => state.adoptionsR);
    const [filter, setFilter] = useState({
       kindCd: null,
+      sexCd: '',
+      minWeight: 0,
+      maxWeight: 100,
+      orgCd: '',
    });
    const [currentPageNum, setCurrentPageNum] = useState(1);
    const startItemNum = itemsPerPage * (currentPageNum - 1);
@@ -21,15 +25,16 @@ const Adoption = memo(() => {
    useEffect(() => {
       dispatch(getAdoptions(filter));
       setCurrentPageNum(1);
-   }, [filter]);
+   }, [filter.kindCd]);
    useEffect(() => {
       dispatch(getVarietyData());
+      dispatch(getOrgData());
    }, []);
    return (
       <AdoptionContainer>
          <InnerContainer>
             <h2>Adoption</h2>
-            <AdoptionForm filter={filter} setFilter={setFilter} />
+            <AdoptionForm filter={filter} setFilter={setFilter} setCurrentPageNum={setCurrentPageNum} />
             {state === 'fulfilled' ? (
                <>
                   {data && data.length > 0 ? (

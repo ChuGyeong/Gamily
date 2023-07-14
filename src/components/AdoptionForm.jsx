@@ -2,7 +2,9 @@ import React, { memo, useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
 
-const AdoptionForm = memo(({ filter, setFilter }) => {
+import AdoptionFilterBox from './AdoptionFilterBox';
+
+const AdoptionForm = memo(({ filter, setFilter, setCurrentPageNum }) => {
    const [search, setSearch] = useState({
       searchText: '',
    });
@@ -10,6 +12,7 @@ const AdoptionForm = memo(({ filter, setFilter }) => {
    const [isSuggestionsVisible, setIsSuggestionsVisible] = useState(false);
    const [focusedItemIndex, setFocusedItemIndex] = useState(-1);
    const { varietyData, varietyDataSate } = useSelector(state => state.adoptionsR);
+   const [isFilterBoxOn, setIsFilterBoxOn] = useState(false);
 
    const handleKeyPress = e => {
       const filteredItems = varietyData.filter(item => item.knm.includes(searchText));
@@ -44,12 +47,13 @@ const AdoptionForm = memo(({ filter, setFilter }) => {
    const onSubmit = e => {
       e.preventDefault();
       if (varietyDataSate === 'fulfilled') {
-         const kindCd = varietyData.find(item => item.knm === searchText).kindCd;
-         console.log(kindCd);
-         if (kindCd) {
-            setFilter({ ...filter, kindCd });
-         } else {
-            console.log('잘못된 입력입니다');
+         try {
+            const kindCd = varietyData.find(item => item.knm === searchText).kindCd;
+            if (kindCd) {
+               setFilter({ ...filter, kindCd });
+            }
+         } catch {
+            alert('잘못된 입력입니다');
          }
       }
    };
@@ -86,11 +90,14 @@ const AdoptionForm = memo(({ filter, setFilter }) => {
                </ul>
             )}
          </div>
+
          <div className="filter-box">
-            <div>
-               <label htmlFor=""></label>
-               <input type="radio" name="" id="" />
-            </div>
+            <button className="toggle-btn" type="button" onClick={() => setIsFilterBoxOn(!isFilterBoxOn)}>
+               {isFilterBoxOn ? '접기' : '펼치기'}
+            </button>
+            {isFilterBoxOn && (
+               <AdoptionFilterBox filter={filter} setFilter={setFilter} setCurrentPageNum={setCurrentPageNum} />
+            )}
          </div>
       </form>
    );

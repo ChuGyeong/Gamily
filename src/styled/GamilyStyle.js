@@ -231,6 +231,7 @@ export const GoTopButton = styled.div`
 
 // InfoBubble
 export const InfoBubbleContainer = styled.div`
+   z-index: 10;
    position: fixed;
    right: -300px;
    bottom: 70px;
@@ -241,6 +242,7 @@ export const InfoBubbleContainer = styled.div`
    padding: 20px;
    box-sizing: border-box;
    transition: 0.3s;
+   border: 2px solid ${subColor};
    &.on {
       animation: bubble 1s 1;
       right: 30px;
@@ -258,6 +260,20 @@ export const InfoBubbleContainer = styled.div`
       border-bottom: 0;
       margin-top: -10px;
       margin-right: -20px;
+   }
+   &::before {
+      content: '';
+      position: absolute;
+      right: -3px;
+      bottom: 8px;
+      width: 0;
+      height: 0;
+      border: 25px solid transparent;
+      border-left-color: ${subColor};
+      border-right: 0;
+      border-bottom: 0;
+      margin-top: -8px;
+      margin-right: -22px;
    }
    p {
       margin-top: 15px;
@@ -386,12 +402,16 @@ export const AdoptionContainer = styled.div`
       margin-bottom: 20px;
    }
    form {
+      width: 50%;
       margin-bottom: 50px;
+      margin: auto;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-items: flex-end;
       .search-box {
-         width: 50%;
+         width: 100%;
          position: relative;
+         margin-bottom: 20px;
          input[type='text'] {
             width: 100%;
             height: 70px;
@@ -423,6 +443,56 @@ export const AdoptionContainer = styled.div`
             border: none;
             color: ${subColor};
             cursor: pointer;
+         }
+      }
+      .filter-box {
+         position: relative;
+         width: 100%;
+         margin-bottom: 30px;
+         .toggle-btn {
+            width: 100px;
+            border-radius: 10px 10px 0 0;
+            background-color: ${mainColor};
+            cursor: pointer;
+            height: 30px;
+            z-index: 100;
+            border: 2px solid ${subColor};
+         }
+         .filter-content {
+            z-index: 100;
+            position: absolute;
+            top: 28px;
+            left: 0;
+            background-color: ${mainColor};
+            padding: 20px;
+            box-sizing: border-box;
+            border-radius: 0 0 20px 20px;
+            border: 2px solid ${subColor};
+            p {
+               strong {
+                  display: block;
+                  width: 70px;
+                  font-weight: 700;
+                  margin: 5px 0;
+               }
+               label {
+                  display: inline-block;
+                  margin-top: 2px;
+                  margin-right: 5px;
+                  input[type='number'] {
+                     padding: 5px;
+                     margin-right: 5px;
+                     border: 1px solid #000;
+                  }
+               }
+            }
+            button {
+               margin-top: 30px;
+               background: ${subColor};
+               padding: 10px 20px;
+               color: #fff;
+               border-radius: 10px;
+            }
          }
       }
    }
@@ -748,11 +818,12 @@ export const PagingContainer = styled.div`
       height: 30px;
       padding: 0;
       border-radius: 5px;
-      border: 1px solid ${pointColor};
+      border: 1px solid #efefef;
       display: flex;
       justify-content: center;
       align-items: center;
       font-weight: 600;
+      margin: 2px;
    }
    button {
       &:first-child i:first-child,
