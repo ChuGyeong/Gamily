@@ -24,7 +24,6 @@ export const WrapContainer = styled.div`
 export const MainContainer = styled.div`
    position: relative;
    width: 100%;
-   padding: 110px 0 0;
 `;
 
 export const InnerContainer = styled.div`
