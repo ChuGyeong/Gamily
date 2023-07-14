@@ -4,7 +4,7 @@ import axios from 'axios';
 const initialState = {
    data: [],
    loading: true,
-   state: null,
+   status: null,
 };
 export const getProduct = createAsyncThunk('product/getProduct', async () => {
    const res = await axios.get(

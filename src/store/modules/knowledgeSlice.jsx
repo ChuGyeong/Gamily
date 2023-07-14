@@ -9,7 +9,7 @@ const initialState = {
 
 export const getKnowledge = createAsyncThunk('knowledge/getKnowledge', async () => {
    const res = await axios.get(
-      'https://gist.githubusercontent.com/ChuGyeong/e44e6ec7742c99bb7ae53e5953aa8a7e/raw/5d8b581493053be63222821287a22b3d2ba9014c/gamilyKnowledge.json',
+      'https://gist.githubusercontent.com/ChuGyeong/e44e6ec7742c99bb7ae53e5953aa8a7e/raw/f37606f0e17c128cadf9d91463c5cc7cec639bfc/gamilyKnowledge.json',
    );
    return res.data;
 });

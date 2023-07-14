@@ -10,7 +10,7 @@ import SignUp from './pages/SignUp';
 import Store from './pages/Store';
 import Home from './pages/Home';
 import AdoptionDetail from './pages/AdoptionDetail';
-import ProductDetail from './components/ProductDetail';
+import ProductDetail from './pages/ProductDetail';
 import NotFound from './pages/NotFound';
 import Quiz from './pages/Quiz';
 
@@ -21,9 +21,10 @@ const App = () => {
             <Routes>
                <Route path="/" element={<Layout />}>
                   <Route index element={<Home />} />
-
                   <Route path="/knowledge" element={<Knowledge />} />
-                  <Route path="/quiz" element={<Quiz />} />
+                  <Route path="/quiz">
+                     <Route path=":QuizId" element={<Quiz />} />
+                  </Route>
                   <Route path="/community" element={<Commu />} />
                   <Route path="/store" element={<Store />} />
                   <Route path="/product">

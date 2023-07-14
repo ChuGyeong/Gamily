@@ -11,9 +11,10 @@ export const getProduct = createAsyncThunk('quiz/getQuiz', async () => {
       `https://gist.githubusercontent.com/ChuGyeong/1425da871eab0cb6526b51b385524f8b/raw/4e474a84e177b4651bcd41812090f97714fe5309/gamilyQuiz.json`,
    );
    return res.data;
+   console.log(data);
 });
 const quizSlice = createSlice({
-   name: 'store',
+   name: 'quiz',
    initialState,
    reducers: {},
    extraReducers: builder => {
