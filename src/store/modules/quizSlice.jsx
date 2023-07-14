@@ -4,16 +4,17 @@ import axios from 'axios';
 const initialState = {
    data: [],
    loading: true,
-   status: null,
+   state: null,
 };
-export const getProduct = createAsyncThunk('product/getProduct', async () => {
+export const getProduct = createAsyncThunk('quiz/getQuiz', async () => {
    const res = await axios.get(
-      `https://gist.githubusercontent.com/ChuGyeong/592f56c5bdd6781a74f303edb1cdccb6/raw/d7ee42cb5ba7131c56f3156b2838370df9ba659e/gamilyStore.json`,
+      `https://gist.githubusercontent.com/ChuGyeong/1425da871eab0cb6526b51b385524f8b/raw/4e474a84e177b4651bcd41812090f97714fe5309/gamilyQuiz.json`,
    );
    return res.data;
+   console.log(data);
 });
-const storeSlice = createSlice({
-   name: 'store',
+const quizSlice = createSlice({
+   name: 'quiz',
    initialState,
    reducers: {},
    extraReducers: builder => {
@@ -34,5 +35,5 @@ const storeSlice = createSlice({
    },
 });
 
-export const {} = storeSlice.actions;
-export default storeSlice.reducer;
+export const {} = quizSlice.actions;
+export default quizSlice.reducer;

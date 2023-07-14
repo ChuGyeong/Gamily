@@ -35,6 +35,76 @@ export const ParticleButton = styled.button`
    }
 `;
 
+export const WaveEffect = styled.div`
+   .wave {
+      opacity: 0.4;
+      position: absolute;
+      top: ${props => props.top};
+      left: ${props => props.left};
+      border: 2px solid ${pointColor};
+      width: 300px;
+      height: 300px;
+      -webkit-transform-origin: 50% 48%;
+      transform-origin: 50% 48%;
+      -webkit-animation: drift 3000ms infinite linear;
+      animation: drift 3000ms infinite linear;
+      border-radius: 43%;
+   }
+   .wave.three {
+      -webkit-animation: drift 5000ms infinite linear;
+      animation: drift 5000ms infinite linear;
+   }
+   .wave.two {
+      -webkit-animation: drift 7000ms infinite linear;
+      animation: drift 7000ms infinite linear;
+      opacity: 0.1;
+      border: 3px solid ${mainColor};
+   }
+   .wave.four {
+      border: 3px solid ${subColor};
+      -webkit-animation: drift 4000ms infinite linear;
+      animation: drift 4000ms infinite linear;
+   }
+   .box:after {
+      content: '';
+      display: block;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, #ee88aa, rgba(221, 238, 255, 0) 80%, rgba(255, 255, 255, 0.5));
+      z-index: 11;
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+   }
+
+   @-webkit-keyframes drift {
+      from {
+         -webkit-transform: rotate(0deg) scale(0, 0);
+         transform: rotate(0deg) scale(0, 0);
+         opacity: 1;
+      }
+      to {
+         -webkit-transform: rotate(360deg) scale(2, 2);
+         transform: rotate(360deg) scale(2, 2);
+         opacity: 0;
+      }
+   }
+
+   @keyframes drift {
+      from {
+         -webkit-transform: rotate(0deg) scale(0, 0);
+         transform: rotate(0deg) scale(0, 0);
+         opacity: 1;
+      }
+      to {
+         -webkit-transform: rotate(360deg) scale(2, 2);
+         transform: rotate(360deg) scale(2, 2);
+         opacity: 0;
+      }
+   }
+`;
+
 export const WrapContainer = styled.div`
    position: relative;
    width: 100%;
@@ -43,10 +113,12 @@ export const WrapContainer = styled.div`
 export const MainContainer = styled.div`
    position: relative;
    width: 100%;
+   padding: 110px 0;
+   overflow: hidden;
 `;
 
 export const InnerContainer = styled.div`
-   padding: 50px 0;
+   /* padding: 50px 0; */
    width: 1400px;
    margin: auto;
    box-sizing: border-box;
@@ -395,7 +467,6 @@ export const VisualTextContainer = styled.section`
 
 // Adoption
 export const AdoptionContainer = styled.div`
-   padding-top: 110px;
    h2 {
       font-size: 40px;
       font-weight: 600;
@@ -605,8 +676,8 @@ export const StoreContainer = styled.div`
    }
    .product {
       width: 100%;
-      padding: 70px 0;
-      margin: 50px auto;
+      margin-top: 50px;
+      padding-top: 70px;
       position: relative;
       .select-area {
          position: absolute;
@@ -851,6 +922,57 @@ export const NotFoundContainer = styled.div`
    span {
       font-weight: 900;
       font-size: 80px;
+   }
+`;
+
+export const KnowledgeContainer = styled.div`
+   .text-area {
+      border: 1px solid #efefef;
+      padding: 20px;
+      background: #fff;
+      position: relative;
+      margin-top: 230px;
+      background: #fff;
+      z-index: 100;
+      &::after {
+         content: '';
+         width: 300px;
+         height: 210px;
+         position: absolute;
+         top: -200px;
+         left: 0;
+         background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)),
+            url('./images/bulldog.png');
+         background-size: cover;
+         background-repeat: no-repeat;
+         background-position: 0 40%;
+         transform: rotate(1deg);
+      }
+      div {
+         padding: 50px;
+         box-sizing: border-box;
+         border-radius: 30px;
+         margin-bottom: 20px;
+         &:last-child {
+            margin-bottom: 0;
+         }
+         strong {
+            font-size: 25px;
+            font-weight: 700;
+         }
+         p {
+            margin-top: 20px;
+         }
+         &:nth-child(1n) {
+            background: #efefef;
+            background: ${subColor};
+            color: #efefef;
+         }
+         &:nth-child(2n) {
+            background: ${mainColor};
+            color: #555;
+         }
+      }
    }
 `;
 // // DogInfoSection
