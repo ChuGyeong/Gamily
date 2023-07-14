@@ -3,7 +3,37 @@ const mainColor = '#ffc303';
 const subColor = '#1c3761';
 const pointColor = '#e84200';
 const fontLogo = "'Bagel Fat One', cursive;";
-const bgColor = 'background: #000;';
+
+export const ParticleButton = styled.button`
+   position: relative;
+   display: inline-block;
+   background-color: ${mainColor};
+   border: none;
+   outline: none;
+   overflow: hidden;
+   cursor: pointer;
+   transition: all 0.3s ease-out;
+   &:hover {
+      background-color: ${mainColor};
+   }
+   &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background-color: #ffffff;
+      opacity: 0.8;
+      transition: all 0.5s ease-out;
+   }
+   &:hover::before {
+      transform: translate(-50%, -50%) scale(20);
+      opacity: 0;
+   }
+`;
 
 export const WrapContainer = styled.div`
    position: relative;
@@ -305,24 +335,32 @@ export const AdoptionContainer = styled.div`
             width: 100%;
             height: 70px;
             text-indent: 20px;
-            font-size: 20px;
             box-sizing: border-box;
             background-color: transparent;
-            border: none;
-            border-bottom: 2px solid ${pointColor};
+            outline: 2px solid #febf00;
+            outline-offset: 3px;
+            border-radius: 10px;
+            padding: 10px 1rem;
+            transition: 0.4s;
+            /* border: none; */
             &:focus {
-               outline: none;
+               outline-offset: 10px;
+               background-color: ${subColor};
+               color: #fff;
+            }
+            &:focus + button {
+               color: ${mainColor};
             }
          }
          button {
             font-size: 30px;
             position: absolute;
-            right: 0;
+            right: 10px;
             top: 50%;
             transform: translateY(-50%);
             background: transparent;
             border: none;
-            color: ${pointColor};
+            color: ${subColor};
             cursor: pointer;
          }
       }
@@ -350,10 +388,10 @@ export const AdoptionContainer = styled.div`
       border-radius: 20px;
       margin-bottom: 30px;
       // default 비율로 설정 (1행에 4열)
-      padding: 10px;
+      padding: 20px;
       box-sizing: border-box;
       overflow: hidden;
-      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      border: 1px solid #efefef;
       img {
          display: block;
          width: 100%;
@@ -381,22 +419,14 @@ export const AdoptionContainer = styled.div`
          align-items: center;
          button {
             width: 50%;
-            height: 40px;
-            border: none;
-            background-color: transparent;
-            font-size: 16px;
-            cursor: pointer;
-            transition: 0.3s;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            /* margin-right: 2%; */
-            &:last-child {
-               margin-right: 0;
+            height: 30px;
+            &:first-child {
+               border-radius: 30px 0 0 30px;
             }
-            &:hover {
-               background-color: ${subColor};
+            &:last-child {
+               background: ${subColor};
+               border-radius: 0 30px 30px 0;
+               color: #fff;
             }
          }
       }

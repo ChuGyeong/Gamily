@@ -23,7 +23,7 @@ const TimeSale = memo(() => {
                {hour < 10 ? '0' + hour : hour}:{minute < 10 ? '0' + minute : minute}:
                {second < 10 ? '0' + second : second}
             </span>
-            <i class="xi-spinner-4 xi-spin"></i>
+            <i className="xi-spinner-4 xi-spin"></i>
          </p>
       </div>
    );

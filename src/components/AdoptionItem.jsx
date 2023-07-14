@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import { AiOutlineHeart } from 'react-icons/ai';
+import { ParticleButton } from '../styled/GamilyStyle';
 const AdoptionItem = memo(({ item }) => {
    const {
       desertionNo,
@@ -32,10 +33,10 @@ const AdoptionItem = memo(({ item }) => {
             <span>#{careNm}</span>
          </div>
          <div className="btn-box">
-            <button>상세정보</button>
-            <button>
+            <ParticleButton>상세정보</ParticleButton>
+            <ParticleButton>
                <AiOutlineHeart></AiOutlineHeart>
-            </button>
+            </ParticleButton>
          </div>
       </div>
    );
