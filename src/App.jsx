@@ -11,7 +11,7 @@ import Store from './pages/Store';
 import Home from './pages/Home';
 import AdoptionDetail from './pages/AdoptionDetail';
 import ProductDetail from './components/ProductDetail';
-import Quiz from './pages/Quiz';
+import NotFound from './pages/NotFound';
 
 const App = () => {
    return (
@@ -36,6 +36,7 @@ const App = () => {
                   <Route path="/mypage" element={<MyPage />} />
                   <Route path="/signUp" element={<SignUp />} />
                </Route>
+               <Route path="/*" element={<NotFound />} />
             </Routes>
          </BrowserRouter>
       </>
