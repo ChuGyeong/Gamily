@@ -11,6 +11,7 @@ import Store from './pages/Store';
 import Home from './pages/Home';
 import AdoptionDetail from './pages/AdoptionDetail';
 import ProductDetail from './components/ProductDetail';
+import Quiz from './pages/Quiz';
 
 const App = () => {
    return (
@@ -21,6 +22,7 @@ const App = () => {
                   <Route index element={<Home />} />
 
                   <Route path="/knowledge" element={<Knowledge />} />
+                  <Route path="/quiz" element={<Quiz />} />
                   <Route path="/community" element={<Commu />} />
                   <Route path="/store" element={<Store />} />
                   <Route path="/product">

@@ -8,7 +8,7 @@ const initialState = {
 };
 export const getProduct = createAsyncThunk('product/getProduct', async () => {
    const res = await axios.get(
-      `https://gist.githubusercontent.com/ChuGyeong/592f56c5bdd6781a74f303edb1cdccb6/raw/70cf2d63ab0ce939c791ea2270fe248520680bb8/gamilyStore.json`,
+      `https://gist.githubusercontent.com/ChuGyeong/592f56c5bdd6781a74f303edb1cdccb6/raw/d7ee42cb5ba7131c56f3156b2838370df9ba659e/gamilyStore.json`,
    );
    return res.data;
 });
