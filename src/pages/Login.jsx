@@ -1,5 +1,5 @@
 import React, { memo, useState } from 'react';
-import { LoginContainer, InnerContainer } from '../styled/GamilyStyle';
+import { InnerContainer } from '../styled/GamilyStyle';
 
 const Login = memo(() => {
    const [isSignUp, setIsSignUp] = useState(false);
@@ -11,9 +11,9 @@ const Login = memo(() => {
    const formClass = isSignUp ? 'moveup' : '';
 
    return (
-      <LoginContainer>
+      <>
          <InnerContainer></InnerContainer>
-      </LoginContainer>
+      </>
    );
 });
 

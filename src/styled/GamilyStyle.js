@@ -1079,7 +1079,37 @@ export const QuizContainer = styled.div`
    }
 `;
 
-export const LoginContainer = styled.div``;
+export const QuestionContainer = styled.div`
+   h2 {
+      text-align: center;
+      font-size: 50px;
+      font-weight: 700;
+      margin-bottom: 50px;
+   }
+   ul {
+      li {
+         margin-bottom: 20px;
+         p {
+            span {
+            }
+            strong {
+               margin: 0 5px;
+            }
+         }
+         label {
+            input[type='radio'] {
+               margin-right: 5px;
+            }
+            span {
+               margin-right: 15px;
+            }
+         }
+      }
+   }
+   button {
+      padding: 10px 30px;
+   }
+`;
 // // DogInfoSection
 // export const DogInfoContainer = styled.div`
 //    padding: 50px 0;
