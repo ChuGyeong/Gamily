@@ -107,16 +107,63 @@ export const WaveEffect = styled.div`
    }
 `;
 
+export const ToggleSwitch = styled.div`
+   text-align: center;
+   margin: 50px 0;
+   .switch {
+      font-size: 1rem;
+      position: relative;
+      display: inline-block;
+      width: 4em;
+      height: 2em;
+      input {
+         opacity: 0;
+         width: 0;
+         height: 0;
+      }
+      .slider {
+         position: absolute;
+         cursor: pointer;
+         inset: 0;
+         background-color: #eee;
+         transition: 0.4s;
+         border-radius: 0.5em;
+         box-shadow: 0 0.2em #dfd9d9;
+      }
+      .slider:before {
+         position: absolute;
+         content: '';
+         height: 1.5em;
+         width: 1.4em;
+         border-radius: 0.3em;
+         left: 0.3em;
+         bottom: 0.7em;
+         background-color: ${subColor};
+         transition: 0.4s;
+         box-shadow: 0 0.4em #bcb4b4;
+      }
+      .slider:hover::before {
+         box-shadow: 0 0.2em #bcb4b4;
+         bottom: 0.5em;
+      }
+      input:checked + .slider:before {
+         transform: translateX(2em);
+         background: ${mainColor};
+      }
+   }
+`;
+
 export const WrapContainer = styled.div`
    position: relative;
    width: 100%;
-   /* background-color: ${mainColor}; */
 `;
 export const MainContainer = styled.div`
    position: relative;
    width: 100%;
    padding: 110px 0;
    overflow: hidden;
+   box-sizing: border-box;
+   min-height: calc(100vh - 350px);
 `;
 
 export const InnerContainer = styled.div`
@@ -1104,6 +1151,7 @@ export const QuizContainer = styled.div`
             padding: 10px;
             box-shadow: 0px 6px 0px #f39c12;
             transition: all 0.1s;
+            cursor: pointer;
             &:active {
                box-shadow: 0px 2px 0px #d35400;
                position: relative;
@@ -1114,7 +1162,166 @@ export const QuizContainer = styled.div`
    }
 `;
 
-export const LoginContainer = styled.div``;
+export const QuestionContainer = styled.div`
+   h2 {
+      text-align: center;
+      font-size: 50px;
+      font-weight: 700;
+      margin-bottom: 50px;
+   }
+   ul {
+      li {
+         margin-bottom: 20px;
+         p {
+            span {
+            }
+            strong {
+               margin: 0 5px;
+            }
+         }
+         label {
+            input[type='radio'] {
+               margin-right: 5px;
+            }
+            span {
+               margin-right: 15px;
+            }
+         }
+      }
+   }
+   button {
+      padding: 10px 30px;
+   }
+`;
+export const ToggleForm = styled.div`
+   position: absolute;
+   top: 0;
+   left: 0;
+   .singup {
+      color: ${props => props.fontcolor};
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      display: block;
+      font-weight: bold;
+      font-size: x-large;
+      margin-top: 1.5em;
+   }
+
+   .card {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 400px;
+      flex-direction: column;
+      gap: 35px;
+      border-radius: 15px;
+      background: ${props => props.bgcolor};
+      box-shadow: 16px 16px 32px #c8c8c8, -16px -16px 32px #fefefe;
+      border-radius: 8px;
+   }
+
+   .inputBox,
+   .inputBox1 {
+      position: relative;
+      width: 250px;
+   }
+
+   .inputBox input,
+   .inputBox1 input {
+      width: 100%;
+      padding: 10px;
+      outline: none;
+      border: none;
+      color: ${props => props.fontcolor};
+      font-size: 1em;
+      background: transparent;
+      border-left: 2px solid ${props => props.fontcolor};
+      border-bottom: 2px solid ${props => props.fontcolor};
+      transition: 0.1s;
+      border-bottom-left-radius: 8px;
+   }
+
+   .inputBox span,
+   .inputBox1 span {
+      margin-top: 5px;
+      position: absolute;
+      left: 0;
+      transform: translateY(-45px);
+      margin-left: 10px;
+      padding: 10px;
+      pointer-events: none;
+      font-size: 11px;
+      text-transform: uppercase;
+      transition: 0.5s;
+      letter-spacing: 3px;
+      border-radius: 8px;
+      color: ${props => props.fontcolor};
+   }
+
+   .inputBox input:valid ~ span,
+   .inputBox input:focus ~ span {
+      transform: translateX(150px) translateY(-60px);
+      font-size: 0.8em;
+      padding: 5px 10px;
+      background: ${props => props.fontcolor};
+      color: ${props => props.pointcolor};
+      font-weight: 700;
+   }
+
+   .inputBox1 input:valid ~ span,
+   .inputBox1 input:focus ~ span {
+      transform: translateX(189px) translateY(-60px);
+      font-size: 0.8em;
+      padding: 5px 10px;
+      background: ${props => props.fontcolor};
+      color: ${props => props.pointcolor};
+      font-weight: 700;
+      border: 2px;
+   }
+
+   .inputBox input:valid,
+   .inputBox input:focus,
+   .inputBox1 input:valid,
+   .inputBox1 input:focus {
+      border: 2px solid ${props => props.fontcolor};
+      border-radius: 8px;
+   }
+
+   .enter {
+      height: 45px;
+      width: 100px;
+      border-radius: 5px;
+      border: 2px solid ${props => props.fontcolor};
+      color: ${props => props.fontcolor};
+      cursor: pointer;
+      background-color: transparent;
+      transition: 0.5s;
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 2px;
+      margin-bottom: 3em;
+      margin-top: 30px;
+   }
+
+   .enter:hover {
+      background-color: ${props => props.fontcolor};
+      color: ${props => props.pointcolor};
+   }
+`;
+export const ToggleFormContainer = styled.div`
+   position: relative;
+   width: 400px;
+   height: 400px;
+   margin: auto;
+   transition: 0.7s;
+   &.login {
+      transform: rotateY(0);
+   }
+   &.signUp {
+      transform: rotateY(360deg);
+   }
+`;
+
 // // DogInfoSection
 // export const DogInfoContainer = styled.div`
 //    padding: 50px 0;

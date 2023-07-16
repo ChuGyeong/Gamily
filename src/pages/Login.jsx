@@ -1,19 +1,57 @@
 import React, { memo, useState } from 'react';
-import { LoginContainer, InnerContainer } from '../styled/GamilyStyle';
+import { InnerContainer, ToggleSwitch, ToggleForm, ToggleFormContainer } from '../styled/GamilyStyle';
 
 const Login = memo(() => {
-   const [isSignUp, setIsSignUp] = useState(false);
-
-   const toggleSignUp = () => {
-      setIsSignUp(!isSignUp);
-   };
-
-   const formClass = isSignUp ? 'moveup' : '';
+   const [isChk, setIsChk] = useState(false);
 
    return (
-      <LoginContainer>
-         <InnerContainer></InnerContainer>
-      </LoginContainer>
+      <>
+         <InnerContainer>
+            <ToggleSwitch>
+               <label className="switch">
+                  <input type="checkbox" checked={isChk} onChange={() => setIsChk(!isChk)} />
+                  <span className="slider"></span>
+               </label>
+            </ToggleSwitch>
+            <ToggleFormContainer className={!isChk ? 'login' : 'signUp'}>
+               {!isChk ? (
+                  <ToggleForm bgcolor={'#ffc303'} fontcolor={'#555'} pointcolor={'#fff'}>
+                     <div className="card">
+                        <a className="singup">Login</a>
+                        <div className="inputBox1">
+                           <input type="text" required="required" />
+                           <span className="user">Email</span>
+                        </div>
+                        <div className="inputBox">
+                           <input type="password" required="required" />
+                           <span>Password</span>
+                        </div>
+                        <button className="enter">Enter</button>
+                     </div>
+                  </ToggleForm>
+               ) : (
+                  <ToggleForm bgcolor={'#1c3761'} fontcolor={'#fff'} pointcolor={'#555'}>
+                     <div className="card">
+                        <a className="singup">Sign Up</a>
+                        <div className="inputBox1">
+                           <input type="text" required="required" />
+                           <span className="user">Email</span>
+                        </div>
+                        <div className="inputBox">
+                           <input type="text" required="required" />
+                           <span>Username</span>
+                        </div>
+                        <div className="inputBox">
+                           <input type="password" required="required" />
+                           <span>Password</span>
+                        </div>
+                        <button className="enter">Enter</button>
+                     </div>
+                  </ToggleForm>
+               )}
+            </ToggleFormContainer>
+         </InnerContainer>
+      </>
    );
 });
 

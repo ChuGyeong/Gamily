@@ -6,14 +6,13 @@ import Knowledge from './pages/Knowledge';
 import Commu from './pages/Commu';
 import Adoption from './pages/Adoption';
 import MyPage from './pages/MyPage';
-import SignUp from './pages/SignUp';
 import Store from './pages/Store';
 import Home from './pages/Home';
 import AdoptionDetail from './pages/AdoptionDetail';
 import ProductDetail from './pages/ProductDetail';
 import NotFound from './pages/NotFound';
 import Quiz from './pages/Quiz';
-import QuizDetail from './pages/QuizDetail';
+import Question from './pages/Question';
 
 const App = () => {
    return (
@@ -24,7 +23,9 @@ const App = () => {
                   <Route index element={<Home />} />
                   <Route path="/knowledge" element={<Knowledge />} />
                   <Route path="/quiz" element={<Quiz />} />
-                  <Route path="/question/:questionId" element={<QuizDetail />} />
+                  <Route path="/question">
+                     <Route path=":questionId" element={<Question />} />
+                  </Route>
                   <Route path="/community" element={<Commu />} />
                   <Route path="/store" element={<Store />} />
                   <Route path="/product">
@@ -36,7 +37,6 @@ const App = () => {
                   </Route>
                   <Route path="/login" element={<Login />} />
                   <Route path="/mypage" element={<MyPage />} />
-                  <Route path="/signUp" element={<SignUp />} />
                </Route>
                <Route path="/*" element={<NotFound />} />
             </Routes>
