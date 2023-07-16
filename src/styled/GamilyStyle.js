@@ -1180,12 +1180,57 @@ export const QuestionContainer = styled.div`
             }
          }
          label {
+            margin-right: 15px;
             input[type='radio'] {
                margin-right: 5px;
             }
+         }
+      }
+   }
+   button {
+      padding: 10px 30px;
+   }
+`;
+export const AnswerSheetContainer = styled.div`
+   background-color: #fff;
+   position: fixed;
+   width: 80vw;
+   height: 80vh;
+   left: 50%;
+   top: 50%;
+   transform: translate(-50%, -50%);
+   border: 2px solid ${subColor};
+   overflow: auto;
+   z-index: 200;
+   padding: 40px;
+   box-sizing: border-box;
+   h2 {
+      text-align: center;
+      font-size: 50px;
+      font-weight: 700;
+      margin-bottom: 50px;
+   }
+   ul {
+      li {
+         margin-bottom: 20px;
+         p {
             span {
-               margin-right: 15px;
             }
+            strong {
+               margin: 0 5px;
+            }
+         }
+         label {
+            margin-right: 15px;
+            input[type='radio'] {
+               margin-right: 5px;
+            }
+         }
+         .commentary-box {
+            margin-top: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: #efefef;
          }
       }
    }
