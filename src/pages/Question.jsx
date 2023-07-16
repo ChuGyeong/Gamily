@@ -29,7 +29,7 @@ const Question = memo(() => {
             <InnerContainer>
                {questionId === 'deepen' ? <h2>심화영역</h2> : <h2>기본영역</h2>}
                <ul>
-                  {question.map((item, idx) => (
+                  {question.map(item => (
                      <li key={item.question}>
                         <p>
                            <span>{item.id}.</span>
@@ -39,7 +39,7 @@ const Question = memo(() => {
                         <label>
                            {item.options.map((option, idx) => (
                               <>
-                                 <input key={idx} type="radio" name={item.id} id={Object.keys(option)} />
+                                 <input key={item.id} type="radio" name={item.id} id={Object.keys(option)} />
                                  <span>{Object.values(option)}</span>
                               </>
                            ))}
