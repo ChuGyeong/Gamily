@@ -8,7 +8,7 @@ const navArr = [
       subMenu: [{ name: 'Quiz', src: '/quiz' }],
    },
    { name: 'Adoption', src: '/adoption', subMenu: [] },
-   { name: 'Communication', src: '/community', subMenu: [] },
+   { name: 'Notice', src: '/notice', subMenu: [{ name: 'QnA', src: '/qna' }] },
    { name: 'Store', src: '/store', subMenu: [] },
 ];
 

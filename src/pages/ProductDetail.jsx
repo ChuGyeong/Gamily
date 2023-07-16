@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ProductContainer, InnerContainer } from '../styled/GamilyStyle';
+import { ProductContainer, InnerContainer, ParticleButton } from '../styled/GamilyStyle';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { BsStarFill, BsStarHalf } from 'react-icons/bs';
 import { Pagination } from 'swiper/modules';
@@ -47,6 +47,10 @@ const ProductDetail = memo(() => {
       <ProductContainer>
          {status === 'fulfilled' && Object.keys(product).length > 0 ? (
             <InnerContainer>
+               <div className="btn-area">
+                  <ParticleButton>상품담기</ParticleButton>
+                  <ParticleButton>목록으로</ParticleButton>
+               </div>
                <Swiper
                   pagination={{
                      dynamicBullets: true,
