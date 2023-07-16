@@ -579,6 +579,25 @@ export const AdoptionContainer = styled.div`
             color: ${subColor};
             cursor: pointer;
          }
+         .suggest-box {
+            width: 100%;
+            position: absolute;
+            z-index: 110;
+            border: 1px solid ${subColor};
+            border-radius: 5px;
+            overflow: hidden;
+            li {
+               width: 100%;
+               background-color: #fff;
+               transition: 0.2s;
+               cursor: pointer;
+               &:hover,
+               &.focused {
+                  background-color: ${subColor};
+                  color: #fff;
+               }
+            }
+         }
       }
       .filter-box {
          position: relative;
@@ -599,10 +618,16 @@ export const AdoptionContainer = styled.div`
             top: 28px;
             left: 0;
             background-color: ${mainColor};
-            padding: 20px;
             box-sizing: border-box;
             border-radius: 0 0 20px 20px;
-            border: 2px solid ${subColor};
+            overflow: hidden;
+            height: 0;
+            transition: 0.2s;
+            &.on {
+               height: 360px;
+               padding: 20px;
+               border: 2px solid ${subColor};
+            }
             p {
                strong {
                   display: block;
@@ -620,6 +645,9 @@ export const AdoptionContainer = styled.div`
                      border: 1px solid #000;
                   }
                }
+            }
+            input {
+               accent-color: ${pointColor};
             }
             button {
                margin-top: 30px;
@@ -696,6 +724,13 @@ export const AdoptionContainer = styled.div`
             }
          }
       }
+   }
+   .info-box {
+      font-size: 50px;
+      padding: 100px 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
    }
 `;
 
@@ -1529,3 +1564,25 @@ export const NoticeContainer = styled.div`
 //       top: -8px;
 //    }
 // `;
+export const AdoptionDetailContainer = styled.div`
+   .content-box {
+      display: flex;
+      .img-box {
+         width: 50%;
+         img {
+            width: 100%;
+         }
+      }
+      .text-box {
+         width: 50%;
+         span {
+            display: block;
+         }
+      }
+   }
+   .btn-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
+`;

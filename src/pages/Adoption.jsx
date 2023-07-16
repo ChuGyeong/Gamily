@@ -49,7 +49,7 @@ const Adoption = memo(() => {
                         />
                      </>
                   ) : (
-                     <p>조회 결과가 없습니다</p>
+                     <div className="info-box">조회 결과가 없습니다</div>
                   )}
                </>
             ) : (

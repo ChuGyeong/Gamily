@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { ParticleButton } from '../../styled/GamilyStyle';
+import { useNavigate } from 'react-router-dom';
 
 const AdoptionItem = memo(({ item }) => {
    const {
@@ -20,6 +21,7 @@ const AdoptionItem = memo(({ item }) => {
       specialMark,
       careNm,
    } = item;
+   const navigate = useNavigate();
    return (
       <div className="masonry-item">
          <div className="img-box">
@@ -34,7 +36,7 @@ const AdoptionItem = memo(({ item }) => {
             <span>#{careNm}</span>
          </div>
          <div className="btn-box">
-            <ParticleButton>상세정보</ParticleButton>
+            <ParticleButton onClick={() => navigate(`/adoptiondetail/${desertionNo}`)}>상세정보</ParticleButton>
             <ParticleButton>
                <AiOutlineHeart></AiOutlineHeart>
             </ParticleButton>
