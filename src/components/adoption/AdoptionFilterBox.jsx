@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAdoptions } from '../../store/modules/adoptionSlice';
 import { ParticleButton } from '../../styled/GamilyStyle';
 
-const AdoptionFilterBox = memo(({ filter, setFilter, setCurrentPageNum }) => {
+const AdoptionFilterBox = memo(({ filter, setFilter, setCurrentPageNum, isFilterBoxOn }) => {
    const { sexCd, minWeight, maxWeight, orgCd } = filter;
    const { orgData, orgDataState } = useSelector(state => state.adoptionsR);
    const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const AdoptionFilterBox = memo(({ filter, setFilter, setCurrentPageNum }) => {
       setCurrentPageNum(1);
    };
    return (
-      <div className="filter-content">
+      <div className={`filter-content ${isFilterBoxOn ? 'on' : ''}`}>
          <p>
             <strong>성별</strong>
             <label>

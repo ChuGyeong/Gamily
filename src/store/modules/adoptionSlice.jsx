@@ -20,7 +20,7 @@ const initialState = {
    orgDataState: null,
 };
 export const getAdoptions = createAsyncThunk('adoptions/getAdoptions', async filter => {
-   const { kindCd, sexCd, minWeight, maxWeight, orgCd } = filter;
+   const { kindCd, sexCd, minWeight, maxWeight, orgCd, adoptionId } = filter;
    const twentyDaysAgo = getToday(20); // 20일 전 날짜
    const tenDaysAgo = getToday(10); // 10일 전 날짜
    let url = `http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic?bgnde=${twentyDaysAgo}&endde=${tenDaysAgo}&pageNo=1&state=notice&numOfRows=1000&upkind=417000`;
@@ -37,7 +37,10 @@ export const getAdoptions = createAsyncThunk('adoptions/getAdoptions', async fil
          return Number(minWeight) <= weightValue && weightValue <= Number(maxWeight);
       });
    }
-   //  console.log(resultData);
+   if (adoptionId) {
+      resultData = resultData.find(item => item.desertionNo === adoptionId);
+   }
+   console.log(resultData);
    return resultData;
 });
 export const getVarietyData = createAsyncThunk('adoptions/getVarietyData', async () => {

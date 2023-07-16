@@ -5,9 +5,9 @@ import { useParams } from 'react-router-dom';
 
 const QuizDetail = memo(() => {
    const { data } = useSelector(state => state.quizR);
-   const { params } = useParams();
+   const { questionId } = useParams();
 
-   console.log(params);
+   console.log(questionId);
    console.log(data);
    console.log(window.location.pathname);
 
