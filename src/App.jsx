@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Layout from './components/Layout';
 import Login from './pages/Login';
 import Knowledge from './pages/Knowledge';
-import Commu from './pages/Commu';
+import Notice from './pages/Notice';
 import Adoption from './pages/Adoption';
 import MyPage from './pages/MyPage';
 import Store from './pages/Store';
@@ -13,6 +13,7 @@ import ProductDetail from './pages/ProductDetail';
 import NotFound from './pages/NotFound';
 import Quiz from './pages/Quiz';
 import Question from './pages/Question';
+import QnA from './pages/QnA';
 
 const App = () => {
    return (
@@ -26,7 +27,8 @@ const App = () => {
                   <Route path="/question">
                      <Route path=":questionId" element={<Question />} />
                   </Route>
-                  <Route path="/community" element={<Commu />} />
+                  <Route path="/notice" element={<Notice />} />
+                  <Route path="/qna" element={<QnA />} />
                   <Route path="/store" element={<Store />} />
                   <Route path="/product">
                      <Route path=":productId" element={<ProductDetail />} />

@@ -845,6 +845,27 @@ export const StoreContainer = styled.div`
 
 // ProductDetail
 export const ProductContainer = styled.div`
+   .btn-area {
+      position: fixed;
+      top: 300px;
+      left: 300px;
+      z-index: 100;
+      button {
+         display: block;
+         width: 80px;
+         height: 70px;
+         &:first-child {
+            border-radius: 50px 50px 0 0;
+            padding-top: 10px;
+         }
+         &:last-child {
+            border-radius: 0 0 50px 50px;
+            background: ${subColor};
+            color: #fff;
+            padding-bottom: 10px;
+         }
+      }
+   }
    .mySwiper {
       width: 700px;
       .swiper-slide {
@@ -1127,6 +1148,7 @@ export const QuizContainer = styled.div`
    }
 `;
 
+// Question
 export const QuestionContainer = styled.div`
    h2 {
       text-align: center;
@@ -1158,6 +1180,8 @@ export const QuestionContainer = styled.div`
       padding: 10px 30px;
    }
 `;
+
+// Login
 export const ToggleForm = styled.div`
    position: absolute;
    top: 0;
@@ -1273,6 +1297,8 @@ export const ToggleForm = styled.div`
       color: ${props => props.pointcolor};
    }
 `;
+
+// Login
 export const ToggleFormContainer = styled.div`
    position: relative;
    width: 400px;
@@ -1284,6 +1310,174 @@ export const ToggleFormContainer = styled.div`
    }
    &.signUp {
       transform: rotateY(360deg);
+   }
+`;
+
+export const MyPageContainer = styled.div`
+   > div {
+      display: flex;
+      .profile {
+         width: 300px;
+         border-right: 2px solid #efefef;
+         padding: 20px;
+         text-align: center;
+         img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+         }
+         p {
+            margin: 10px 0;
+            font-size: 20px;
+            text-align: center;
+            span {
+               font-weight: 700;
+            }
+         }
+         .btn-area {
+            text-align: center;
+            button {
+               padding: 10px 0;
+               width: 120px;
+               &:first-child {
+                  border-right: 1px solid #fff;
+               }
+               &:last-child {
+                  border-left: 1px solid #fff;
+               }
+               &:hover {
+                  background: ${subColor};
+                  color: #fff;
+               }
+            }
+         }
+      }
+      .content {
+         div {
+            &:first-child {
+               border-top: 1px solid #efefef;
+            }
+            border-bottom: 1px solid #efefef;
+            border-right: 1px solid #efefef;
+            padding: 20px;
+            box-sizing: border-box;
+            width: 1041px;
+            h3 {
+               margin-bottom: 20px;
+               font-weight: 700;
+               font-size: 25px;
+            }
+            ul {
+               width: 1000px;
+               display: flex;
+               flex-wrap: wrap;
+               box-sizing: border-box;
+               gap: 10px;
+               li {
+                  padding-top: 30px;
+                  width: calc(100% / 4 - 10px);
+                  border: 1px solid #efefef;
+                  position: relative;
+                  padding: 30px 10px 10px;
+                  box-sizing: border-box;
+                  button {
+                     position: absolute;
+                     top: 0;
+                     right: 0;
+                     font-size: 20px;
+                     height: 30px;
+                     border: none;
+                     cursor: pointer;
+                     background: transparent;
+                     transition: 0.4s;
+                     &:hover {
+                        transform: rotate(180deg);
+                     }
+                  }
+                  img {
+                     width: 100%;
+                     height: 250px;
+                     object-fit: cover;
+                     object-position: 50% 50%;
+                  }
+                  p {
+                     width: 100%;
+                     text-overflow: ellipsis;
+                     overflow: hidden;
+                     white-space: nowrap;
+                     text-align: center;
+                     background: ${subColor};
+                     color: #efefef;
+                     padding: 3px 5px;
+                     box-sizing: border-box;
+                  }
+               }
+            }
+         }
+      }
+   }
+`;
+
+export const NoticeContainer = styled.div`
+   h2 {
+      text-align: center;
+      font-size: 50px;
+      font-weight: 700;
+      margin-bottom: 50px;
+   }
+   table {
+      width: 100%;
+      text-align: center;
+      .wid1 {
+         width: 10%;
+      }
+      .wid2 {
+      }
+      .wid3 {
+         width: 20%;
+      }
+      .wid4 {
+         width: 10%;
+      }
+      tr {
+         th {
+            padding: 10px 0;
+            background: ${subColor};
+            color: #fff;
+            box-sizing: border-box;
+            border-bottom: 2px solid #fff;
+         }
+         td {
+            box-sizing: border-box;
+            padding: 10px 0;
+            background: ${mainColor};
+            border-bottom: 1px solid #fff;
+            cursor: pointer;
+            &:nth-child(2) {
+               text-align: left;
+            }
+         }
+      }
+   }
+   .btn-area {
+      margin-top: 50px;
+      text-align: right;
+      button {
+         font-size: 15px;
+         background-color: ${mainColor};
+         border: 1px solid #f39c12;
+         border-radius: 5px;
+         padding: 10px;
+         box-shadow: 0px 6px 0px #f39c12;
+         transition: all 0.1s;
+         cursor: pointer;
+         &:active {
+            box-shadow: 0px 2px 0px #d35400;
+            position: relative;
+            top: 2px;
+         }
+      }
    }
 `;
 
