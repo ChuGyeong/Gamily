@@ -327,7 +327,6 @@ export const FooterContainer = styled.footer`
       text-align: right;
       p {
          margin-bottom: 10px;
-         font-size: 14px;
       }
       button {
          background: ${mainColor};
@@ -365,7 +364,7 @@ export const GoTopButton = styled.div`
 
 // InfoBubble
 export const InfoBubbleContainer = styled.div`
-   z-index: 10;
+   z-index: 300;
    position: fixed;
    right: -300px;
    bottom: 70px;
@@ -698,7 +697,6 @@ export const AdoptionContainer = styled.div`
          /* justify-content: space-between; */
          margin-bottom: 20px;
          span {
-            font-size: 14px;
             display: block;
             padding: 3px 10px;
             border-radius: 10px;
@@ -1223,7 +1221,7 @@ export const AnswerSheetContainer = styled.div`
    transform: translate(-50%, -50%);
    border: 2px solid ${subColor};
    overflow: auto;
-   z-index: 200;
+   z-index: 500;
    padding: 40px;
    box-sizing: border-box;
    h2 {
@@ -1456,7 +1454,7 @@ export const MyPageContainer = styled.div`
                gap: 10px;
                li {
                   padding-top: 30px;
-                  width: calc(100% / 4 - 10px);
+                  width: calc(100% / 6 - 10px);
                   border: 1px solid #efefef;
                   position: relative;
                   padding: 30px 10px 10px;
@@ -1477,7 +1475,7 @@ export const MyPageContainer = styled.div`
                   }
                   img {
                      width: 100%;
-                     height: 250px;
+                     height: 180px;
                      object-fit: cover;
                      object-position: 50% 50%;
                      cursor: pointer;
@@ -1493,6 +1491,7 @@ export const MyPageContainer = styled.div`
                      padding: 3px 5px;
                      box-sizing: border-box;
                      cursor: pointer;
+                     font-size: 13px;
                   }
                }
             }
@@ -1563,6 +1562,53 @@ export const NoticeContainer = styled.div`
    }
 `;
 
+export const NoticeDetailContainer = styled.div`
+   .notice-view {
+      width: 100%;
+      .tit-area {
+         text-align: center;
+         margin-bottom: 30px;
+         line-height: 1.4;
+         span {
+            &:first-child {
+               font-weight: 700;
+            }
+            &:last-child {
+               font-size: 18px;
+            }
+         }
+         p {
+            font-size: 50px;
+            font-weight: 700;
+         }
+      }
+      .text-area {
+         border: 1px solid #efefef;
+         padding: 20px;
+         box-sizing: border-box;
+      }
+   }
+
+   .btn-area {
+      text-align: center;
+      margin-top: 20px;
+      button {
+         padding: 10px 20px;
+         box-sizing: border-box;
+         &:nth-child(1) {
+            border-radius: 50px 0 0 50px;
+         }
+         &:nth-child(2) {
+            background: ${subColor};
+            color: #fff;
+         }
+         &:nth-child(3) {
+            border-radius: 0 50px 50px 0;
+         }
+      }
+   }
+`;
+
 // // DogInfoSection
 // export const DogInfoContainer = styled.div`
 //    padding: 50px 0;
@@ -1611,6 +1657,7 @@ export const NoticeContainer = styled.div`
 //       top: -8px;
 //    }
 // `;
+
 export const AdoptionDetailContainer = styled.div`
    .content-box {
       display: flex;
@@ -1631,5 +1678,168 @@ export const AdoptionDetailContainer = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
+   }
+`;
+
+export const QnAContainer = styled.div`
+   h2 {
+      text-align: center;
+      font-size: 50px;
+      font-weight: 700;
+      margin-bottom: 50px;
+   }
+   ul {
+      width: 100%;
+      li {
+         border-bottom: 1px solid #fff;
+         .tit-area {
+            background: ${mainColor};
+            display: flex;
+            position: relative;
+            padding: 10px;
+            box-sizing: border-box;
+            text-align: center;
+            cursor: pointer;
+
+            span {
+               width: 10%;
+               &:first-child {
+                  width: 5%;
+               }
+               &:nth-child(2) {
+                  overflow: hidden;
+                  white-space: nowrap;
+                  text-overflow: ellipsis;
+                  text-align: left;
+               }
+            }
+            p {
+               width: 80%;
+               text-align: left;
+               overflow: hidden;
+               white-space: nowrap;
+               text-overflow: ellipsis;
+               padding: 0 5px;
+               font-weight: 700;
+            }
+            button {
+               width: 2%;
+               background: transparent;
+               border: none;
+               cursor: pointer;
+            }
+         }
+         .content {
+            background: ${subColor};
+            box-sizing: border-box;
+            color: #efefef;
+            overflow: hidden;
+            transition: height 0.4s ease-in-out;
+            .ask-area {
+               padding-bottom: 10px;
+               border-bottom: 1px solid #000;
+               margin-bottom: 10px;
+               display: flex;
+               justify-content: space-between;
+               p {
+                  width: 93%;
+                  padding: 10px;
+                  box-sizing: border-box;
+               }
+               .btn-area {
+                  width: 4%;
+                  padding: 10px 0;
+                  box-sizing: border-box;
+                  button {
+                     background: #fff;
+                     cursor: pointer;
+                     border: none;
+                     color: #555;
+                     &:first-child {
+                        margin-bottom: 5px;
+                     }
+                  }
+               }
+            }
+            .answer-area {
+               padding: 10px;
+               box-sizing: border-box;
+            }
+         }
+      }
+   }
+   .contents + .btn-area {
+      margin-top: 50px;
+      text-align: center;
+      button {
+         font-size: 12px;
+         background-color: ${pointColor};
+         color: #fff;
+         border: 1px solid #f39c12;
+         border-radius: 5px;
+         padding: 10px;
+         box-shadow: 0px 6px 0px #f39c12;
+         transition: all 0.1s;
+         cursor: pointer;
+         &:active {
+            box-shadow: 0px 2px 0px #d35400;
+            position: relative;
+            top: 2px;
+         }
+      }
+   }
+`;
+
+export const AddQnAContainer = styled.div`
+   h2 {
+      text-align: center;
+      font-size: 50px;
+      font-weight: 700;
+      margin-bottom: 50px;
+   }
+   form {
+      width: 1000px;
+      margin: auto;
+      label {
+         display: block;
+         font-size: 20px;
+         font-weight: 700;
+         margin-bottom: 10px;
+      }
+      input {
+         width: 100%;
+         padding: 10px;
+         outline: none;
+         border: none;
+         border-bottom: 3px solid ${mainColor};
+         margin-bottom: 20px;
+         box-sizing: border-box;
+      }
+      textarea {
+         width: 100%;
+         height: 300px;
+         outline: none;
+         border: 3px solid ${subColor};
+         padding: 10px;
+         box-sizing: border-box;
+      }
+      .btn-area {
+         text-align: center;
+         margin-top: 50px;
+         button {
+            padding: 10px 30px;
+            box-sizing: border-box;
+            &:first-child {
+               border-radius: 50px 0 0 50px;
+            }
+            &:last-child {
+               border-radius: 0 50px 50px 0;
+            }
+            &:hover {
+               background: ${pointColor};
+               color: #fff;
+            }
+         }
+      }
    }
 `;
