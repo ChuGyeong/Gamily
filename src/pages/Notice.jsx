@@ -1,7 +1,10 @@
 import React, { memo } from 'react';
 import { NoticeContainer, InnerContainer } from '../styled/GamilyStyle';
+import { useNavigate } from 'react-router-dom';
 
 const Notice = memo(() => {
+   const navigate = useNavigate();
+
    return (
       <NoticeContainer>
          <InnerContainer>
@@ -24,7 +27,7 @@ const Notice = memo(() => {
                <tbody>
                   <tr>
                      <td>1</td>
-                     <td>공지사항을 오픈하였습니다.</td>
+                     <td onClick={() => navigate('/noticeDetail/1')}>공지사항을 오픈하였습니다.</td>
                      <td>2023.07.16</td>
                      <td>5</td>
                   </tr>

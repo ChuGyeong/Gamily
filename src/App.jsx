@@ -14,6 +14,9 @@ import NotFound from './pages/NotFound';
 import Quiz from './pages/Quiz';
 import Question from './pages/Question';
 import QnA from './pages/QnA';
+import NoticeDetail from './pages/NoticeDetail';
+import AddQnA from './pages/AddQnA';
+import EditQnA from './pages/EditQnA';
 
 const App = () => {
    return (
@@ -28,7 +31,14 @@ const App = () => {
                      <Route path=":questionId" element={<Question />} />
                   </Route>
                   <Route path="/notice" element={<Notice />} />
+                  <Route path="/noticeDetail">
+                     <Route path=":noticeId" element={<NoticeDetail />} />
+                  </Route>
                   <Route path="/qna" element={<QnA />} />
+                  <Route path="/qnaAdd" element={<AddQnA />} />
+                  <Route path="/qnaEdit">
+                     <Route path=":qnaEditId" element={<EditQnA />} />
+                  </Route>
                   <Route path="/store" element={<Store />} />
                   <Route path="/product">
                      <Route path=":productId" element={<ProductDetail />} />
