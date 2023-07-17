@@ -20,7 +20,7 @@ const QnA = memo(() => {
                </ul>
             </div>
             <div className="btn-area">
-               <button onClick={() => navigate('/qnaAdd')}>문의작성</button>
+               <button onClick={() => navigate('/qnaAdd')}>작성하기</button>
             </div>
          </InnerContainer>
       </QnAContainer>

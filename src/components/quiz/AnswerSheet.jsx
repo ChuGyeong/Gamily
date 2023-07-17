@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AnswerSheetContainer } from '../../styled/GamilyStyle';
+import { AnswerSheetContainer, ParticleButton } from '../../styled/GamilyStyle';
 
 const AnswerSheet = memo(({ question, userAnswer }) => {
    const navigate = useNavigate();
@@ -15,7 +15,13 @@ const AnswerSheet = memo(({ question, userAnswer }) => {
                      <span>{item.id}.</span>
                      <strong>{item.question}</strong>
                      <span>({item.score}점)</span>
-                     <span>({item.answer === userAnswer[item.id] ? '정답' : '오답'})</span>
+                     <span className="answer-icon">
+                        {item.answer === userAnswer[item.id] ? (
+                           <i className="xi-check" style={{ color: '#1c3761' }}></i>
+                        ) : (
+                           <i className="xi-close" style={{ color: '#e84200' }}></i>
+                        )}
+                     </span>
                   </p>
 
                   {item.options.map((option, idx) => (
@@ -37,7 +43,7 @@ const AnswerSheet = memo(({ question, userAnswer }) => {
                </li>
             ))}
          </ul>
-         <button onClick={() => navigate('/quiz')}>나가기</button>
+         <ParticleButton onClick={() => navigate('/quiz')}>나가기</ParticleButton>
       </AnswerSheetContainer>
    );
 });

@@ -1233,8 +1233,17 @@ export const AnswerSheetContainer = styled.div`
    ul {
       li {
          margin-bottom: 20px;
+         position: relative;
          p {
             span {
+               &.answer-icon {
+                  position: absolute;
+                  top: -5px;
+                  left: -15px;
+                  i {
+                     font-size: 30px;
+                  }
+               }
             }
             strong {
                margin: 0 5px;
@@ -1593,17 +1602,15 @@ export const NoticeDetailContainer = styled.div`
       text-align: center;
       margin-top: 20px;
       button {
-         padding: 10px 20px;
+         padding: 10px 30px;
          box-sizing: border-box;
          &:nth-child(1) {
-            border-radius: 50px 0 0 50px;
          }
          &:nth-child(2) {
             background: ${subColor};
             color: #fff;
          }
          &:nth-child(3) {
-            border-radius: 0 50px 50px 0;
          }
       }
    }
@@ -1660,17 +1667,88 @@ export const NoticeDetailContainer = styled.div`
 
 export const AdoptionDetailContainer = styled.div`
    .content-box {
+      width: 1200px;
+      margin: auto;
+      border: 3px solid #efefef;
+      padding: 30px;
+      box-sizing: border-box;
+      border-radius: 0 0 30px 30px;
       display: flex;
+      flex-wrap: wrap;
+      box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+      background: #fff;
+      z-index: 100;
       .img-box {
-         width: 50%;
+         width: 48%;
+         height: 400px;
+         overflow: hidden;
+         padding: 15px;
+         border: 1px solid #efefef;
+         box-sizing: border-box;
+         margin-bottom: 50px;
+         img {
+            border-radius: 10px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 0 0;
+         }
+      }
+      .maps {
+         width: 48%;
+         height: 400px;
+         overflow: hidden;
+         margin-top: 50px;
          img {
             width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 50% 50%;
          }
       }
       .text-box {
          width: 50%;
-         span {
-            display: block;
+         display: flex;
+         padding: 20px;
+         box-sizing: border-box;
+         flex-direction: column;
+         p {
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+            span {
+               &:first-child {
+                  margin-right: 10px;
+                  font-weight: 700;
+               }
+            }
+         }
+         &.bottom {
+            justify-content: center;
+         }
+      }
+      .desertionNo {
+         text-align: center;
+         font-size: 20px;
+         line-height: 50px;
+         font-weight: 700;
+         position: absolute;
+         top: -53px;
+         left: 100px;
+         width: 300px;
+         height: 50px;
+         border: 3px solid #efefef;
+         border-radius: 20px 20px 0 0;
+         box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+         background: #fff;
+         z-index: -10;
+         &::before {
+            content: '유기번호';
+            position: absolute;
+            font-size: 13px;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #bbb;
          }
       }
    }
@@ -1678,6 +1756,25 @@ export const AdoptionDetailContainer = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
+      button {
+         margin-top: 50px;
+         font-size: 15px;
+         background-color: ${mainColor};
+         border: 1px solid #f39c12;
+         border-radius: 5px;
+         padding: 10px 20px;
+         box-shadow: 0px 6px 0px #f39c12;
+         transition: all 0.1s;
+         cursor: pointer;
+         &:first-child {
+            margin-right: 10px;
+         }
+         &:active {
+            box-shadow: 0px 2px 0px #d35400;
+            position: relative;
+            top: 2px;
+         }
+      }
    }
 `;
 
@@ -1770,14 +1867,14 @@ export const QnAContainer = styled.div`
    }
    .contents + .btn-area {
       margin-top: 50px;
-      text-align: center;
+      text-align: right;
       button {
          font-size: 12px;
          background-color: ${pointColor};
          color: #fff;
          border: 1px solid #f39c12;
          border-radius: 5px;
-         padding: 10px;
+         padding: 10px 20px;
          box-shadow: 0px 6px 0px #f39c12;
          transition: all 0.1s;
          cursor: pointer;
