@@ -54,7 +54,6 @@ const authSlice = createSlice({
                const newFavDogs = item.favDogs.find(dog => dog.desertionNo === action.payload.desertionNo)
                   ? item.favDogs.filter(dog => dog.desertionNo !== action.payload.desertionNo)
                   : [...item.favDogs, action.payload];
-
                return { ...item, favDogs: newFavDogs };
             } else {
                return item;
@@ -65,17 +64,41 @@ const authSlice = createSlice({
       addInCart: (state, action) => {
          state.authData = state.authData.map(item => {
             if (item.email === state.auth.email) {
-               const newProduct = item.cart.find(product => product.id === action.payload.id)
-                  ? item.cart.filter(product => product.id !== action.payload.id)
-                  : [...item.cart, action.payload];
-
-               return { ...item, cart: newProduct };
+               if (item.cart.find(product => product.id === action.payload.id)) {
+                  state.authState = { title: 'fail', text: 'addInCart' };
+                  return item;
+               } else {
+                  state.authState = { title: 'success', text: 'addInCart' };
+                  const newProduct = [...item.cart, action.payload];
+                  return { ...item, cart: newProduct };
+               }
             } else {
                return item;
             }
          });
+         localStorage.setItem('authData', JSON.stringify(state.authData));
+      },
+      removeInCart: (state, action) => {
+         state.authData = state.authData.map(item => {
+            if (item.email === state.auth.email) {
+               if (item.cart.find(product => product.id === action.payload.id)) {
+                  const newProduct = item.cart.filter(product => product.id !== action.payload.id);
+                  state.authState = { title: 'success', text: 'removeInCart' };
+                  return { ...item, cart: newProduct };
+               } else {
+                  state.authState = { title: 'fail', text: 'removeInCart' };
+                  return item;
+               }
+            } else {
+               return item;
+            }
+         });
+         localStorage.setItem('authData', JSON.stringify(state.authData));
+      },
+      resetAuthState: state => {
+         state.authState = {};
       },
    },
 });
-export const { login, logout, signUp, toggleFavDogs, addInCart } = authSlice.actions;
+export const { login, logout, signUp, toggleFavDogs, addInCart, removeInCart, resetAuthState } = authSlice.actions;
 export default authSlice.reducer;
