@@ -7,24 +7,50 @@ import { BsStarFill, BsStarHalf } from 'react-icons/bs';
 import { Pagination } from 'swiper/modules';
 import { getProduct } from '../store/modules/storeSlice';
 import Loading from '../components/Loading';
+import Swal from 'sweetalert2';
+import { addInCart, resetAuthState } from '../store/modules/authSlice';
+import useAuth from '../hooks/useAuth';
 
 const ProductDetail = memo(() => {
    const { data, status } = useSelector(state => state.storeR);
+   const { authState } = useSelector(state => state.authR);
    const dispatch = useDispatch();
    const { productId } = useParams();
    const [product, setProduct] = useState({});
    const { title, price, description, detailImg, id, image, rate, subImg, summary, category } = product;
    const navigate = useNavigate();
+   const { auth, checkAuth } = useAuth();
+   const addCart = () => {
+      if (!auth) checkAuth();
+      else {
+         dispatch(addInCart(product));
+      }
+   };
    useEffect(() => {
       dispatch(getProduct());
    }, []);
-
    useEffect(() => {
       if (status === 'fulfilled') {
          setProduct(data.find(item => item.id === Number(productId)));
       }
    }, [data, productId, status]);
-
+   useEffect(() => {
+      if ((authState.title === 'success') & (authState.text === 'addInCart')) {
+         console.log('add cart success');
+      } else if ((authState.title === 'fail') & (authState.text === 'addInCart')) {
+         Swal.fire({
+            title: '해당 상품이 장바구니에 이미 있습니다',
+            text: '장바구니로 가시겠습니까?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: '예',
+            cancelButtonText: '아니오',
+         }).then(result => {
+            dispatch(resetAuthState());
+            if (result.isConfirmed) navigate('/mypage');
+         });
+      }
+   }, [authState]);
    const starRating = (rating, color = '#BB1628') => {
       return (
          <>
@@ -48,8 +74,8 @@ const ProductDetail = memo(() => {
          {status === 'fulfilled' && Object.keys(product).length > 0 ? (
             <InnerContainer>
                <div className="btn-area">
-                  <ParticleButton>상품담기</ParticleButton>
-                  <ParticleButton>목록으로</ParticleButton>
+                  <ParticleButton onClick={addCart}>상품담기</ParticleButton>
+                  <ParticleButton onClick={() => navigate('/store')}>목록으로</ParticleButton>
                </div>
                <Swiper
                   pagination={{

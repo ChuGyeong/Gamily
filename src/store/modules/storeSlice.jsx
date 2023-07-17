@@ -6,11 +6,14 @@ const initialState = {
    loading: true,
    status: null,
 };
-export const getProduct = createAsyncThunk('product/getProduct', async () => {
+export const getProduct = createAsyncThunk('product/getProduct', async category => {
    const res = await axios.get(
       `https://gist.githubusercontent.com/ChuGyeong/592f56c5bdd6781a74f303edb1cdccb6/raw/d7ee42cb5ba7131c56f3156b2838370df9ba659e/gamilyStore.json`,
    );
-   return res.data;
+   let resultData = res.data;
+   if (category) resultData = resultData.filter(item => item.category === category);
+   //  console.log(resultData);
+   return resultData;
 });
 const storeSlice = createSlice({
    name: 'store',

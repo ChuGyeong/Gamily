@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { InnerContainer, MyPageContainer, ParticleButton } from '../styled/GamilyStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { addInCart, logout, toggleFavDogs } from '../store/modules/authSlice';
+import { logout, removeInCart, toggleFavDogs } from '../store/modules/authSlice';
 import Swal from 'sweetalert2';
 
 const MyPage = memo(() => {
@@ -22,7 +22,7 @@ const MyPage = memo(() => {
             <div className="profile">
                <img src="./images/profile_img1.jpg" alt="" />
                <p>
-                  <span>정종우우종정종정정</span>
+                  <span>{auth.username}</span>
                </p>
                <div className="btn-area">
                   <ParticleButton onClick={handleLogout}>로그아웃</ParticleButton>
@@ -45,7 +45,7 @@ const MyPage = memo(() => {
                      </li> */}
                      {cart.map(item => (
                         <li key={item.id}>
-                           <button onClick={() => dispatch(addInCart(item))}>
+                           <button onClick={() => dispatch(removeInCart(item))}>
                               <i className="xi-close"></i>
                            </button>
                            <img
