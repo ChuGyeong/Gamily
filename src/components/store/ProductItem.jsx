@@ -1,12 +1,17 @@
 import React, { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ParticleButton } from '../../styled/GamilyStyle';
+import { useDispatch } from 'react-redux';
+import { addInCart } from '../../store/modules/authSlice';
 
 const ProductItem = memo(({ item }) => {
    const { id, image, title, price, count } = item;
-
+   const dispatch = useDispatch();
    const navigate = useNavigate();
-
+   const addCart = () => {
+      console.log(item);
+      dispatch(addInCart(item));
+   };
    return (
       <li>
          <div className="img-area">
@@ -19,7 +24,7 @@ const ProductItem = memo(({ item }) => {
          </div>
          <div className="btn-area">
             <ParticleButton onClick={() => navigate(`/product/${id}`)}>상세정보</ParticleButton>
-            <ParticleButton>상품담기</ParticleButton>
+            <ParticleButton onClick={addCart}>상품담기</ParticleButton>
          </div>
       </li>
    );

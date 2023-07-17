@@ -40,7 +40,7 @@ export const getAdoptions = createAsyncThunk('adoptions/getAdoptions', async fil
    if (adoptionId) {
       resultData = resultData.find(item => item.desertionNo === adoptionId);
    }
-   console.log(resultData);
+   //  console.log(resultData);
    return resultData;
 });
 export const getVarietyData = createAsyncThunk('adoptions/getVarietyData', async () => {

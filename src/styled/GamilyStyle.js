@@ -1262,7 +1262,7 @@ export const AnswerSheetContainer = styled.div`
 `;
 
 // Login
-export const ToggleForm = styled.div`
+export const ToggleForm = styled.form`
    position: absolute;
    top: 0;
    left: 0;
@@ -1480,6 +1480,7 @@ export const MyPageContainer = styled.div`
                      height: 250px;
                      object-fit: cover;
                      object-position: 50% 50%;
+                     cursor: pointer;
                   }
                   p {
                      width: 100%;
@@ -1491,6 +1492,7 @@ export const MyPageContainer = styled.div`
                      color: #efefef;
                      padding: 3px 5px;
                      box-sizing: border-box;
+                     cursor: pointer;
                   }
                }
             }

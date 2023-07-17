@@ -1,6 +1,9 @@
-import React, { memo } from 'react';
-import { AiOutlineHeart } from 'react-icons/ai';
+import React, { memo, useEffect } from 'react';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { ParticleButton } from '../../styled/GamilyStyle';
+import useAuth from '../../hooks/useAuth';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleFavDogs } from '../../store/modules/authSlice';
 import { useNavigate } from 'react-router-dom';
 
 const AdoptionItem = memo(({ item }) => {
@@ -22,10 +25,20 @@ const AdoptionItem = memo(({ item }) => {
       careNm,
    } = item;
    const navigate = useNavigate();
+   const dispatch = useDispatch();
+   const { auth, checkAuth } = useAuth();
+   const { authData } = useSelector(state => state.authR);
+   const { favDogs } = (auth && authData.find(item => item.email === auth.email)) || { favDogs: [] };
+   const handleLike = () => {
+      if (!auth) checkAuth();
+      else {
+         dispatch(toggleFavDogs(item));
+      }
+   };
    return (
       <div className="masonry-item">
          <div className="img-box">
-            <img src={popfile} alt="" />
+            <img src={popfile} alt={desertionNo} />
          </div>
          <div className="text-box">
             <span>#{age}</span>
@@ -37,8 +50,12 @@ const AdoptionItem = memo(({ item }) => {
          </div>
          <div className="btn-box">
             <ParticleButton onClick={() => navigate(`/adoptiondetail/${desertionNo}`)}>상세정보</ParticleButton>
-            <ParticleButton>
-               <AiOutlineHeart></AiOutlineHeart>
+            <ParticleButton onClick={() => handleLike(desertionNo)}>
+               {favDogs.find(item => item.desertionNo === desertionNo) ? (
+                  <AiFillHeart />
+               ) : (
+                  <AiOutlineHeart></AiOutlineHeart>
+               )}
             </ParticleButton>
          </div>
       </div>

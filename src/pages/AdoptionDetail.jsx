@@ -37,7 +37,6 @@ const AdoptionDetail = memo(() => {
 
    useEffect(() => {
       dispatch(getAdoptions({ adoptionId }));
-      console.log('getAdoptions');
    }, [adoptionId]);
    return (
       <>
