@@ -218,6 +218,29 @@ const authSlice = createSlice({
                  }
                : user,
          );
+         localStorage.setItem('authData', JSON.stringify(state.authData));
+      },
+      checkProductDel: (state, action) => {
+         state.authData = state.authData.map(user =>
+            user.email === state.auth.email
+               ? {
+                    ...user,
+                    cart: user.cart.filter(cartItem => !cartItem.isChk),
+                 }
+               : user,
+         );
+         localStorage.setItem('authData', JSON.stringify(state.authData));
+      },
+      allkProductDel: (state, action) => {
+         state.authData = state.authData.map(user =>
+            user.email === state.auth.email
+               ? {
+                    ...user,
+                    cart: [],
+                 }
+               : user,
+         );
+         localStorage.setItem('authData', JSON.stringify(state.authData));
       },
    },
 });
@@ -235,5 +258,7 @@ export const {
    quantityDown,
    onCheckbox,
    toggleCheckbox,
+   checkProductDel,
+   allkProductDel,
 } = authSlice.actions;
 export default authSlice.reducer;
