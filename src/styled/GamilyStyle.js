@@ -14,7 +14,7 @@ export const ParticleButton = styled.button`
    outline: none;
    overflow: hidden;
    cursor: pointer;
-   transition: all 0.3s ease-out;
+   transition: all 0.4s ease-out;
    &:hover {
       background-color: ${mainColor};
    }
@@ -1447,10 +1447,7 @@ export const MyPageContainer = styled.div`
       .content {
          div {
             &:first-child {
-               border-top: 1px solid #efefef;
             }
-            border-bottom: 1px solid #efefef;
-            border-right: 1px solid #efefef;
             padding: 20px;
             box-sizing: border-box;
             width: 1041px;
@@ -1458,6 +1455,7 @@ export const MyPageContainer = styled.div`
                margin-bottom: 20px;
                font-weight: 700;
                font-size: 25px;
+               padding-bottom: 10px;
             }
             ul {
                width: 1000px;
@@ -1939,6 +1937,125 @@ export const AddQnAContainer = styled.div`
             &:hover {
                background: ${pointColor};
                color: #fff;
+            }
+         }
+      }
+   }
+`;
+
+export const ProfileEditContent = styled.div`
+   position: fixed;
+   width: 100vw;
+   height: 100vh;
+   top: 0;
+   left: 0;
+   z-index: 500;
+   background: rgba(0, 0, 0, 0.5);
+   .update-profile {
+      position: absolute;
+      width: 700px;
+      height: 800px;
+      background: #fff;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 100;
+      border-radius: 30px;
+      box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+         rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+      padding: 20px;
+      box-sizing: border-box;
+      .close {
+         position: absolute;
+         top: 10px;
+         right: 10px;
+         border: none;
+         background: transparent;
+         cursor: pointer;
+         transition: 0.4s;
+         i {
+            font-size: 25px;
+         }
+         &:hover {
+            transform: rotate(180deg);
+         }
+      }
+      h2 {
+         text-align: center;
+         font-size: 30px;
+         font-weight: 700;
+         margin-bottom: 50px;
+      }
+      form {
+         .img-area {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            .preview {
+               width: 200px;
+               height: 200px;
+               margin: auto;
+               border-radius: 50%;
+               overflow: hidden;
+               img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: 50% 50%;
+               }
+            }
+            ul {
+               display: flex;
+               justify-content: center;
+               margin: 30px 0;
+               li {
+                  width: 80px;
+                  height: 80px;
+                  margin-right: 20px;
+                  border: 3px solid #efefef;
+                  &:last-child {
+                     margin-right: 0;
+                  }
+                  img {
+                     width: 100%;
+                     height: 100%;
+                     object-fit: cover;
+                     object-position: 50% 50%;
+                     cursor: pointer;
+                  }
+               }
+            }
+         }
+         .text-area {
+            p {
+               label {
+                  display: block;
+                  font-size: 18px;
+               }
+               input {
+                  width: 100%;
+                  padding: 5px 10px;
+                  box-sizing: border-box;
+                  outline: none;
+                  border: none;
+                  border-bottom: 2px solid #efefef;
+                  margin-bottom: 10px;
+               }
+            }
+         }
+         .btn-area {
+            text-align: center;
+            margin-top: 50px;
+            button {
+               width: 85px;
+               padding: 10px;
+               &:first-child {
+                  margin-right: 10px;
+               }
+               &:hover {
+                  background: ${subColor};
+                  color: #fff;
+               }
             }
          }
       }
