@@ -8,7 +8,11 @@ import ProfileEdit from '../components/ProfileEdit';
 
 const MyPage = memo(() => {
    const { auth, authData } = useSelector(state => state.authR);
-   const { favDogs, cart } = (auth && authData.find(item => item.email === auth.email)) || { favDogs: [], cart: [] };
+   const { favDogs, cart, badge } = (auth && authData.find(item => item.email === auth.email)) || {
+      favDogs: [],
+      cart: [],
+      badge: [],
+   };
    const dispatch = useDispatch();
    const navigate = useNavigate();
    const handleLogout = () => {
@@ -33,9 +37,17 @@ const MyPage = memo(() => {
                </div>
             </div>
             <div className="content">
-               {/* <div className="badge-area">
+               <div className="badge-area">
                   <h3>획득한 뱃지</h3>
-               </div> */}
+                  <ul>
+                     {badge.map(item => (
+                        <li key={item.id}>
+                           <img src={item.img} alt={item.id} />
+                           <p>{item.id}</p>
+                        </li>
+                     ))}
+                  </ul>
+               </div>
                <div className="basket-area">
                   <h3>찜한 상품</h3>
                   <ul>

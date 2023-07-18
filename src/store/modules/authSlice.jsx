@@ -132,8 +132,35 @@ const authSlice = createSlice({
          localStorage.setItem('authData', JSON.stringify(state.authData));
          localStorage.setItem('auth', JSON.stringify({ email, username, profileImg }));
       },
+      addBadge: (state, action) => {
+         const { id } = action.payload;
+         const { email } = state.auth;
+         state.authData = state.authData.map(item => {
+            if (item.email === email) {
+               if (item.badge.find(badge => badge.id === id)) {
+                  return item;
+               } else {
+                  const newBadge = [...item.badge, action.payload];
+                  return { ...item, badge: newBadge };
+               }
+            } else return item;
+         });
+         state.authData = state.authData.map(item => {
+            if (item.email === email) {
+               if (
+                  !item.badge.find(badge => badge.id === 'prize') &&
+                  item.badge.find(badge => badge.id === 'basic3') &&
+                  item.badge.find(badge => badge.id === 'deepen3')
+               ) {
+                  const newBadge = [...item.badge, { id: 'prize', img: '../images/ranking-trophy.png' }];
+                  return { ...item, badge: newBadge };
+               } else return item;
+            } else return item;
+         });
+         localStorage.setItem('authData', JSON.stringify(state.authData));
+      },
    },
 });
-export const { login, logout, signUp, toggleFavDogs, addInCart, removeInCart, resetAuthState, editUser } =
+export const { login, logout, signUp, toggleFavDogs, addInCart, removeInCart, resetAuthState, editUser, addBadge } =
    authSlice.actions;
 export default authSlice.reducer;

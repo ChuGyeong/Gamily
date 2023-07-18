@@ -1215,19 +1215,8 @@ export const QuestionContainer = styled.div`
       padding: 10px 30px;
    }
 `;
+// AnswerSheet
 export const AnswerSheetContainer = styled.div`
-   background-color: #fff;
-   position: fixed;
-   width: 80vw;
-   height: 80vh;
-   left: 50%;
-   top: 50%;
-   transform: translate(-50%, -50%);
-   border: 2px solid ${subColor};
-   overflow: auto;
-   z-index: 500;
-   padding: 40px;
-   box-sizing: border-box;
    h2 {
       text-align: center;
       font-size: 50px;

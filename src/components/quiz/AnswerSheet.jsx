@@ -1,12 +1,31 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AnswerSheetContainer, ParticleButton } from '../../styled/GamilyStyle';
+import ConfettiExplosion from 'react-confetti-explosion';
 
 const AnswerSheet = memo(({ question, userAnswer }) => {
    const navigate = useNavigate();
    const result = question.reduce((acc, cur) => (cur.answer === userAnswer[cur.id] ? acc + cur.score : acc), 0);
+   const [isExploding, setIsExploding] = useState(false);
+   useEffect(() => {
+      if (result >= 60) {
+         setIsExploding(true);
+         setTimeout(() => setIsExploding(false), 2500);
+      }
+   }, []);
    return (
       <AnswerSheetContainer>
+         {isExploding && (
+            <ConfettiExplosion
+               particleSize={20}
+               zIndex={9999}
+               style={{
+                  position: 'fixed',
+                  top: '20%',
+                  left: '50%',
+               }}
+            />
+         )}
          <h2>결과 : {result}점</h2>
          <ul>
             {question.map((item, idx) => (
