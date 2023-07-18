@@ -3,8 +3,26 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
    auth: JSON.parse(localStorage.getItem('auth')) || null,
    authData: JSON.parse(localStorage.getItem('authData')) || [
-      { email: '1@1.com', pw: '1', username: '임시아이디1', cart: [], favDogs: [], badge: [], isManager: false },
-      { email: '2@2.com', pw: '2', username: '임시아이디2', cart: [], favDogs: [], badge: [], isManager: true },
+      {
+         email: '1@1.com',
+         pw: '1',
+         username: '임시아이디1',
+         cart: [],
+         favDogs: [],
+         badge: [],
+         isManager: false,
+         profileImg: './images/profile.jpg',
+      },
+      {
+         email: '2@2.com',
+         pw: '2',
+         username: '임시아이디2',
+         cart: [],
+         favDogs: [],
+         badge: [],
+         isManager: true,
+         profileImg: './images/profile.jpg',
+      },
    ],
    authState: {},
 };
@@ -18,7 +36,7 @@ const authSlice = createSlice({
          const findItem = state.authData.find(item => item.email === email && item.pw === pw);
          if (findItem) {
             state.authState = { title: 'success', text: 'login' };
-            state.auth = { email: findItem.email, username: findItem.username };
+            state.auth = { email: findItem.email, username: findItem.username, profileImg: findItem.profileImg };
             localStorage.setItem('auth', JSON.stringify({ email: findItem.email, username: findItem.username }));
          } else {
             if (state.authData.find(item => item.email === email))
@@ -41,7 +59,14 @@ const authSlice = createSlice({
          }
          state.authData = [
             ...state.authData,
-            { ...action.payload, cart: [], favDogs: [], badge: [], isManager: false },
+            {
+               ...action.payload,
+               cart: [],
+               favDogs: [],
+               badge: [],
+               isManager: false,
+               profileImg: './images/profile.jpg',
+            },
          ];
          localStorage.setItem('authData', JSON.stringify(state.authData));
          state.auth = { email, username };
@@ -98,7 +123,17 @@ const authSlice = createSlice({
       resetAuthState: state => {
          state.authState = {};
       },
+      editUser: (state, action) => {
+         const { email, pw, profileImg, username } = action.payload;
+         state.authData = state.authData.map(item =>
+            item.email === email ? { ...item, username, profileImg, pw } : item,
+         );
+         state.auth = { ...state.auth, username, profileImg };
+         localStorage.setItem('authData', JSON.stringify(state.authData));
+         localStorage.setItem('auth', JSON.stringify({ email, username, profileImg }));
+      },
    },
 });
-export const { login, logout, signUp, toggleFavDogs, addInCart, removeInCart, resetAuthState } = authSlice.actions;
+export const { login, logout, signUp, toggleFavDogs, addInCart, removeInCart, resetAuthState, editUser } =
+   authSlice.actions;
 export default authSlice.reducer;

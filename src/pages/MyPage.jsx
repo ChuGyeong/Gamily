@@ -1,9 +1,10 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import { InnerContainer, MyPageContainer, ParticleButton } from '../styled/GamilyStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout, removeInCart, toggleFavDogs } from '../store/modules/authSlice';
 import Swal from 'sweetalert2';
+import ProfileEdit from '../components/ProfileEdit';
 
 const MyPage = memo(() => {
    const { auth, authData } = useSelector(state => state.authR);
@@ -15,24 +16,26 @@ const MyPage = memo(() => {
       Swal.fire({ icon: 'success', title: '로그아웃 성공' });
       navigate('/');
    };
+   const [isEdit, setIsEdit] = useState(false);
 
    return (
       <MyPageContainer>
          <InnerContainer>
+            {isEdit && <ProfileEdit setIsEdit={setIsEdit} />}
             <div className="profile">
-               <img src="./images/profile_img1.jpg" alt="" />
+               <img src={auth.profileImg ? auth.profileImg : './images/profile.jpg'} alt="" />
                <p>
                   <span>{auth.username}</span>
                </p>
                <div className="btn-area">
                   <ParticleButton onClick={handleLogout}>로그아웃</ParticleButton>
-                  <ParticleButton>회원정보수정</ParticleButton>
+                  <ParticleButton onClick={() => setIsEdit(true)}>회원정보수정</ParticleButton>
                </div>
             </div>
             <div className="content">
-               <div className="badge-area">
+               {/* <div className="badge-area">
                   <h3>획득한 뱃지</h3>
-               </div>
+               </div> */}
                <div className="basket-area">
                   <h3>찜한 상품</h3>
                   <ul>
