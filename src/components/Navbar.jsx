@@ -5,10 +5,20 @@ const navArr = [
    {
       name: 'Knowledge',
       src: '/knowledge',
-      subMenu: [{ name: 'Quiz', src: '/quiz' }],
+      subMenu: [
+         { name: 'Knowledge', src: '/knowledge' },
+         { name: 'Quiz', src: '/quiz' },
+      ],
    },
    { name: 'Adoption', src: '/adoption', subMenu: [] },
-   { name: 'Notice', src: '/notice', subMenu: [{ name: 'QnA', src: '/qna' }] },
+   {
+      name: 'Notice',
+      src: '/notice',
+      subMenu: [
+         { name: 'Notice', src: '/notice' },
+         { name: 'QnA', src: '/qna' },
+      ],
+   },
    { name: 'Store', src: '/store', subMenu: [] },
 ];
 

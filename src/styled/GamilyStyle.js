@@ -160,10 +160,15 @@ export const WrapContainer = styled.div`
 export const MainContainer = styled.div`
    position: relative;
    width: 100%;
-   padding: 110px 0;
+   padding-top: 110px;
+   padding-bottom: 110px;
    overflow: hidden;
    box-sizing: border-box;
    min-height: calc(100vh - 350px);
+   transition: 0.4s;
+   &.on {
+      padding-top: 220px;
+   }
 `;
 
 export const InnerContainer = styled.div`
@@ -182,8 +187,7 @@ export const HeaderContainer = styled.header`
    top: 0;
    width: 100%;
    height: 110px;
-   z-index: 100;
-
+   z-index: 200;
    .inner {
       width: 100%;
       height: 100%;

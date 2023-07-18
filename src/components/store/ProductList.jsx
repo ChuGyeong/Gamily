@@ -1,40 +1,14 @@
-import React, { memo, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getProduct } from '../../store/modules/storeSlice';
+import React from 'react';
 import ProductItem from './ProductItem';
-
-const ProductList = memo(() => {
-   const { data } = useSelector(state => state.storeR);
-   const [currentData, setCurrentData] = useState(data || []);
-   const [sort, setSort] = useState('');
-   const dispatch = useDispatch();
-
+const ProductList = ({ currentData, option, setOption }) => {
+   const { filter } = option;
    const changeSelect = e => {
-      setSort(e.target.value);
-      switch (e.target.value) {
-         case 'name':
-            setCurrentData([...currentData].sort((a, b) => (a.title < b.title ? -1 : a.title > b.title ? 1 : 0)));
-            break;
-         case 'lowPrice':
-            setCurrentData([...currentData].sort((a, b) => a.price - b.price));
-            break;
-         case 'highPrice':
-            setCurrentData([...currentData].sort((a, b) => b.price - a.price));
-            break;
-         default:
-            setCurrentData([...currentData].sort((a, b) => a.id - b.id));
-      }
+      setOption({ ...option, filter: e.target.value });
    };
-   useEffect(() => {
-      dispatch(getProduct());
-   }, []);
-   useEffect(() => {
-      setCurrentData(data);
-   }, [data]);
    return (
       <div className="product">
          <div className="select-area">
-            <select value={sort} onChange={changeSelect}>
+            <select value={filter} onChange={changeSelect}>
                <option value="">정렬</option>
                <option value="name">이름순</option>
                <option value="highPrice">높은가격순</option>
@@ -48,6 +22,6 @@ const ProductList = memo(() => {
          </ul>
       </div>
    );
-});
+};
 
 export default ProductList;

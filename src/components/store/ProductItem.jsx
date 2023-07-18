@@ -20,6 +20,17 @@ const ProductItem = memo(({ item }) => {
    };
    useEffect(() => {
       if ((authState.title === 'success') & (authState.text === 'addInCart')) {
+         Swal.fire({
+            title: '해당 상품을 장바구니에 담았습니다',
+            text: '장바구니로 가시겠습니까?',
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonText: '예',
+            cancelButtonText: '아니오',
+         }).then(result => {
+            dispatch(resetAuthState());
+            if (result.isConfirmed) navigate('/mypage');
+         });
       } else if ((authState.title === 'fail') & (authState.text === 'addInCart')) {
          Swal.fire({
             title: '해당 상품이 장바구니에 이미 있습니다',
