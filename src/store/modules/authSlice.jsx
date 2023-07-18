@@ -198,11 +198,27 @@ const authSlice = createSlice({
          );
          localStorage.setItem('authData', JSON.stringify(state.authData));
       },
-      // toggleCheckbox: (state, action) => {
-      //    state.authData = state.authData.map(user => (user.email === state.auth.email ? {
-      //     cart: user.cart.map(cartItem => ...cartItem,isChk:cartItem.isChk)
-      //    } : user));
-      // },
+      toggleCheckbox: (state, action) => {
+         const isAllChecked = state.authData.some(user => {
+            if (user.email === state.auth.email) {
+               return user.cart.every(cartItem => cartItem.isChk);
+            }
+            return false;
+         });
+
+         // 전체 선택 상태에 따라 토글
+         state.authData = state.authData.map(user =>
+            user.email === state.auth.email
+               ? {
+                    ...user,
+                    cart: user.cart.map(cartItem => ({
+                       ...cartItem,
+                       isChk: isAllChecked ? false : true,
+                    })),
+                 }
+               : user,
+         );
+      },
    },
 });
 export const {
@@ -218,5 +234,6 @@ export const {
    quantityUp,
    quantityDown,
    onCheckbox,
+   toggleCheckbox,
 } = authSlice.actions;
 export default authSlice.reducer;

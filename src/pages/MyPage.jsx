@@ -2,7 +2,15 @@ import React, { memo, useState } from 'react';
 import { InnerContainer, MyPageContainer, ParticleButton } from '../styled/GamilyStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { logout, onCheckbox, quantityDown, quantityUp, removeInCart, toggleFavDogs } from '../store/modules/authSlice';
+import {
+   logout,
+   onCheckbox,
+   quantityDown,
+   quantityUp,
+   removeInCart,
+   toggleCheckbox,
+   toggleFavDogs,
+} from '../store/modules/authSlice';
 import Swal from 'sweetalert2';
 import ProfileEdit from '../components/ProfileEdit';
 
@@ -51,7 +59,7 @@ const MyPage = memo(() => {
                <div className="basket-area content">
                   <h3>찜한 상품</h3>
                   <div className="btn-area">
-                     <ParticleButton>전체선택/해제</ParticleButton>
+                     <ParticleButton onClick={() => dispatch(toggleCheckbox())}>전체선택/해제</ParticleButton>
                      <ParticleButton>선택상품삭제</ParticleButton>
                      <ParticleButton>전체삭제</ParticleButton>
                      <ParticleButton>선택상품주문</ParticleButton>
