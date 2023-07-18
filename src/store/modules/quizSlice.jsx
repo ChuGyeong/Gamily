@@ -8,7 +8,7 @@ const initialState = {
 };
 export const getQuiz = createAsyncThunk('quiz/getQuiz', async () => {
    const res = await axios.get(
-      `https://gist.githubusercontent.com/ChuGyeong/1425da871eab0cb6526b51b385524f8b/raw/4b04520dff17b4c52824b644908ef81f0dfa0753/gamilyQuiz.json`,
+      `https://gist.githubusercontent.com/ChuGyeong/1425da871eab0cb6526b51b385524f8b/raw/db07f3434fe44193055ed5509122e750f0738c9a/gamilyQuiz.json`,
    );
    return res.data[0];
 });
