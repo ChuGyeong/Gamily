@@ -17,7 +17,7 @@ const ProductDetail = memo(() => {
    const dispatch = useDispatch();
    const { productId } = useParams();
    const [product, setProduct] = useState({});
-   const { title, price, description, detailImg, id, image, rate, subImg, summary, category } = product;
+   const { title, price, description, detailImg, id, image, rate, subImg, summary, category, count } = product;
    const navigate = useNavigate();
    const { auth, checkAuth } = useAuth();
    const addCart = () => {
@@ -83,10 +83,6 @@ const ProductDetail = memo(() => {
       <ProductContainer>
          {status === 'fulfilled' && Object.keys(product).length > 0 ? (
             <InnerContainer>
-               <div className="btn-area">
-                  <ParticleButton onClick={addCart}>상품담기</ParticleButton>
-                  <ParticleButton onClick={() => navigate('/store')}>목록으로</ParticleButton>
-               </div>
                <Swiper
                   pagination={{
                      dynamicBullets: true,
@@ -102,10 +98,17 @@ const ProductDetail = memo(() => {
                      </SwiperSlide>
                   ))}
                </Swiper>
-               <p>{category}</p>
-               <h3>{title}</h3>
-               <div className="star-area">{starRating(rate)}</div>
-               <p>{price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</p>
+               <div className="tit-area">
+                  <p>{category}</p>
+                  <h3>{title}</h3>
+                  <div className="star-area">{starRating(rate)}</div>
+                  <p>남은 수량: {count}</p>
+                  <p className="price">{price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</p>
+                  <div className="btn-area">
+                     <ParticleButton onClick={addCart}>상품담기</ParticleButton>
+                     <ParticleButton onClick={() => navigate('/store')}>목록으로</ParticleButton>
+                  </div>
+               </div>
                <div className="text-area">
                   <p>
                      <strong>설명</strong>

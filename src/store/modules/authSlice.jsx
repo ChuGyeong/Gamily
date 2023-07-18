@@ -94,7 +94,7 @@ const authSlice = createSlice({
                   return item;
                } else {
                   state.authState = { title: 'success', text: 'addInCart' };
-                  const newProduct = [...item.cart, action.payload];
+                  const newProduct = [...item.cart, { ...action.payload, quantity: 1, isChk: false }];
                   return { ...item, cart: newProduct };
                }
             } else {
@@ -159,8 +159,64 @@ const authSlice = createSlice({
          });
          localStorage.setItem('authData', JSON.stringify(state.authData));
       },
+      quantityUp: (state, action) => {
+         state.authData = state.authData.map(user =>
+            user.email === state.auth.email
+               ? {
+                    ...user,
+                    cart: user.cart.map(cartItem =>
+                       cartItem.id === action.payload ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem,
+                    ),
+                 }
+               : user,
+         );
+         localStorage.setItem('authData', JSON.stringify(state.authData));
+      },
+      quantityDown: (state, action) => {
+         state.authData = state.authData.map(user =>
+            user.email === state.auth.email
+               ? {
+                    ...user,
+                    cart: user.cart.map(cartItem =>
+                       cartItem.id === action.payload ? { ...cartItem, quantity: cartItem.quantity - 1 } : cartItem,
+                    ),
+                 }
+               : user,
+         );
+         localStorage.setItem('authData', JSON.stringify(state.authData));
+      },
+      onCheckbox: (state, action) => {
+         state.authData = state.authData.map(user =>
+            user.email === state.auth.email
+               ? {
+                    ...user,
+                    cart: user.cart.map(cartItem =>
+                       cartItem.id === action.payload ? { ...cartItem, isChk: !cartItem.isChk } : cartItem,
+                    ),
+                 }
+               : user,
+         );
+         localStorage.setItem('authData', JSON.stringify(state.authData));
+      },
+      // toggleCheckbox: (state, action) => {
+      //    state.authData = state.authData.map(user => (user.email === state.auth.email ? {
+      //     cart: user.cart.map(cartItem => ...cartItem,isChk:cartItem.isChk)
+      //    } : user));
+      // },
    },
 });
-export const { login, logout, signUp, toggleFavDogs, addInCart, removeInCart, resetAuthState, editUser, addBadge } =
-   authSlice.actions;
+export const {
+   login,
+   logout,
+   signUp,
+   toggleFavDogs,
+   addInCart,
+   removeInCart,
+   resetAuthState,
+   editUser,
+   addBadge,
+   quantityUp,
+   quantityDown,
+   onCheckbox,
+} = authSlice.actions;
 export default authSlice.reducer;
