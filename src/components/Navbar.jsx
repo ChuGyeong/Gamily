@@ -40,7 +40,11 @@ const Navbar = memo(() => {
             {navArr.map((item, idx) => (
                <li
                   key={idx}
-                  className={`${location.pathname === item.src ? 'on' : ''}`}
+                  className={`${
+                     location.pathname === item.src || item.subMenu.find(subItem => subItem.src === location.pathname)
+                        ? 'on'
+                        : ''
+                  }`}
                   onMouseEnter={() => handleMouseEnter(idx)}
                   onMouseLeave={handleMouseLeave}>
                   <Link to={item.src}>{item.name}</Link>

@@ -312,7 +312,7 @@ export const FooterContainer = styled.footer`
    span {
       display: block;
    }
-   .box-continer {
+   .box-container {
       justify-content: space-between;
       display: flex;
    }

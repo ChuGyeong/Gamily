@@ -28,6 +28,7 @@ const AdoptionForm = memo(({ filter, setFilter, setCurrentPageNum }) => {
             const selectedItem = filteredItems[focusedItemIndex];
             setSearchText(selectedItem.knm);
             setIsSuggestionsVisible(false);
+            setIsFilterBoxOn(false);
             performSearch(selectedItem.knm);
          } else {
             performSearch(searchText);

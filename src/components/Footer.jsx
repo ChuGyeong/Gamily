@@ -16,7 +16,7 @@ const Footer = memo(() => {
                   <img src="../../public/images/logo.png" />
                </Link>
             </h2>
-            <div className="box-continer">
+            <div className="box-container">
                <div className="info-box">
                   <strong>Github</strong>
                   <span>
