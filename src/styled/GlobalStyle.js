@@ -16,15 +16,14 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-size: 14px;
     line-height: 1.6;
-    font-family: 'NanumSquare', 'Noto Sans KR', sans-serif;
     color:#555;
+    font-family: 'NanumSquare', 'Noto Sans KR', sans-serif;
   }
   a {
     text-decoration: none;
-    font-family: 'NanumSquare', 'Noto Sans KR', sans-serif;
     color:#555; 
   }
-  button {
+  * {
     font-family: 'NanumSquare', 'Noto Sans KR', sans-serif;
   }
   li { list-style:none }

@@ -834,9 +834,9 @@ export const StoreContainer = styled.div`
                      white-space: nowrap;
                   }
                   &:nth-child(2) {
-                     padding: 5px 0;
+                     padding-top: 5px;
                   }
-                  &:nth-child(3) {
+                  &.out-of-stock {
                      font-size: 13px;
                      width: 70px;
                      text-align: center;
@@ -882,27 +882,6 @@ export const StoreContainer = styled.div`
 
 // ProductDetail
 export const ProductContainer = styled.div`
-   .btn-area {
-      position: fixed;
-      top: 300px;
-      left: 300px;
-      z-index: 100;
-      button {
-         display: block;
-         width: 80px;
-         height: 70px;
-         &:first-child {
-            border-radius: 50px 50px 0 0;
-            padding-top: 10px;
-         }
-         &:last-child {
-            border-radius: 0 0 50px 50px;
-            background: ${subColor};
-            color: #fff;
-            padding-bottom: 10px;
-         }
-      }
-   }
    .mySwiper {
       width: 700px;
       .swiper-slide {
@@ -917,16 +896,36 @@ export const ProductContainer = styled.div`
       font-weight: 700;
       color: ${pointColor};
    }
-   h3 {
-      font-weight: 700;
-      font-size: 20px;
-   }
-   .star-area + p {
-      border-bottom: 2px solid ${mainColor};
-      margin-bottom: 20px;
-      padding-bottom: 10px;
+   .tit-area {
+      position: relative;
+      h3 {
+         font-weight: 700;
+         font-size: 20px;
+      }
+      .price {
+         width: 70px;
+         animation: fontOpacity infinite ease-in-out 1.5s;
+      }
+      .btn-area {
+         position: absolute;
+         bottom: 0;
+         /* transform: translateY(-50%); */
+         right: 0;
+         /* display: flex;
+         flex-direction: column; */
+         button {
+            padding: 10px 20px;
+            &:last-child {
+               background: ${subColor};
+               color: #efefef;
+            }
+         }
+      }
    }
    .text-area {
+      border-top: 2px solid ${mainColor};
+      margin-top: 20px;
+      padding-top: 10px;
       strong {
          display: block;
          font-weight: 700;
@@ -954,6 +953,17 @@ export const ProductContainer = styled.div`
    .img-area {
       margin-top: 50px;
       text-align: center;
+   }
+   @keyframes fontOpacity {
+      0% {
+         color: ${subColor};
+      }
+      50% {
+         color: #e9e9e9;
+      }
+      100% {
+         color: ${subColor};
+      }
    }
 `;
 
@@ -1444,10 +1454,9 @@ export const MyPageContainer = styled.div`
             }
          }
       }
-      .content {
-         div {
-            &:first-child {
-            }
+      .container {
+         .badge-area {
+            position: relative;
             padding: 20px;
             box-sizing: border-box;
             width: 1041px;
@@ -1464,13 +1473,75 @@ export const MyPageContainer = styled.div`
                box-sizing: border-box;
                gap: 10px;
                li {
+                  width: calc(100% / 7 - 10px);
+                  border: 1px solid #efefef;
+                  position: relative;
+                  padding: 30px 10px 10px;
+                  box-sizing: border-box;
+                  img {
+                     width: 100%;
+                     height: 110px;
+                     object-fit: cover;
+                  }
+                  p {
+                     width: 100%;
+                     text-overflow: ellipsis;
+                     overflow: hidden;
+                     white-space: nowrap;
+                     text-align: center;
+                     background: ${subColor};
+                     color: #efefef;
+                     padding: 3px 5px;
+                     box-sizing: border-box;
+                     cursor: pointer;
+                     font-size: 13px;
+                  }
+               }
+            }
+         }
+         .content {
+            position: relative;
+            padding: 20px;
+            box-sizing: border-box;
+            width: 1041px;
+            .btn-area {
+               position: absolute;
+               top: 20px;
+               right: 20px;
+               display: flex;
+               button {
+                  margin-right: 10px;
+                  cursor: pointer;
+                  padding: 5px 10px;
+                  border-radius: 5px;
+                  &:hover {
+                     background: ${pointColor};
+                     color: #fff;
+                  }
+               }
+            }
+            &:first-child {
+            }
+            h3 {
+               margin-bottom: 20px;
+               font-weight: 700;
+               font-size: 25px;
+               padding-bottom: 10px;
+            }
+            ul {
+               width: 1000px;
+               display: flex;
+               flex-wrap: wrap;
+               box-sizing: border-box;
+               gap: 20px 10px;
+               li {
                   padding-top: 30px;
                   width: calc(100% / 6 - 10px);
                   border: 1px solid #efefef;
                   position: relative;
                   padding: 30px 10px 10px;
                   box-sizing: border-box;
-                  button {
+                  .close {
                      position: absolute;
                      top: 0;
                      right: 0;
@@ -1483,6 +1554,11 @@ export const MyPageContainer = styled.div`
                      &:hover {
                         transform: rotate(180deg);
                      }
+                  }
+                  input[type='checkbox'] {
+                     position: absolute;
+                     top: 0px;
+                     left: 0px;
                   }
                   img {
                      width: 100%;
@@ -1503,6 +1579,23 @@ export const MyPageContainer = styled.div`
                      box-sizing: border-box;
                      cursor: pointer;
                      font-size: 13px;
+                  }
+                  .quantity-up-down {
+                     width: 100%;
+                     display: flex;
+                     justify-content: center;
+                     text-align: center;
+                     vertical-align: middle;
+                     button {
+                        width: 25%;
+                        border: none;
+                        cursor: pointer;
+                     }
+                     span {
+                        display: inline-block;
+                        width: 50%;
+                        background: ${mainColor};
+                     }
                   }
                }
             }

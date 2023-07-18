@@ -53,7 +53,8 @@ const ProductItem = memo(({ item }) => {
          <div className="text-area">
             <p>{title}</p>
             <p>{price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</p>
-            <p>{count < 5 && '품절임박'}</p>
+            <p className="out-of-stock">{count < 5 && '품절임박'}</p>
+            <p>남은 수량: {count}개</p>
          </div>
          <div className="btn-area">
             <ParticleButton onClick={() => navigate(`/product/${id}`)}>상세정보</ParticleButton>
