@@ -1,15 +1,15 @@
 import React, { memo } from 'react';
-import { useDispatch } from 'react-redux';
-import { getProduct } from '../../store/modules/storeSlice';
 
-const StoreMenu = memo(() => {
+const StoreMenu = memo(({ option, setOption }) => {
    const menus = ['사료', '간식', '건강관리', '장난감'];
-   const dispatch = useDispatch();
+   const handleFilter = item => {
+      setOption({ ...option, category: item });
+   };
    return (
       <ul className="category">
-         <li onClick={() => dispatch(getProduct())}>ALL</li>
+         <li onClick={() => handleFilter('ALL')}>ALL</li>
          {menus.map((item, idx) => (
-            <li key={idx} onClick={() => dispatch(getProduct(item))}>
+            <li key={idx} onClick={() => handleFilter(item)}>
                {item}
             </li>
          ))}
