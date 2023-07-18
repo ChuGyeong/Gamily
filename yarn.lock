@@ -2853,6 +2853,11 @@ react-masonry-css@^1.0.16:
   resolved "https://registry.yarnpkg.com/react-masonry-css/-/react-masonry-css-1.0.16.tgz#72b28b4ae3484e250534700860597553a10f1a2c"
   integrity sha512-KSW0hR2VQmltt/qAa3eXOctQDyOu7+ZBevtKgpNDSzT7k5LA/0XntNa9z9HKCdz3QlxmJHglTZ18e4sX4V8zZQ==
 
+react-native-naver-font@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-naver-font/-/react-native-naver-font-1.0.0.tgz#829a49cce217a75b7e1b5e1404aad801ae24b5b9"
+  integrity sha512-SUs62FESo/MClHzpwibiRkac4ettBXx879bto6LPqjQ8Wtup5mhNqytA8XY5W4arAft4WxcnvZ4UKC21QnCsgg==
+
 react-redux@^8.1.1:
   version "8.1.1"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-8.1.1.tgz#8e740f3fd864a4cd0de5ba9cdc8ad39cc9e7c81a"
