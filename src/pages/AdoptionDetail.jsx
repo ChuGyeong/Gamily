@@ -1,9 +1,10 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getAdoptions } from '../store/modules/adoptionSlice';
 import Loading from '../components/Loading';
 import { AdoptionDetailContainer, InnerContainer } from '../styled/GamilyStyle';
+import KakaoMap from '../components/KakaoMap';
 
 const AdoptionDetail = memo(() => {
    const { adoptionId } = useParams();
@@ -34,7 +35,6 @@ const AdoptionDetail = memo(() => {
       officetel,
       noticeComment,
    } = data;
-
    useEffect(() => {
       dispatch(getAdoptions({ adoptionId }));
    }, [adoptionId]);
@@ -133,7 +133,7 @@ const AdoptionDetail = memo(() => {
                         </p>
                      </div>
                      <div className="maps">
-                        <img src="../images/maps.png" alt="" />
+                        <KakaoMap addr={careAddr} />
                      </div>
                   </div>
                   <div className="btn-box">
