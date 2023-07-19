@@ -30,7 +30,9 @@ const FavoritesDog = memo(() => {
                      <p onClick={() => navigate(`/adoptiondetail/${item.desertionNo}`)} className="name">
                         {item.desertionNo}
                      </p>
-                     <button className="app-form-btn">신청서작성</button>
+                     <button className="app-form-btn" onClick={() => navigate(`/myDogAdoption/${item.desertionNo}`)}>
+                        신청서작성
+                     </button>
                   </li>
                ))
             ) : (

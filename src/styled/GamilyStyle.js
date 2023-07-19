@@ -803,9 +803,10 @@ export const StoreContainer = styled.div`
          width: 100%;
          display: flex;
          flex-wrap: wrap;
-         gap: 50px;
+         /* gap: 50px; */
          li {
-            width: 400px;
+            width: calc(100% / 3 - 50px);
+            margin: 25px;
             padding: 20px;
             box-sizing: border-box;
             border-radius: 10px;
@@ -1460,9 +1461,10 @@ export const MyPageContainer = styled.div`
          }
          .not-list {
             width: 1000px;
-            height: 276.86px;
-            line-height: 276.86px;
+            height: 186.19px;
+            line-height: 186.19px;
             text-align: center;
+            border: 1px solid #efefef;
          }
          p {
             width: 100%;
@@ -1847,7 +1849,7 @@ export const AdoptionDetailContainer = styled.div`
             content: '유기번호';
             position: absolute;
             font-size: 13px;
-            top: -15px;
+            top: -18px;
             left: 50%;
             transform: translateX(-50%);
             color: #bbb;
@@ -2157,6 +2159,173 @@ export const ProfileEditContent = styled.div`
                   color: #fff;
                }
             }
+         }
+      }
+   }
+`;
+
+export const MyDogContainer = styled.div`
+   .myDogInfo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+      .img-area {
+         width: 200px;
+         height: 200px;
+         margin-right: 20px;
+         img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+         }
+      }
+      .text-area {
+         display: flex;
+         justify-content: center;
+         flex-direction: column;
+         span {
+            margin-right: 20px;
+            font-weight: 700;
+         }
+      }
+   }
+   .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
+   .modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 4px;
+      width: 80%;
+      max-width: 400px;
+   }
+   form {
+      width: 1100px;
+      margin: auto;
+      position: relative;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+      padding: 50px;
+      box-sizing: border-box;
+      .today {
+         position: absolute;
+         top: 70px;
+         right: 50px;
+      }
+      h2 {
+         margin-bottom: 50px;
+         font-weight: 700;
+         font-size: 30px;
+         padding-bottom: 10px;
+         text-align: center;
+      }
+
+      h3 {
+         font-weight: 700;
+         font-size: 20px;
+         margin: 10px 0;
+         color: ${subColor};
+      }
+      .userInfo {
+         span,
+         label {
+            padding-left: 10px;
+            position: relative;
+            &::after {
+               content: '*';
+               width: 5px;
+               height: 5px;
+               position: absolute;
+               top: 5px;
+               transform: translateY(-50%);
+               left: 0;
+               color: ${pointColor};
+            }
+         }
+      }
+      .userInfo,
+      .ask-area {
+         width: 100%;
+         label {
+            display: block;
+            margin: 10px 0 5px;
+         }
+         select {
+            padding: 11px 5px;
+            margin-right: 10px;
+            border: 1px solid #efefef;
+         }
+         input {
+            padding: 10px 5px;
+            border: none;
+            border-bottom: 1px solid ${mainColor};
+            background: transparent;
+            margin-right: 5px;
+            &.wid100 {
+               width: 100px;
+               margin-right: 10px;
+            }
+            &.wid200 {
+               width: 200px;
+               margin-right: 10px;
+            }
+            &.wid400 {
+               width: 400px;
+            }
+            &.wid700 {
+               width: 700px;
+               display: block;
+            }
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+               -webkit-appearance: none;
+               margin: 0;
+            }
+         }
+         .addr-search {
+            padding: 10px;
+            margin-bottom: 10px;
+         }
+         input[type='radio'] {
+            vertical-align: middle;
+            cursor: pointer;
+         }
+         input[type='radio'] + span {
+            margin-left: 5px;
+         }
+         strong + label {
+            margin: 0;
+         }
+         strong {
+            display: block;
+            margin: 10px 0;
+         }
+         textarea {
+            width: 100%;
+            resize: none;
+            outline: none;
+            padding: 5px;
+            box-sizing: border-box;
+            border: 1px solid #efefef;
+         }
+         p {
+            margin: 10px 0;
+         }
+      }
+      .btn-area {
+         margin-top: 20px;
+         text-align: center;
+         button {
+            background: ${subColor};
+            padding: 10px 30px;
+            color: #fff;
          }
       }
    }

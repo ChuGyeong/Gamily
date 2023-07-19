@@ -138,7 +138,7 @@ const AdoptionDetail = memo(() => {
                   </div>
                   <div className="btn-box">
                      <button onClick={() => navigate('/adoption')}>목록으로</button>
-                     <button>입양신청</button>
+                     <button onClick={() => navigate(`/myDogAdoption/${desertionNo}`)}>입양신청</button>
                   </div>
                </AdoptionDetailContainer>
             </InnerContainer>
