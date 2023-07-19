@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
-import { InnerContainer, VisualSection } from '../styled/GamilyStyle';
+import { InnerContainer, VisualSection } from '../../styled/GamilyStyle';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';

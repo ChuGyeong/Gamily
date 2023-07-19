@@ -1,11 +1,11 @@
 import React, { memo } from 'react';
-import Visual from '../components/Visual';
-import VisualText from '../components/VisualText';
+import Visual from '../components/home/Visual';
+import VisualText from '../components/home/VisualText';
 
 const Home = memo(() => {
    return (
       <>
-         <Visual />
+         <VisualText />
       </>
    );
 });

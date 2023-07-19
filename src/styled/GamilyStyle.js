@@ -530,6 +530,19 @@ export const VisualSection = styled.div`
 export const VisualTextContainer = styled.section`
    width: 100%;
    height: 100vh;
+   .text-area {
+      p {
+         span {
+            font-size: 50px;
+            opacity: 0;
+         }
+         strong {
+            font-size: 500px;
+            opacity: 1;
+            font-weight: 700;
+         }
+      }
+   }
 `;
 
 // Adoption
