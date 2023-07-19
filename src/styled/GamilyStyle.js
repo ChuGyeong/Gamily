@@ -1403,6 +1403,7 @@ export const ToggleFormContainer = styled.div`
    }
 `;
 
+// MyPage
 export const MyPageContainer = styled.div`
    > div {
       display: flex;
@@ -1444,155 +1445,173 @@ export const MyPageContainer = styled.div`
          }
       }
       .container {
-         .badge-area {
+         > div {
             position: relative;
             padding: 20px;
             box-sizing: border-box;
             width: 1041px;
-            h3 {
-               margin-bottom: 20px;
-               font-weight: 700;
-               font-size: 25px;
-               padding-bottom: 10px;
-            }
-            ul {
-               width: 1000px;
-               display: flex;
-               flex-wrap: wrap;
-               box-sizing: border-box;
-               gap: 10px;
-               li {
-                  width: calc(100% / 7 - 10px);
-                  border: 1px solid #efefef;
-                  position: relative;
-                  padding: 30px 10px 10px;
-                  box-sizing: border-box;
-                  img {
-                     width: 100%;
-                     height: 110px;
-                     object-fit: cover;
-                  }
-                  p {
-                     width: 100%;
-                     text-overflow: ellipsis;
-                     overflow: hidden;
-                     white-space: nowrap;
-                     text-align: center;
-                     background: ${subColor};
-                     color: #efefef;
-                     padding: 3px 5px;
-                     box-sizing: border-box;
-                     cursor: pointer;
-                     font-size: 13px;
-                  }
-               }
+         }
+         /* 리스트 공통 */
+         h3 {
+            margin-bottom: 20px;
+            font-weight: 700;
+            font-size: 25px;
+            padding-bottom: 10px;
+         }
+         .not-list {
+            width: 1000px;
+            height: 276.86px;
+            line-height: 276.86px;
+            text-align: center;
+         }
+         p {
+            width: 100%;
+            padding: 3px 5px;
+            box-sizing: border-box;
+            font-size: 13px;
+            &.name {
+               text-overflow: ellipsis;
+               overflow: hidden;
+               white-space: nowrap;
+               text-align: center;
+               color: #efefef;
+               cursor: pointer;
+               background: ${subColor};
             }
          }
-         .content {
-            position: relative;
-            padding: 20px;
+         ul {
+            width: 1000px;
+            display: flex;
+            flex-wrap: wrap;
             box-sizing: border-box;
-            width: 1041px;
-            .btn-area {
-               position: absolute;
-               top: 20px;
-               right: 20px;
-               display: flex;
-               button {
-                  margin-right: 10px;
-                  cursor: pointer;
-                  padding: 5px 10px;
-                  border-radius: 5px;
-                  &:hover {
-                     background: ${pointColor};
-                     color: #fff;
-                  }
-               }
+            gap: 10px;
+         }
+      }
+   }
+`;
+
+export const MyPageContent = styled.div`
+   .btn-area {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      button {
+         margin-right: 10px;
+         cursor: pointer;
+         padding: 5px 10px;
+         border-radius: 5px;
+         &:hover {
+            background: ${pointColor};
+            color: #fff;
+         }
+      }
+   }
+   ul {
+      li {
+         padding-top: 30px;
+         width: calc(100% / 6 - 10px);
+         border: 1px solid #efefef;
+         position: relative;
+         padding: 30px 10px 10px;
+         box-sizing: border-box;
+         .close {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 20px;
+            height: 30px;
+            border: none;
+            cursor: pointer;
+            background: transparent;
+            transition: 0.4s;
+            &:hover {
+               transform: rotate(180deg);
             }
-            &:first-child {
+         }
+         input[type='checkbox'] {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+         }
+         img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            object-position: 50% 50%;
+            cursor: pointer;
+         }
+         .app-form-btn {
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            padding: 5px 0;
+         }
+         .quantity-up-down {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            vertical-align: middle;
+            button {
+               width: 25%;
+               border: none;
+               cursor: pointer;
             }
-            h3 {
-               margin-bottom: 20px;
-               font-weight: 700;
-               font-size: 25px;
-               padding-bottom: 10px;
+            span {
+               display: inline-block;
+               width: 50%;
+               background: ${mainColor};
             }
-            ul {
-               width: 1000px;
-               display: flex;
-               flex-wrap: wrap;
-               box-sizing: border-box;
-               gap: 20px 10px;
-               li {
-                  padding-top: 30px;
-                  width: calc(100% / 6 - 10px);
-                  border: 1px solid #efefef;
-                  position: relative;
-                  padding: 30px 10px 10px;
-                  box-sizing: border-box;
-                  .close {
-                     position: absolute;
-                     top: 0;
-                     right: 0;
-                     font-size: 20px;
-                     height: 30px;
-                     border: none;
-                     cursor: pointer;
-                     background: transparent;
-                     transition: 0.4s;
-                     &:hover {
-                        transform: rotate(180deg);
-                     }
-                  }
-                  input[type='checkbox'] {
-                     position: absolute;
-                     top: 0px;
-                     left: 0px;
-                  }
-                  img {
-                     width: 100%;
-                     height: 180px;
-                     object-fit: cover;
-                     object-position: 50% 50%;
-                     cursor: pointer;
-                  }
-                  p {
-                     width: 100%;
-                     text-overflow: ellipsis;
-                     overflow: hidden;
-                     white-space: nowrap;
-                     text-align: center;
-                     background: ${subColor};
-                     color: #efefef;
-                     padding: 3px 5px;
-                     box-sizing: border-box;
-                     cursor: pointer;
-                     font-size: 13px;
-                  }
-                  .quantity-up-down {
-                     width: 100%;
-                     display: flex;
-                     justify-content: center;
-                     text-align: center;
-                     vertical-align: middle;
-                     button {
-                        width: 25%;
-                        border: none;
-                        cursor: pointer;
-                     }
-                     span {
-                        display: inline-block;
-                        width: 50%;
-                        background: ${mainColor};
-                     }
-                  }
-               }
+         }
+      }
+   }
+`;
+export const UserBadgeContent = styled.div`
+   ul {
+      li {
+         width: calc(100% / 7 - 10px);
+         border: 1px solid #efefef;
+         position: relative;
+         padding: 30px 10px 10px;
+         box-sizing: border-box;
+         img {
+            width: 100%;
+            height: 110px;
+            object-fit: cover;
+         }
+      }
+   }
+`;
+export const UserQnAContent = styled.div`
+   ul {
+      flex-direction: column;
+      li {
+         position: relative;
+         border-bottom: 1px solid #efefef;
+         strong {
+            display: block;
+            font-size: 18px;
+         }
+         .btn-area {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            button {
+               border: none;
+               padding: 5px 10px;
+               cursor: pointer;
+               background: #f0f0f0;
+               margin-left: 10px;
+               border-radius: 5px;
             }
          }
       }
    }
 `;
 
+// Notice
 export const NoticeContainer = styled.div`
    h2 {
       text-align: center;
@@ -1654,7 +1673,6 @@ export const NoticeContainer = styled.div`
       }
    }
 `;
-
 export const NoticeDetailContainer = styled.div`
    .notice-view {
       width: 100%;
