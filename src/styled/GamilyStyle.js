@@ -529,17 +529,32 @@ export const VisualSection = styled.div`
 // VisualText
 export const VisualTextContainer = styled.section`
    width: 100%;
-   height: 100vh;
    .text-area {
+      width: 100%;
       p {
+         text-align: center;
+         font-size: 30px;
          span {
-            font-size: 50px;
             opacity: 0;
+            display: block;
+            transition: 1s;
          }
          strong {
-            font-size: 500px;
+            font-size: 400px;
             opacity: 1;
             font-weight: 700;
+            color: #000;
+            transition: 1s;
+         }
+      }
+      &.on {
+         p {
+            span {
+               opacity: 1;
+            }
+            strong {
+               font-size: 50px;
+            }
          }
       }
    }

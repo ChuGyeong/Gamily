@@ -5,7 +5,6 @@ import { getKnowledge } from '../store/modules/knowledgeSlice';
 import Loading from '../components/Loading';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import 'aos/dist/aos.css';
 import WaveEffects from '../components/WaveEffects';
 
 const Knowledge = memo(() => {
