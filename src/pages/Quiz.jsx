@@ -1,9 +1,15 @@
 import React, { memo } from 'react';
 import { QuizContainer, InnerContainer } from '../styled/GamilyStyle';
 import { useNavigate } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
 
 const Quiz = memo(() => {
    const navigate = useNavigate();
+   const { auth, checkAuth } = useAuth();
+   const goNav = url => {
+      if (auth) navigate(url);
+      else checkAuth();
+   };
    return (
       <QuizContainer>
          <InnerContainer>
@@ -29,11 +35,11 @@ const Quiz = memo(() => {
             <div className="contents">
                <div className="basic">
                   <p>기본영역</p>
-                  <button onClick={() => navigate(`/question/basic`)}>퀴즈 풀러가기</button>
+                  <button onClick={() => goNav(`/question/basic`)}>퀴즈 풀러가기</button>
                </div>
                <div className="deepen">
                   <p>심화영역</p>
-                  <button onClick={() => navigate(`/question/deepen`)}>퀴즈 풀러가기</button>
+                  <button onClick={() => goNav(`/question/deepen`)}>퀴즈 풀러가기</button>
                </div>
             </div>
          </InnerContainer>
