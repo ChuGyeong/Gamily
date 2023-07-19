@@ -26,7 +26,7 @@ const Question = memo(() => {
          const result = question.reduce((acc, cur) => (cur.answer === userAnswer[cur.id] ? acc + cur.score : acc), 0);
          if (result >= 60) {
             let badge = null;
-            const badgeArr = [
+            const badgeData = [
                { id: 'basic1', img: '../images/ranking-basic-1.png' },
                { id: 'basic2', img: '../images/ranking-basic-2.png' },
                { id: 'basic3', img: '../images/ranking-basic-3.png' },
@@ -35,12 +35,12 @@ const Question = memo(() => {
                { id: 'deepen3', img: '../images/ranking-deepen-3.png' },
                { id: 'prize', img: '../images/ranking-trophy.png' },
             ];
-            if (questionId === 'basic' && result === 100) badge = badgeArr.find(item => item.id === 'basic3');
-            else if (questionId === 'basic' && result >= 80) badge = badgeArr.find(item => item.id === 'basic2');
-            else if (questionId === 'basic' && result >= 60) badge = badgeArr.find(item => item.id === 'basic1');
-            else if (questionId === 'deepen' && result === 100) badge = badgeArr.find(item => item.id === 'deepen3');
-            else if (questionId === 'deepen' && result >= 80) badge = badgeArr.find(item => item.id === 'deepen2');
-            else if (questionId === 'deepen' && result >= 60) badge = badgeArr.find(item => item.id === 'deepen1');
+            if (questionId === 'basic' && result === 100) badge = badgeData.find(item => item.id === 'basic3');
+            else if (questionId === 'basic' && result >= 80) badge = badgeData.find(item => item.id === 'basic2');
+            else if (questionId === 'basic' && result >= 60) badge = badgeData.find(item => item.id === 'basic1');
+            else if (questionId === 'deepen' && result === 100) badge = badgeData.find(item => item.id === 'deepen3');
+            else if (questionId === 'deepen' && result >= 80) badge = badgeData.find(item => item.id === 'deepen2');
+            else if (questionId === 'deepen' && result >= 60) badge = badgeData.find(item => item.id === 'deepen1');
             Swal.fire({
                imageUrl: badge.img,
                icon: 'success',

@@ -3,11 +3,17 @@ import { QnAContainer, InnerContainer, ParticleButton } from '../styled/GamilySt
 import QnAItem from './QnAItem';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
 
 const QnA = memo(() => {
    const { data } = useSelector(state => state.qnaR);
+   const { auth, checkAuth } = useAuth();
    const navigate = useNavigate();
 
+   const goToAdd = () => {
+      if (auth) navigate('/qnaAdd');
+      else checkAuth();
+   };
    return (
       <QnAContainer>
          <InnerContainer>
@@ -20,7 +26,7 @@ const QnA = memo(() => {
                </ul>
             </div>
             <div className="btn-area">
-               <button onClick={() => navigate('/qnaAdd')}>작성하기</button>
+               <button onClick={goToAdd}>작성하기</button>
             </div>
          </InnerContainer>
       </QnAContainer>

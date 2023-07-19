@@ -1,13 +1,15 @@
 import React, { memo, useState } from 'react';
 import { AddQnAContainer, InnerContainer, ParticleButton } from '../styled/GamilyStyle';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import useDate from '../hooks/useDate';
 import { addQuestion } from '../store/modules/qnaSlice';
+import Swal from 'sweetalert2';
 
 const AddQnA = memo(() => {
    const navigate = useNavigate();
    const dispatch = useDispatch();
+   const { auth } = useSelector(state => state.authR);
    const [txt, setTxt] = useState({ title: '', ask: '' });
    const date = useDate();
 
@@ -27,7 +29,12 @@ const AddQnA = memo(() => {
 
    const onSubmit = e => {
       e.preventDefault();
-      dispatch(addQuestion({ ...txt, date: formattedDate }));
+      Swal.fire({
+         icon: 'success',
+         title: '제출 성공',
+         test: 'QnA 작성 완료',
+      });
+      dispatch(addQuestion({ ...txt, date: formattedDate, ...auth }));
       navigate('/qna');
    };
 

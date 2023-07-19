@@ -36,8 +36,21 @@ const authSlice = createSlice({
          const findItem = state.authData.find(item => item.email === email && item.pw === pw);
          if (findItem) {
             state.authState = { title: 'success', text: 'login' };
-            state.auth = { email: findItem.email, username: findItem.username, profileImg: findItem.profileImg };
-            localStorage.setItem('auth', JSON.stringify({ email: findItem.email, username: findItem.username }));
+            state.auth = {
+               email: findItem.email,
+               username: findItem.username,
+               profileImg: findItem.profileImg,
+               isManager: findItem.isManager,
+            };
+            localStorage.setItem(
+               'auth',
+               JSON.stringify({
+                  email: findItem.email,
+                  username: findItem.username,
+                  profileImg: findItem.profileImg,
+                  isManager: findItem.isManager,
+               }),
+            );
          } else {
             if (state.authData.find(item => item.email === email))
                state.authState = { title: 'fail', text: 'notMatchPw' };

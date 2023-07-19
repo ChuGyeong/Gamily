@@ -1,7 +1,9 @@
 import React, { memo } from 'react';
 import { NoticeContainer, InnerContainer } from '../styled/GamilyStyle';
+import { useSelector } from 'react-redux';
 
 const Notice = memo(() => {
+   const { auth } = useSelector(state => state.authR);
    return (
       <NoticeContainer>
          <InnerContainer>
@@ -30,6 +32,11 @@ const Notice = memo(() => {
                   </tr>
                </tbody>
             </table>
+            {auth.isManager && (
+               <div className="btn-area">
+                  <button>작성하기</button>
+               </div>
+            )}
          </InnerContainer>
       </NoticeContainer>
    );

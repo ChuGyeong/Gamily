@@ -1659,11 +1659,12 @@ export const NoticeContainer = styled.div`
       margin-top: 50px;
       text-align: right;
       button {
-         font-size: 15px;
-         background-color: ${mainColor};
+         font-size: 12px;
+         background-color: ${pointColor};
+         color: #fff;
          border: 1px solid #f39c12;
          border-radius: 5px;
-         padding: 10px;
+         padding: 10px 20px;
          box-shadow: 0px 6px 0px #f39c12;
          transition: all 0.1s;
          cursor: pointer;
@@ -1952,10 +1953,12 @@ export const QnAContainer = styled.div`
                   padding: 10px 0;
                   box-sizing: border-box;
                   button {
-                     background: #fff;
+                     background: ${mainColor};
+                     padding: 2px 5px;
+                     border-radius: 3px;
                      cursor: pointer;
                      border: none;
-                     color: #555;
+                     /* color: #555; */
                      &:first-child {
                         margin-bottom: 5px;
                      }

@@ -58,7 +58,11 @@ export const getOrgData = createAsyncThunk('adoptions/getOrgData', async () => {
 const adoptionSlice = createSlice({
    name: 'adoptions',
    initialState,
-   reducers: {},
+   reducers: {
+      clearState: (state, action) => {
+         state.state = 'pending';
+      },
+   },
    extraReducers: builder => {
       builder
          .addCase(getAdoptions.pending, (state, action) => {
@@ -85,5 +89,5 @@ const adoptionSlice = createSlice({
    },
 });
 
-export const {} = adoptionSlice.actions;
+export const { clearState } = adoptionSlice.actions;
 export default adoptionSlice.reducer;

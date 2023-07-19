@@ -3,6 +3,7 @@ import { AddQnAContainer, InnerContainer, ParticleButton } from '../styled/Gamil
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { editQuestion } from '../store/modules/qnaSlice';
+import Swal from 'sweetalert2';
 
 const EditQnA = memo(() => {
    const dispatch = useDispatch();
@@ -18,6 +19,11 @@ const EditQnA = memo(() => {
 
    const onSubmit = e => {
       e.preventDefault();
+      Swal.fire({
+         icon: 'success',
+         title: '제출 성공',
+         test: 'QnA 수정 완료',
+      });
       dispatch(editQuestion(current));
       navigate('/qna');
    };

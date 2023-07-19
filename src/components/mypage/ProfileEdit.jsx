@@ -1,8 +1,8 @@
 import React, { memo, useState } from 'react';
-import { ProfileEditContent, ParticleButton } from '../styled/GamilyStyle';
 import { useDispatch, useSelector } from 'react-redux';
-import { editUser } from '../store/modules/authSlice';
-import { useNavigate } from 'react-router-dom';
+import { editUser } from '../../store/modules/authSlice';
+import { ParticleButton, ProfileEditContent } from '../../styled/GamilyStyle';
+import Swal from 'sweetalert2';
 
 const profileImg = [
    './images/profile.jpg',
@@ -31,6 +31,7 @@ const ProfileEdit = memo(({ setIsEdit }) => {
       }
       dispatch(editUser({ ...txt, profileImg: previewImg, email: auth.email }));
       setIsEdit(false);
+      Swal.fire('제출 완료', '회원정보를 수정했습니다', 'success');
    };
 
    return (

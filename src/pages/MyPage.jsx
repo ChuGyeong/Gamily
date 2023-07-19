@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../store/modules/authSlice';
 import Swal from 'sweetalert2';
-import ProfileEdit from '../components/ProfileEdit';
 import MyBadge from '../components/mypage/MyBadge';
 import Basket from '../components/mypage/Basket';
 import FavoritesDog from '../components/mypage/FavoritesDog';
 import MyQnA from '../components/mypage/MyQnA';
+import ProfileEdit from '../components/mypage/ProfileEdit';
 
 const MyPage = memo(() => {
    const { auth, authData } = useSelector(state => state.authR);

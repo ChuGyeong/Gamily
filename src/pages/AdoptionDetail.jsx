@@ -5,6 +5,7 @@ import { getAdoptions } from '../store/modules/adoptionSlice';
 import Loading from '../components/Loading';
 import { AdoptionDetailContainer, InnerContainer } from '../styled/GamilyStyle';
 import KakaoMap from '../components/KakaoMap';
+import useAuth from '../hooks/useAuth';
 
 const AdoptionDetail = memo(() => {
    const { adoptionId } = useParams();
@@ -35,6 +36,11 @@ const AdoptionDetail = memo(() => {
       officetel,
       noticeComment,
    } = data;
+   const { auth, checkAuth } = useAuth();
+   const onGoApplyAdoption = () => {
+      if (auth) navigate(`/myDogAdoption/${desertionNo}`);
+      else checkAuth();
+   };
    useEffect(() => {
       dispatch(getAdoptions({ adoptionId }));
    }, [adoptionId]);
@@ -138,7 +144,7 @@ const AdoptionDetail = memo(() => {
                   </div>
                   <div className="btn-box">
                      <button onClick={() => navigate('/adoption')}>목록으로</button>
-                     <button onClick={() => navigate(`/myDogAdoption/${desertionNo}`)}>입양신청</button>
+                     <button onClick={onGoApplyAdoption}>입양신청</button>
                   </div>
                </AdoptionDetailContainer>
             </InnerContainer>

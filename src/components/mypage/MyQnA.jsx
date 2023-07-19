@@ -1,7 +1,10 @@
 import React, { memo } from 'react';
 import { UserQnAContent, ParticleButton } from '../../styled/GamilyStyle';
+import { useSelector } from 'react-redux';
 
 const MyQnA = memo(() => {
+   const { data } = useSelector(state => state.qnaR);
+   const { auth } = useSelector(state => state.authR);
    return (
       <UserQnAContent>
          <h3>질문 목록</h3>
