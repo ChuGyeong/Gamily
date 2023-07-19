@@ -17,6 +17,7 @@ import QnA from './pages/QnA';
 import NoticeDetail from './pages/NoticeDetail';
 import AddQnA from './pages/AddQnA';
 import EditQnA from './pages/EditQnA';
+import MyDogAdoption from './pages/myDogAdoption';
 
 const App = () => {
    return (
@@ -33,6 +34,9 @@ const App = () => {
                   <Route path="/notice" element={<Notice />} />
                   <Route path="/noticeDetail">
                      <Route path=":noticeId" element={<NoticeDetail />} />
+                  </Route>
+                  <Route path="/myDogAdoption">
+                     <Route path=":myDogId" element={<MyDogAdoption />} />
                   </Route>
                   <Route path="/qna" element={<QnA />} />
                   <Route path="/qnaAdd" element={<AddQnA />} />

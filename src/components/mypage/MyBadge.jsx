@@ -12,12 +12,18 @@ const Badge = memo(() => {
       <UserBadgeContent>
          <h3>획득한 뱃지</h3>
          <ul>
-            {badge.map(item => (
-               <li key={item.id}>
-                  <img src={item.img} alt={item.id} />
-                  <p className="name">{item.id}</p>
-               </li>
-            ))}
+            {badge.length > 0 ? (
+               badge.map(item => (
+                  <li key={item.id}>
+                     <img src={item.img} alt={item.id} />
+                     <p className="name">{item.id}</p>
+                  </li>
+               ))
+            ) : (
+               <div className="not-list">
+                  <p>데이터가 존재하지 않습니다.</p>
+               </div>
+            )}
          </ul>
       </UserBadgeContent>
    );
