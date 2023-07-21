@@ -32,7 +32,7 @@ const Notice = memo(() => {
                   </tr>
                </tbody>
             </table>
-            {auth.isManager && (
+            {auth?.isManager && (
                <div className="btn-area">
                   <button>작성하기</button>
                </div>
