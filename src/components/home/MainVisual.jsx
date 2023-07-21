@@ -19,8 +19,8 @@ const MainVisual = memo(() => {
 
    return (
       <MainVisualContainer>
-         <div className="img-area">
-            <img src="../images/visual_3.jpg" alt="" />
+         <div className="img-container">
+            <div className="img-area"></div>
          </div>
          <div className="animated-title">
             <div className="track">

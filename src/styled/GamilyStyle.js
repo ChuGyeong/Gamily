@@ -543,7 +543,8 @@ export const VisualTextContainer = styled.section`
             font-size: 400px;
             opacity: 1;
             font-weight: 700;
-            color: #000;
+            color: ${subColor};
+            font-family: 'Impact';
             transition: 1s;
          }
       }
@@ -2366,7 +2367,7 @@ export const MainVisualContainer = styled.div`
    position: relative;
    width: 100%;
    height: 900px;
-   .img-area {
+   .img-container {
       width: 1200px;
       height: 700px;
       position: absolute;
@@ -2376,11 +2377,19 @@ export const MainVisualContainer = styled.div`
       z-index: 10;
       border-radius: 300px;
       overflow: hidden;
-      img {
+      border: 10px solid #efefef;
+      transition: 0.4s;
+      .img-area {
          width: 100%;
          height: 100%;
-         object-fit: cover;
-         object-position: 50% 50%;
+         background-image: url('../images/visual_2.jpg');
+         background-position: 50% 50%;
+         background-size: cover;
+         background-repeat: no-repeat;
+         transition: 0.4s;
+         &:hover {
+            transform: scale(1.1);
+         }
       }
    }
    .animated-title {
@@ -2402,12 +2411,12 @@ export const MainVisualContainer = styled.div`
             animation: rtlText 600s linear infinite;
             font-size: 120px;
             text-transform: uppercase;
-            font-weight: 900;
+            font-weight: 600;
             white-space: nowrap;
             margin-bottom: 10px;
             color: #fff;
             text-shadow: -1px 0 ${mainColor}, 0 1px ${mainColor}, 1px 0 ${mainColor}, 0 -1px ${mainColor};
-            font-family: ${fontBagelFatOne};
+            font-family: 'Impact';
             &:nth-child(2) {
                animation: ltrText 600s linear infinite;
             }
@@ -2497,7 +2506,7 @@ export const TailWagCountdownContainer = styled.div`
          width: 20px;
          height: 30px;
          border-radius: 5px 5px 10px 10px;
-         background: #ff6b5a;
+         background: ${pointColor};
          margin: 0 auto;
          position: relative;
          top: 4px;
@@ -2537,7 +2546,7 @@ export const TailWagCountdownContainer = styled.div`
 
    .belt {
       height: 30px;
-      background: #ff6b5a;
+      background: ${pointColor};
       margin-top: 20px;
       position: relative;
       .locket {
@@ -2696,8 +2705,8 @@ export const TailWagCountdownContainer = styled.div`
    }
 
    .tag {
-      border-left: 5px solid #ff6b5a;
-      border-bottom: 5px solid #ff6b5a;
+      border-left: 5px solid ${pointColor};
+      border-bottom: 5px solid ${pointColor};
       width: 500%;
       height: 161px;
       z-index: 2;
