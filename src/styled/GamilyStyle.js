@@ -2361,3 +2361,381 @@ export const MyDogContainer = styled.div`
       }
    }
 `;
+
+export const MainVisualContainer = styled.div`
+   position: relative;
+   width: 100%;
+   height: 900px;
+   .img-area {
+      width: 1200px;
+      height: 700px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      border-radius: 300px;
+      overflow: hidden;
+      img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         object-position: 50% 50%;
+      }
+   }
+   .animated-title {
+      font-size: 130px;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform: rotate(-10deg);
+      position: absolute;
+      top: 150px;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      .track {
+         position: absolute;
+         white-space: nowrap;
+         will-change: transform;
+         .content {
+            animation: rtlText 600s linear infinite;
+            font-size: 120px;
+            text-transform: uppercase;
+            font-weight: 900;
+            white-space: nowrap;
+            margin-bottom: 10px;
+            color: #fff;
+            text-shadow: -1px 0 ${mainColor}, 0 1px ${mainColor}, 1px 0 ${mainColor}, 0 -1px ${mainColor};
+            font-family: ${fontBagelFatOne};
+            &:nth-child(2) {
+               animation: ltrText 600s linear infinite;
+            }
+            strong {
+               color: ${mainColor};
+            }
+         }
+      }
+   }
+   @keyframes rtlText {
+      from {
+         transform: translateX(0);
+      }
+      to {
+         transform: translateX(-50%);
+      }
+   }
+   @keyframes ltrText {
+      from {
+         transform: translateX(-50%);
+      }
+      to {
+         transform: translateX(0);
+      }
+   }
+`;
+
+export const TailWagCountdownContainer = styled.div`
+   height: 400px;
+   .dog {
+      width: 120px;
+      position: relative;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+   }
+   .body {
+      background: ${mainColor};
+      border-radius: 300px 300px 0 0;
+      height: 300px;
+   }
+
+   .beard {
+      width: 55px;
+      height: 65px;
+      background: #804040;
+      margin: 0 auto;
+      border-radius: 20px;
+      position: relative;
+      &:after {
+         content: '';
+         background: #804040;
+         width: 26px;
+         height: 13px;
+         border-radius: 0 0 25px 25px;
+         display: block;
+         margin: 0 auto;
+         transform: translateY(64px);
+      }
+      &:before {
+         content: '';
+         background: #000;
+         width: 20px;
+         height: 10px;
+         border-radius: 0 0 20px 20px;
+         display: block;
+         margin: 0 auto;
+         position: absolute;
+         left: 50%;
+         transform: translateX(-50%);
+      }
+   }
+
+   .mouth {
+      background: #1a243c;
+      width: 30px;
+      height: 15px;
+      border-radius: 0 0 30px 30px;
+      position: absolute;
+      top: 22px;
+      margin: auto;
+      left: 0;
+      right: 0;
+      border-top: 3px solid #fff;
+      box-sizing: border-box;
+      .tongue {
+         width: 20px;
+         height: 30px;
+         border-radius: 5px 5px 10px 10px;
+         background: #ff6b5a;
+         margin: 0 auto;
+         position: relative;
+         top: 4px;
+         transition: 300ms;
+         animation: grow 0.1s infinite alternate;
+      }
+   }
+
+   .eyes {
+      background: #fff;
+      width: 20px;
+      height: 24px;
+      border-radius: 20px 20px 0 0;
+      display: block;
+      margin: 0 auto;
+      position: relative;
+      top: 2px;
+      &:before,
+      &:after {
+         content: '';
+         width: 10px;
+         height: 10px;
+         background: #000;
+         display: block;
+         border-radius: 50%;
+         top: 50%;
+         position: absolute;
+         animation: squeeze 1.2s infinite;
+      }
+      &:before {
+         left: -13px;
+      }
+      &:after {
+         right: -13px;
+      }
+   }
+
+   .belt {
+      height: 30px;
+      background: #ff6b5a;
+      margin-top: 20px;
+      position: relative;
+      .locket {
+         width: 30px;
+         height: 30px;
+         background: #ffc442;
+         margin: 0 auto;
+         border-radius: 50%;
+         transform: translateY(50%);
+      }
+      .dot {
+         width: 10px;
+         height: 10px;
+         background: #fff;
+         position: absolute;
+         border-radius: 50%;
+         top: 0;
+         bottom: 0;
+         margin: auto;
+         &.dot1 {
+            margin-left: 10px;
+         }
+         &.dot2 {
+            margin-left: 34px;
+         }
+         &.dot3 {
+            margin-left: 77px;
+         }
+         &.dot4 {
+            margin-left: 100px;
+         }
+      }
+      &:before,
+      &:after {
+         content: '';
+         position: absolute;
+         width: 5px;
+         height: 10px;
+         background: #fff;
+         top: 0;
+         bottom: 0;
+         margin: auto;
+      }
+      &:before {
+         left: -5px;
+         border-radius: 10px 0 0 10px;
+      }
+      &:after {
+         right: -5px;
+         border-radius: 0 10px 10px 0;
+      }
+   }
+
+   .stomach {
+      width: 56px;
+      height: 130px;
+      background: #fff;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      border-radius: 120px 120px 0 0;
+   }
+
+   .legs {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 12px;
+      &:before,
+      &:after {
+         height: 12px;
+         border-radius: 20px 20px 0 0;
+         display: inline-block;
+         content: '';
+         position: absolute;
+         background: #804040;
+         width: 45px;
+      }
+      &:before {
+         left: -37px;
+      }
+      &:after {
+         right: -37px;
+      }
+      .left,
+      .right {
+         display: inline;
+         width: 12px;
+         height: 55px;
+         background: #804040;
+         position: absolute;
+         bottom: 0;
+         &:before {
+            content: '';
+            width: 28px;
+            height: 12px;
+            background: ${mainColor};
+            border-radius: 20px 20px 0 0;
+            display: inline-block;
+            bottom: 0;
+            position: absolute;
+         }
+      }
+      .left {
+         left: -12px;
+         border-radius: 20px 0 0 0;
+         &:before {
+            transform: translateX(-1px);
+         }
+      }
+      .right {
+         right: -12px;
+         border-radius: 0 20px 0 0;
+         z-index: 1;
+         &:before {
+            transform: translateX(-13px);
+         }
+      }
+   }
+
+   .ears {
+      position: absolute;
+      z-index: -1;
+      top: -20px;
+      &:after,
+      &:before {
+         content: '';
+         display: inline-block;
+         background: #804040;
+         width: 40px;
+         height: 90px;
+         border-radius: 100% 100% 0 0;
+      }
+      &:after {
+         transform: translateX(40px);
+         border: 10px solid ${mainColor};
+         box-sizing: border-box;
+      }
+   }
+
+   .tail {
+      background: ${mainColor};
+      width: 14px;
+      height: 80px;
+      position: absolute;
+      z-index: -1;
+      right: 10px;
+      bottom: 40px;
+      transform: rotate(30deg);
+      border-radius: 14px;
+      transform-origin: bottom;
+      transition: 300ms;
+      animation: shake 0.08s infinite alternate;
+   }
+
+   .tag {
+      border-left: 5px solid #ff6b5a;
+      border-bottom: 5px solid #ff6b5a;
+      width: 500%;
+      height: 161px;
+      z-index: 2;
+      position: absolute;
+      top: 30px;
+      left: 100px;
+      box-sizing: border-box;
+      border-bottom-left-radius: 40px;
+   }
+
+   @keyframes squeeze {
+      90% {
+         transform: none;
+         animation-timing-function: ease-in;
+      }
+      93% {
+         transform: scale(1.2, 0.3);
+      }
+      100% {
+         animation-timing-function: ease-out;
+      }
+   }
+
+   @keyframes grow {
+      0% {
+         animation-timing-function: ease-in;
+      }
+      100% {
+         height: 35px;
+      }
+   }
+
+   @keyframes shake {
+      0% {
+         transform: rotate(30deg);
+      }
+      100% {
+         transform: rotate(40deg);
+      }
+   }
+`;

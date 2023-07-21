@@ -6,7 +6,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-const Visual = memo(() => {
+const Visual1 = memo(() => {
    const visualData = [{ text: '엄마' }, { text: '친구' }, { text: '형제' }, { text: '자매' }];
 
    const [count, setCount] = useState(0);
@@ -80,4 +80,4 @@ const Visual = memo(() => {
    );
 });
 
-export default Visual;
+export default Visual1;
