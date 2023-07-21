@@ -5,7 +5,7 @@ import { delQuestion } from '../store/modules/qnaSlice';
 import Swal from 'sweetalert2';
 
 const QnAItem = memo(({ item }) => {
-   const { id, title, username, date, ask } = item;
+   const { id, title, username, date, ask, email } = item;
    const { auth } = useSelector(state => state.authR);
    const [isChk, setIsChk] = useState(false);
    const contentRef = useRef(null);
@@ -44,13 +44,12 @@ const QnAItem = memo(({ item }) => {
          <div className={`content ${isChk ? 'on' : ''}`} ref={contentRef} style={{ height: contentHeight }}>
             <div className="ask-area">
                <p>{ask}</p>
-               {(auth && username === auth.username) ||
-                  (auth.isManager && (
-                     <div className="btn-area">
-                        <button onClick={() => navigate(`/qnaEdit/${id}`)}>수정</button>
-                        <button onClick={handleDel}>삭제</button>
-                     </div>
-                  ))}
+               {auth && (email === auth.email || auth.isManager) && (
+                  <div className="btn-area">
+                     <button onClick={() => navigate(`/qnaEdit/${id}`)}>수정</button>
+                     <button onClick={handleDel}>삭제</button>
+                  </div>
+               )}
             </div>
             <div className="answer-area"></div>
          </div>
