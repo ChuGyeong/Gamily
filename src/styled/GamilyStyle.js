@@ -2367,6 +2367,7 @@ export const MainVisualContainer = styled.div`
    position: relative;
    width: 100%;
    height: 900px;
+   overflow: hidden;
    .img-container {
       width: 1200px;
       height: 700px;
@@ -2750,40 +2751,112 @@ export const TailWagCountdownContainer = styled.div`
 `;
 
 export const LpContainer = styled.div`
-   .core {
-      width: 300px;
-      height: 300px;
-      box-sizing: border-box;
-      border: 20px solid ${subColor};
-      border-radius: 50%;
-      background-color: #fff;
+   width: 100%;
+   height: 200vh;
+   position: relative;
+   background-color: #dcdcdc;
+   overflow: hidden;
+   .inner {
+      width: 100%;
+      height: 100%;
       position: relative;
-      span {
-         display: block;
-         font-size: 50px;
-         position: absolute;
-         font-family: ${fontImpact};
+      .lp {
+         position: absolute; // 기본 position을 absolute로 설정
+         top: 150px;
          left: 50%;
-         &:nth-of-type(1) {
-            color: ${pointColor};
-            top: 5%;
-            transform: translateX(-50%);
+         transform: translateX(-50%);
+
+         &.isSticky {
+            // sticky 클래스가 적용되면
+            position: fixed; // position을 fixed로 변경
+            top: 50%; // 화면 중앙에 위치
          }
-         &:nth-of-type(2) {
-            color: ${subColor};
-            transform: translateX(-50%) rotate(180deg);
-            bottom: 5%;
+         .bg {
+            background-color: ${mainColor};
+            border-radius: 50%;
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: 0.3s;
+            span {
+               display: block;
+               font-size: 50px;
+               position: absolute;
+               font-family: ${fontImpact};
+               left: 50%;
+               &:nth-of-type(1) {
+                  color: ${pointColor};
+                  top: 5%;
+                  transform: translateX(-50%);
+               }
+               &:nth-of-type(2) {
+                  color: ${subColor};
+                  transform: translateX(-50%) rotate(180deg);
+                  bottom: 5%;
+               }
+            }
          }
-      }
-      .center {
-         width: 25px;
-         height: 25px;
-         border-radius: 50%;
-         background-color: ${pointColor};
-         position: absolute;
-         left: 50%;
-         top: 50%;
-         transform: translate(-50%, -50%);
+         .core {
+            width: 300px;
+            height: 300px;
+            box-sizing: border-box;
+            border: 20px solid ${subColor};
+            border-radius: 50%;
+            background-color: #fff;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            .center {
+               width: 25px;
+               height: 25px;
+               border-radius: 50%;
+               background-color: ${pointColor};
+               position: absolute;
+               left: 50%;
+               top: 50%;
+               transform: translate(-50%, -50%);
+               &::after {
+                  content: '';
+                  width: 60px;
+                  height: 60px;
+                  border: 1px solid #efefef;
+                  border-radius: 50%;
+                  position: absolute;
+                  left: 50%;
+                  top: 50%;
+                  transform: translate(-50%, -50%);
+               }
+            }
+            .line {
+               border-radius: 50%;
+               border: 1px solid #fff;
+               position: absolute;
+               left: 50%;
+               top: 50%;
+               transform: translate(-50%, -50%);
+
+               &.line1 {
+                  width: 600px;
+                  height: 600px;
+               }
+               &.line2 {
+                  width: 850px;
+                  height: 850px;
+               }
+               &.line3 {
+                  width: 900px;
+                  height: 900px;
+               }
+               &.line4 {
+                  width: 1000px;
+                  height: 1000px;
+               }
+            }
+         }
       }
    }
 `;
