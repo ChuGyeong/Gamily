@@ -2748,3 +2748,42 @@ export const TailWagCountdownContainer = styled.div`
       }
    }
 `;
+
+export const LpContainer = styled.div`
+   .core {
+      width: 300px;
+      height: 300px;
+      box-sizing: border-box;
+      border: 20px solid ${subColor};
+      border-radius: 50%;
+      background-color: #fff;
+      position: relative;
+      span {
+         display: block;
+         font-size: 50px;
+         position: absolute;
+         font-family: ${fontImpact};
+         left: 50%;
+         &:nth-of-type(1) {
+            color: ${pointColor};
+            top: 5%;
+            transform: translateX(-50%);
+         }
+         &:nth-of-type(2) {
+            color: ${subColor};
+            transform: translateX(-50%) rotate(180deg);
+            bottom: 5%;
+         }
+      }
+      .center {
+         width: 25px;
+         height: 25px;
+         border-radius: 50%;
+         background-color: ${pointColor};
+         position: absolute;
+         left: 50%;
+         top: 50%;
+         transform: translate(-50%, -50%);
+      }
+   }
+`;
