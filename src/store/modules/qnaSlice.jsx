@@ -33,7 +33,7 @@ const initialState = {
 let no = JSON.parse(localStorage.getItem('qnaData'))
    ? JSON.parse(localStorage.getItem('qnaData')).reduce((max, current) => {
         return current.id > max ? current.id : max;
-     }, 0)
+     }, 0) + 1
    : initialState.data.length + 1;
 
 export const qnaSlice = createSlice({
