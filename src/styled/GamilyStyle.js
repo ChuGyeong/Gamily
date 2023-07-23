@@ -3,7 +3,7 @@ const mainColor = '#ffc303';
 const subColor = '#1c3761';
 const pointColor = '#e84200';
 const fontBagelFatOne = "'Bagel Fat One', cursive;";
-const fontSmooch = " 'Smooch', cursive;";
+const fontImpact = "'Impact'";
 const fontVT323 = " 'VT323', monospace;";
 
 export const ParticleButton = styled.button`
@@ -544,7 +544,7 @@ export const VisualTextContainer = styled.section`
             opacity: 1;
             font-weight: 700;
             color: ${subColor};
-            font-family: 'Impact';
+            font-family: ${fontImpact};
             transition: 1s;
          }
       }
@@ -1151,7 +1151,7 @@ export const QuizContainer = styled.div`
       text-transform: uppercase;
       font-weight: 900;
       margin-bottom: 30px;
-      font-family: 'Impact';
+      font-family: ${fontImpact};
       span {
          &:first-child,
          &:last-child {
@@ -2416,7 +2416,7 @@ export const MainVisualContainer = styled.div`
             margin-bottom: 10px;
             color: #fff;
             text-shadow: -1px 0 ${mainColor}, 0 1px ${mainColor}, 1px 0 ${mainColor}, 0 -1px ${mainColor};
-            font-family: 'Impact';
+            font-family: ${fontImpact};
             &:nth-child(2) {
                animation: ltrText 600s linear infinite;
             }
