@@ -28,8 +28,8 @@ const VisualText = memo(() => {
 
    const animateNumbers = () => {
       let startNum = 0;
-      let goalNum = 112226;
-      let speed = 50;
+      let goalNum = 84136;
+      let speed = 30;
       let step = Math.ceil(Math.abs(startNum - goalNum) / 50);
       let timer = setInterval(() => {
          if (startNum >= goalNum) {
@@ -50,7 +50,7 @@ const VisualText = memo(() => {
       <VisualTextContainer ref={componentRef}>
          <div className={`text-area ${isNum ? 'on' : ''}`}>
             <p>
-               <span>2022년 발생한 유기동물</span>
+               <span>2022년 발생한 유기견</span>
                <strong ref={numRef}>{currentNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</strong>
             </p>
          </div>

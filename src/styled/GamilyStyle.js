@@ -446,86 +446,6 @@ export const InfoBubbleContainer = styled.div`
    }
 `;
 
-// Visual
-export const VisualSection = styled.div`
-   width: 100%;
-   height: 100vh;
-   overflow: hidden;
-   transition: 0.4s;
-   .bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      transition: 0.4s;
-      /* background-image: url('./images/visual_1.jpg'); */
-      background-repeat: no-repeat;
-      background-position: 50% 50%;
-      background-size: cover;
-      filter: grayscale(99%);
-   }
-   h2 {
-      margin-top: 300px;
-      width: 550px;
-      font-family: ${fontBagelFatOne};
-      font-size: 120px;
-      line-height: 1;
-      letter-spacing: -5px;
-      -webkit-text-stroke: 3px rgba(255, 255, 255, 0.5);
-      position: relative;
-      z-index: 50;
-      span {
-         mix-blend-mode: none;
-         font-weight: 100;
-         font-size: 120px;
-         color: ${pointColor};
-         transition: 0.4s;
-         display: inline-block;
-         cursor: pointer;
-         opacity: 0.5;
-      }
-      .mySwiper {
-         display: inline-block;
-         height: 120px;
-         width: 220px;
-         display: flex;
-         overflow: hidden;
-         .swiper-slide {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding-bottom: 5px;
-            box-sizing: border-box;
-         }
-      }
-
-      &:hover span {
-         opacity: 1;
-      }
-      &::after {
-         content: '';
-         position: absolute;
-         bottom: 0;
-         right: 5px;
-         width: 50px;
-         height: 50px;
-         background: ${pointColor};
-         background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
-            url('./images/dog-tracks.png');
-         background-size: 40px;
-         background-repeat: no-repeat;
-         background-position: 50% 50%;
-         z-index: -10;
-         border-radius: 50%;
-         border: 3px solid rgba(255, 255, 255, 0.5);
-      }
-   }
-   &:hover .bg {
-      filter: grayscale(0%);
-   }
-`;
-
 // VisualText
 export const VisualTextContainer = styled.section`
    width: 100%;
@@ -2745,6 +2665,81 @@ export const TailWagCountdownContainer = styled.div`
       }
       100% {
          transform: rotate(40deg);
+      }
+   }
+`;
+
+// VisualSlide
+export const VisualSlideContainer = styled.div`
+   background: ${mainColor};
+   padding: 200px 100px 100px;
+   box-sizing: border-box;
+   .text-area {
+      font-size: 30px;
+      margin-bottom: 100px;
+      letter-spacing: -3px;
+      div {
+      }
+   }
+   .img-area {
+      .mySwiper {
+         .swiper-slide {
+            img {
+               width: 100%;
+               height: 450px;
+               object-fit: cover;
+            }
+         }
+      }
+   }
+`;
+
+export const VisualLineAniContainer = styled.div`
+   box-sizing: border-box;
+   padding: 50px 0;
+   .line-box {
+      position: relative;
+      margin: 50px auto;
+      width: 700px;
+      text-align: center;
+      background: #efefef;
+      height: 700px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .line {
+         width: 3px;
+         border-radius: 3px;
+         background: ${subColor};
+         position: absolute;
+         &.h150 {
+            height: 150px;
+         }
+         &.top0 {
+            top: 0;
+         }
+         &.bottom0 {
+            bottom: 0;
+         }
+         &.center {
+            left: 50%;
+            transform: translateX(-50%);
+         }
+         &.rotate45 {
+            transform: rotate(45deg);
+         }
+         &.rigth70 {
+            right: 70px;
+         }
+         &.left70 {
+            left: 70px;
+         }
+      }
+      .text-area {
+         font-size: 100px;
+         font-family: ${fontImpact};
+         line-height: 1.2;
+         margin: 100px 0;
       }
    }
 `;
