@@ -2623,8 +2623,9 @@ export const TailWagCountdownContainer = styled.div`
 
 export const LpContainer = styled.div`
    width: 100%;
-   height: 200vh;
-   padding: 250px;
+   height: 250vh;
+   padding-top: 300px;
+   padding-bottom: 600px;
    box-sizing: border-box;
    position: relative;
    overflow: hidden;
@@ -2754,8 +2755,10 @@ export const MenuSlideContainer = styled.div`
    padding: 400px 0;
    box-sizing: border-box;
    position: relative;
+   background-color: ${mainColor};
+   overflow: hidden;
    .menus {
-      width: 1000px;
+      width: 600px;
       margin: auto;
       font-size: 130px;
       text-align: center;
@@ -2774,6 +2777,7 @@ export const MenuSlideContainer = styled.div`
          background-size: cover;
          background-repeat: no-repeat;
          position: absolute;
+         border-radius: 20px;
          &:nth-child(1) {
             width: 360px;
             height: 470px;

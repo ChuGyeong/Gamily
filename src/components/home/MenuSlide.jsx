@@ -20,19 +20,15 @@ const MenuSlide = memo(() => {
             const pic = picRef.current;
             if (pic) {
                const startPosition = [
-                  { x: 200, y: 100, step: 150 },
-                  { x: 120, y: 600, step: 100 },
-                  { x: 1370, y: 50, step: 100 },
-                  { x: 1500, y: 350, step: 150 },
-                  { x: 1200, y: 650, step: 150 },
+                  { x: 200, y: 100, step: 110 },
+                  { x: 120, y: 600, step: 90 },
+                  { x: 1370, y: 50, step: 180 },
+                  { x: 1450, y: 350, step: 130 },
+                  { x: 1170, y: 600, step: 70 },
                ];
 
-               const x =
-                  startPosition[idx].right === undefined
-                     ? (e.clientX * 5) / 300 + startPosition[idx].x + 'px'
-                     : `calc(100% - ${startPosition[idx].right + (500 - e.clientX) * 2}px)`;
-
-               const y = startPosition[idx].y + (e.clientY * 5) / startPosition[idx].step + 'px';
+               const x = startPosition[idx].x + (e.clientX * 5) / startPosition[idx].step + 'px';
+               const y = startPosition[idx].y + (e.clientY * 8) / startPosition[idx].step + 'px';
                pic.style.left = x;
                pic.style.top = y;
             }

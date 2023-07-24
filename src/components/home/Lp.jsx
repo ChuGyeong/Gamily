@@ -26,7 +26,7 @@ const Lp = () => {
       if (currentScrollY + centerY >= innerY && currentScrollY < innerY + innerHeight - centerY) {
          const newTop = currentScrollY - innerY + centerY;
          setTop(newTop);
-         setBgSize(newTop * 2 + 150);
+         setBgSize(newTop * 2.2 + 150);
          setRotation(newTop / 2.5);
       }
    };
