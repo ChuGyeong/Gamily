@@ -1,47 +1,59 @@
-import React, { memo, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { LpContainer } from '../../styled/GamilyStyle';
 
-const Lp = memo(() => {
-   const [bgSize, setBgSize] = useState(300);
+const Lp = () => {
+   const [bgSize, setBgSize] = useState(0);
    const [rotation, setRotation] = useState(0);
-   const [ref, inView] = useInView({ threshold: 0.3 });
-   const isSticky = inView;
+   const [top, setTop] = useState(0);
+   const [ref, inView, entry] = useInView({
+      threshold: 0,
+   });
 
-   const handleWheel = e => {
-      if (!isSticky) return;
+   const handleScroll = () => {
+      if (!inView || !entry.target) return;
+      // 1. 화면 중앙의 y좌표
+      const centerY = window.innerHeight / 2;
+      // 'inner' 요소의 y좌표
+      const innerRect = entry.target.getBoundingClientRect();
+      const innerY = innerRect.y + window.scrollY;
+      // 'inner' 요소의 높이값
+      const innerHeight = innerRect.height;
+      // 현재 스크롤 값
+      const currentScrollY = window.scrollY;
 
-      const rotationAmount = e.deltaY / 15;
-
-      if (e.deltaY < 0 && bgSize >= 300) {
-         setBgSize(size => size - 200);
-      } else if (e.deltaY > 0 && bgSize <= 200 * 16) {
-         setBgSize(size => size + 200);
+      // 좌표값안에 들어왔을때
+      if (currentScrollY + centerY >= innerY && currentScrollY < innerY + innerHeight - centerY) {
+         const newTop = currentScrollY - innerY + centerY;
+         setTop(newTop);
+         setBgSize(newTop * 2 + 150);
+         setRotation(newTop / 2.5);
       }
-
-      setRotation(deg => deg + rotationAmount);
    };
 
    useEffect(() => {
-      window.addEventListener('wheel', handleWheel);
-
+      if (inView) window.addEventListener('scroll', handleScroll);
+      else window.removeEventListener('scroll', handleScroll);
       return () => {
-         window.removeEventListener('wheel', handleWheel);
+         window.removeEventListener('scroll', handleScroll);
       };
-   }, [isSticky]);
-
+   }, [inView]);
    return (
       <LpContainer>
          <div className="inner" ref={ref}>
-            <div className={`lp ${isSticky ? 'isSticky' : ''}`}>
+            <div
+               className="lp"
+               style={{
+                  top: `${top}px`,
+               }}>
                <div
                   className="bg"
                   style={{
-                     width: `${bgSize}px`,
-                     height: `${bgSize}px`,
                      transform: `translate(-50%, -50%) rotate(${rotation}deg)`,
+                     width: bgSize,
+                     height: bgSize,
                   }}>
-                  <div className="core">
+                  <div className="core" style={{ transform: `translate(-50%, -50%) rotate(${rotation}deg)` }}>
                      <span>Gamily</span>
                      <div className="center"></div>
                      <span>Gamily</span>
@@ -55,6 +67,6 @@ const Lp = memo(() => {
          </div>
       </LpContainer>
    );
-});
+};
 
 export default Lp;
