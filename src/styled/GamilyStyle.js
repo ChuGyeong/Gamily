@@ -2753,8 +2753,10 @@ export const MenuSlideContainer = styled.div`
    padding: 400px 0;
    box-sizing: border-box;
    position: relative;
+   background-color: ${mainColor};
+   overflow: hidden;
    .menus {
-      width: 1000px;
+      width: 600px;
       margin: auto;
       font-size: 130px;
       text-align: center;
@@ -2773,6 +2775,7 @@ export const MenuSlideContainer = styled.div`
          background-size: cover;
          background-repeat: no-repeat;
          position: absolute;
+         border-radius: 20px;
          &:nth-child(1) {
             width: 360px;
             height: 470px;
