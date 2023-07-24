@@ -1670,55 +1670,6 @@ export const NoticeDetailContainer = styled.div`
    }
 `;
 
-// // DogInfoSection
-// export const DogInfoContainer = styled.div`
-//    padding: 50px 0;
-//    [data-tooltip] {
-//       position: relative;
-//    }
-//    [data-tooltip]:before,
-//    [data-tooltip]:after {
-//       visibility: hidden;
-//       opacity: 0;
-//       position: absolute;
-//       left: 50%;
-//       transform: translateX(-50%);
-//       white-space: nowrap;
-//       transition: all 0.2s ease;
-//       font-size: 11px;
-//       font-family: dotum;
-//       letter-spacing: -1px;
-//    }
-//    [data-tooltip]:before {
-//       content: attr(data-tooltip);
-//       height: 13px;
-//       position: absolute;
-//       top: -50px;
-//       padding: 5px 10px;
-//       border-radius: 5px;
-//       color: #fff;
-//       background: #025272;
-//       box-shadow: 0 3px 8px rgba(165, 165, 165, 0.5);
-//    }
-//    [data-tooltip]:after {
-//       content: '';
-//       border-left: 5px solid transparent;
-//       top: 2px;
-//       border-right: 5px solid transparent;
-//       border-top: 5px solid #025272;
-//    }
-//    [data-tooltip]:not([data-tooltip='']):hover:before {
-//       visibility: visible;
-//       opacity: 1;
-//       top: -30px;
-//    }
-//    [data-tooltip]:not([data-tooltip='']):hover:after {
-//       visibility: visible;
-//       opacity: 1;
-//       top: -8px;
-//    }
-// `;
-
 export const AdoptionDetailContainer = styled.div`
    .content-box {
       width: 1200px;
@@ -2781,77 +2732,88 @@ export const LpContainer = styled.div`
    }
 `;
 
-// VisualSlide
-export const VisualSlideContainer = styled.div`
+// Typing
+export const TypingContainer = styled.div`
    background: ${mainColor};
-   padding: 200px 100px 100px;
+   padding: 100px;
    box-sizing: border-box;
    .text-area {
-      font-size: 30px;
-      margin-bottom: 100px;
-      letter-spacing: -3px;
+      /* font-family: ${fontBagelFatOne}; */
+      font-weight: 900;
+      font-size: 60px;
+      letter-spacing: -5px;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      background-image: url('./images/visual_3.jpg');
+      background-size: cover;
+      background-position: 50% 50%;
+      background-repeat: no-repeat;
       div {
-      }
-   }
-   .img-area {
-      .mySwiper {
-         .swiper-slide {
-            img {
-               width: 100%;
-               height: 450px;
-               object-fit: cover;
-            }
-         }
       }
    }
 `;
 
-export const VisualLineAniContainer = styled.div`
+// MenuSlide
+export const MenuSlideContainer = styled.div`
+   padding: 400px 0;
    box-sizing: border-box;
-   padding: 50px 0;
-   .line-box {
-      position: relative;
-      margin: 50px auto;
-      width: 700px;
+   position: relative;
+   .menus {
+      width: 1000px;
+      margin: auto;
+      font-size: 130px;
       text-align: center;
-      background: #efefef;
-      height: 700px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      .line {
-         width: 3px;
-         border-radius: 3px;
-         background: ${subColor};
-         position: absolute;
-         &.h150 {
-            height: 150px;
-         }
-         &.top0 {
-            top: 0;
-         }
-         &.bottom0 {
-            bottom: 0;
-         }
-         &.center {
-            left: 50%;
-            transform: translateX(-50%);
-         }
-         &.rotate45 {
-            transform: rotate(45deg);
-         }
-         &.rigth70 {
-            right: 70px;
-         }
-         &.left70 {
-            left: 70px;
+      font-family: ${fontImpact};
+      a {
+         color: ${subColor};
+         transition: 0.4s;
+         &:hover {
+            color: ${pointColor};
          }
       }
-      .text-area {
-         font-size: 100px;
-         font-family: ${fontImpact};
-         line-height: 1.2;
-         margin: 100px 0;
+   }
+   .bgImg {
+      div {
+         background-position: 50% 50%;
+         background-size: cover;
+         background-repeat: no-repeat;
+         position: absolute;
+         &:nth-child(1) {
+            width: 360px;
+            height: 470px;
+            top: 100px;
+            left: 200px;
+            background-image: url('./images/visual_slides_7.jpg');
+         }
+         &:nth-child(2) {
+            width: 260px;
+            height: 340px;
+            top: 600px;
+            left: 120px;
+            background-image: url('./images/visual_slides_6.jpg');
+         }
+         &:nth-child(3) {
+            width: 195px;
+            height: 260px;
+            top: 50px;
+            left: 1370px;
+            background-image: url('./images/visual_slides_8.jpg');
+         }
+         &:nth-child(4) {
+            width: 330px;
+            height: 330px;
+            top: 350px;
+            left: 1500px;
+            background-image: url('./images/visual_slides_9.jpg');
+         }
+         &:nth-child(5) {
+            width: 286px;
+            height: 336px;
+            top: 650px;
+            left: 1200px;
+            background-image: url('./images/visual_slides_5.jpg');
+         }
       }
    }
 `;

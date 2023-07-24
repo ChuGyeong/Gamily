@@ -1,11 +1,8 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { VisualSlideContainer } from '../../styled/GamilyStyle';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { TypingContainer } from '../../styled/GamilyStyle';
 
-const VisualSlide = memo(() => {
+const Typing = memo(() => {
    const resultDivRef = useRef(null);
    const [isVisible, setIsVisible] = useState(false);
 
@@ -197,57 +194,12 @@ const VisualSlide = memo(() => {
    }, [typeing1, isVisible]);
 
    return (
-      <VisualSlideContainer>
+      <TypingContainer>
          <div className="text-area">
             <div id="text" ref={resultDivRef}></div>
          </div>
-         <div className="img-area">
-            <>
-               <Swiper
-                  slidesPerView={4}
-                  spaceBetween={30}
-                  modules={[Autoplay, Pagination, Navigation]}
-                  autoplay={{
-                     delay: 2500,
-                     disableOnInteraction: false,
-                  }}
-                  loop={true}
-                  className="mySwiper">
-                  <SwiperSlide>
-                     <img src="./images/visual_slides_1.jpg" alt="" />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                     <img src="./images/visual_slides_2.jpg" alt="" />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                     <img src="./images/visual_slides_3.jpg" alt="" />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                     <img src="./images/visual_slides_4.jpg" alt="" />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                     <img src="./images/visual_slides_5.jpg" alt="" />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                     <img src="./images/visual_slides_6.jpg" alt="" />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                     <img src="./images/visual_slides_7.jpg" alt="" />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                     <img src="./images/visual_slides_8.jpg" alt="" />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                     <img src="./images/visual_slides_9.jpg" alt="" />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                     <img src="./images/visual_slides_10.jpg" alt="" />
-                  </SwiperSlide>
-               </Swiper>
-            </>
-         </div>
-      </VisualSlideContainer>
+      </TypingContainer>
    );
 });
 
-export default VisualSlide;
+export default Typing;

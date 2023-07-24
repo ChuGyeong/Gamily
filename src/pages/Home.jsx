@@ -1,8 +1,9 @@
 import React, { memo } from 'react';
 import MainVisual from '../components/home/MainVisual';
 import VisualText from '../components/home/VisualText';
-import VisualSlide from '../components/home/VisualSlide';
+import Typing from '../components/home/Typing';
 import Lp from '../components/home/Lp';
+import MenuSlide from '../components/home/MenuSlide';
 
 const Home = memo(() => {
    return (
@@ -10,7 +11,8 @@ const Home = memo(() => {
          <MainVisual />
          <VisualText />
          <Lp />
-         <VisualSlide />
+         <Typing />
+         <MenuSlide />
       </>
    );
 });
