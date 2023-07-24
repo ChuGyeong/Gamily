@@ -2623,8 +2623,9 @@ export const TailWagCountdownContainer = styled.div`
 
 export const LpContainer = styled.div`
    width: 100%;
-   height: 200vh;
-   padding: 250px;
+   height: 250vh;
+   padding-top: 300px;
+   padding-bottom: 600px;
    box-sizing: border-box;
    position: relative;
    overflow: hidden;
