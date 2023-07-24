@@ -2624,24 +2624,20 @@ export const TailWagCountdownContainer = styled.div`
 export const LpContainer = styled.div`
    width: 100%;
    height: 200vh;
+   padding: 250px;
+   box-sizing: border-box;
    position: relative;
-   background-color: #dcdcdc;
    overflow: hidden;
    .inner {
       width: 100%;
       height: 100%;
+
       position: relative;
       .lp {
-         position: absolute; // 기본 position을 absolute로 설정
-         top: 150px;
+         position: absolute;
+         top: 0;
          left: 50%;
          transform: translateX(-50%);
-
-         &.isSticky {
-            // sticky 클래스가 적용되면
-            position: fixed; // position을 fixed로 변경
-            top: 50%; // 화면 중앙에 위치
-         }
          .bg {
             background-color: ${mainColor};
             border-radius: 50%;
@@ -2651,7 +2647,6 @@ export const LpContainer = styled.div`
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            transition: 0.3s;
             span {
                display: block;
                font-size: 50px;
@@ -2702,30 +2697,29 @@ export const LpContainer = styled.div`
                   transform: translate(-50%, -50%);
                }
             }
-            .line {
-               border-radius: 50%;
-               border: 1px solid #fff;
-               position: absolute;
-               left: 50%;
-               top: 50%;
-               transform: translate(-50%, -50%);
-
-               &.line1 {
-                  width: 600px;
-                  height: 600px;
-               }
-               &.line2 {
-                  width: 850px;
-                  height: 850px;
-               }
-               &.line3 {
-                  width: 900px;
-                  height: 900px;
-               }
-               &.line4 {
-                  width: 1000px;
-                  height: 1000px;
-               }
+         }
+         .line {
+            border-radius: 50%;
+            border: 1px solid #fff;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            &.line1 {
+               width: 600px;
+               height: 600px;
+            }
+            &.line2 {
+               width: 850px;
+               height: 850px;
+            }
+            &.line3 {
+               width: 900px;
+               height: 900px;
+            }
+            &.line4 {
+               width: 1000px;
+               height: 1000px;
             }
          }
       }
