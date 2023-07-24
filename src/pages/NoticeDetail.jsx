@@ -11,7 +11,7 @@ const NoticeDetail = memo(() => {
             <div className="notice-view">
                <div className="tit-area">
                   <span>공지사항</span>
-                  <p>공지사항입니다.</p>
+                  <p>공지사항을 오픈하였습니다.</p>
                   <span>2023.07.16</span>
                </div>
                <div className="text-area">
