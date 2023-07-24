@@ -2731,6 +2731,7 @@ export const TypingContainer = styled.div`
    background: ${mainColor};
    padding: 70px;
    box-sizing: border-box;
+   /* border-top: 1px solid #fff; */
    .text-area {
       text-align: center;
       font-weight: 900;

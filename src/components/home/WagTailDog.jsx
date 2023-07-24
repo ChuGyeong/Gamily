@@ -4,31 +4,31 @@ import { WagTailDogContainer } from '../../styled/GamilyStyle';
 const WagTailDog = memo(() => {
    return (
       <WagTailDogContainer>
-         <div class="dog">
-            <div class="heart heart--1"></div>
-            <div class="heart heart--2"></div>
-            <div class="heart heart--3"></div>
-            <div class="heart heart--4"></div>
-            <div class="head">
-               <div class="year year--left"></div>
-               <div class="year year--right"></div>
-               <div class="nose"></div>
-               <div class="face">
-                  <div class="eye eye--left"></div>
-                  <div class="eye eye--right"></div>
-                  <div class="mouth"></div>
+         <div className="dog">
+            <div className="heart heart--1"></div>
+            <div className="heart heart--2"></div>
+            <div className="heart heart--3"></div>
+            <div className="heart heart--4"></div>
+            <div className="head">
+               <div className="year year--left"></div>
+               <div className="year year--right"></div>
+               <div className="nose"></div>
+               <div className="face">
+                  <div className="eye eye--left"></div>
+                  <div className="eye eye--right"></div>
+                  <div className="mouth"></div>
                </div>
             </div>
-            <div class="body">
-               <div class="cheast"></div>
-               <div class="back"></div>
-               <div class="legs">
-                  <div class="legs__front legs__front--left"></div>
-                  <div class="legs__front legs__front--right"></div>
-                  <div class="legs__back legs__back--left"></div>
-                  <div class="legs__back legs__back--right"></div>
+            <div className="body">
+               <div className="cheast"></div>
+               <div className="back"></div>
+               <div className="legs">
+                  <div className="legs__front legs__front--left"></div>
+                  <div className="legs__front legs__front--right"></div>
+                  <div className="legs__back legs__back--left"></div>
+                  <div className="legs__back legs__back--right"></div>
                </div>
-               <div class="tail"></div>
+               <div className="tail"></div>
             </div>
          </div>
       </WagTailDogContainer>
