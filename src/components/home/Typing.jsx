@@ -1,6 +1,7 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { TypingContainer } from '../../styled/GamilyStyle';
+import WagTailDog from './WagTailDog';
 
 const Typing = memo(() => {
    const resultDivRef = useRef(null);
@@ -198,6 +199,8 @@ const Typing = memo(() => {
          <div className="text-area">
             <div id="text" ref={resultDivRef}></div>
          </div>
+
+         <WagTailDog />
       </TypingContainer>
    );
 });
