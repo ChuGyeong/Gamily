@@ -20,6 +20,7 @@ const navArr = [
       ],
    },
    { name: 'Store', src: '/store', subMenu: [] },
+   { name: 'System', src: '/system', subMenu: [] },
 ];
 
 const Navbar = memo(() => {

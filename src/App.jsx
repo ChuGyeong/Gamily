@@ -18,6 +18,7 @@ import NoticeDetail from './pages/NoticeDetail';
 import AddQnA from './pages/AddQnA';
 import EditQnA from './pages/EditQnA';
 import MyDogAdoption from './pages/myDogAdoption';
+import System from './pages/System';
 
 const App = () => {
    return (
@@ -51,6 +52,7 @@ const App = () => {
                   <Route path="/adoptiondetail">
                      <Route path=":adoptionId" element={<AdoptionDetail />} />
                   </Route>
+                  <Route path="/system" element={<System />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/mypage" element={<MyPage />} />
                </Route>

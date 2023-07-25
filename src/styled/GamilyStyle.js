@@ -3232,3 +3232,81 @@ export const WagTailDogContainer = styled.div`
       }
    }
 `;
+
+export const SystemContainer = styled.div`
+   h2 {
+      font-size: 50px;
+      font-family: ${fontBagelFatOne};
+      text-align: center;
+      margin-bottom: 50px;
+   }
+   .dashboard {
+      width: 100%;
+      text-align: center;
+      .main-graph {
+         width: 100%;
+         height: 400px;
+         background: #efefef;
+         margin-bottom: 33px;
+         line-height: 400px;
+      }
+      .data-summary-view {
+         display: flex;
+         justify-content: space-between;
+         height: 150px;
+         margin-bottom: 33px;
+         line-height: 150px;
+         .result-display {
+            width: 50%;
+            display: flex;
+            .result {
+               width: 200px;
+               border: 1px solid #000;
+               margin-right: 33px;
+            }
+         }
+         .stats {
+            width: 50%;
+            background: ${pointColor};
+         }
+      }
+   }
+   .page-controller {
+      display: flex;
+      justify-content: space-between;
+      button {
+         padding: 10px 20px;
+         width: 19%;
+      }
+   }
+   .bg {
+      position: fixed;
+      background: rgba(0, 0, 0, 0.5);
+      width: 100vw;
+      height: 100vh;
+      left: 0;
+      top: 0;
+      z-index: 500;
+   }
+   .popup {
+      position: absolute;
+      width: 1000px;
+      height: 800px;
+      background: #efefef;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 30px;
+      padding: 20px;
+      box-sizing: border-box;
+      .close {
+         position: absolute;
+         top: 20px;
+         right: 20px;
+         border: none;
+         cursor: pointer;
+         background: transparent;
+         font-size: 30px;
+      }
+   }
+`;

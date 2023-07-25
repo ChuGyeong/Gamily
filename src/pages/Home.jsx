@@ -12,6 +12,7 @@ const Home = memo(() => {
          <VisualText />
          <Lp />
          <Typing />
+         {/* 여기서 작업해주세용 */}
          <MenuSlide />
       </>
    );
