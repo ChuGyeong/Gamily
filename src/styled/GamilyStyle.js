@@ -2755,7 +2755,7 @@ export const MenuSlideContainer = styled.div`
    padding: 400px 0;
    box-sizing: border-box;
    position: relative;
-   background-color: ${mainColor};
+   /* background-color: ${mainColor}; */
    overflow: hidden;
    .menus {
       width: 600px;
@@ -3229,6 +3229,37 @@ export const WagTailDogContainer = styled.div`
          border-radius: 100%;
          left: -7%;
          top: -18%;
+      }
+   }
+`;
+
+export const RollingBannerContainer = styled.div`
+   .mySwiper {
+      .swiper-wrapper {
+         transition-timing-function: linear;
+         .swiper-slide {
+            height: 100px;
+
+            &:nth-child(3n) {
+               background-color: ${mainColor};
+            }
+            &:nth-child(3n + 1) {
+               background-color: ${subColor};
+            }
+            &:nth-child(3n + 2) {
+               background-color: ${pointColor};
+            }
+            a {
+               width: 100%;
+               height: 100%;
+               color: #fff;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               font-size: 20px;
+               font-weight: 900;
+            }
+         }
       }
    }
 `;
