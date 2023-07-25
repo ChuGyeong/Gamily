@@ -3310,7 +3310,7 @@ export const SystemContainer = styled.div`
       }
    }
 `;
-
+// RollingBanner
 export const RollingBannerContainer = styled.div`
    .mySwiper {
       .swiper-wrapper {
@@ -3341,3 +3341,5 @@ export const RollingBannerContainer = styled.div`
       }
    }
 `;
+// MenuCross
+export const MenuCrossContainer = styled.div``;

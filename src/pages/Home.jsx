@@ -5,6 +5,7 @@ import Typing from '../components/home/Typing';
 import Lp from '../components/home/Lp';
 import MenuSlide from '../components/home/MenuSlide';
 import RollingBanner from '../components/home/RollingBanner';
+import MenuCross from '../components/home/MenuCross';
 
 const Home = memo(() => {
    return (
@@ -14,6 +15,7 @@ const Home = memo(() => {
          <Lp />
          <Typing />
          <RollingBanner />
+         <MenuCross />
          <MenuSlide />
       </>
    );
