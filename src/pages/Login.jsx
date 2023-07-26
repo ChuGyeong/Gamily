@@ -68,7 +68,7 @@ const Login = memo(() => {
                         <div className="inputBox1">
                            <input
                               type="email"
-                              required="required"
+                              required
                               name="email"
                               value={loginUser.email}
                               onChange={handleLoginInput}
@@ -76,13 +76,7 @@ const Login = memo(() => {
                            <span className="user">Email</span>
                         </div>
                         <div className="inputBox">
-                           <input
-                              type="password"
-                              required="required"
-                              name="pw"
-                              value={loginUser.pw}
-                              onChange={handleLoginInput}
-                           />
+                           <input type="password" required name="pw" value={loginUser.pw} onChange={handleLoginInput} />
                            <span>Password</span>
                         </div>
                         <button className="enter">Enter</button>
@@ -95,7 +89,7 @@ const Login = memo(() => {
                         <div className="inputBox1">
                            <input
                               type="email"
-                              required="required"
+                              required
                               name="email"
                               value={signUpUser.email}
                               onChange={handleSignUpInput}
@@ -105,7 +99,7 @@ const Login = memo(() => {
                         <div className="inputBox">
                            <input
                               type="text"
-                              required="required"
+                              required
                               name="username"
                               value={signUpUser.username}
                               onChange={handleSignUpInput}
@@ -115,7 +109,7 @@ const Login = memo(() => {
                         <div className="inputBox">
                            <input
                               type="password"
-                              required="required"
+                              required
                               name="pw"
                               value={signUpUser.pw}
                               onChange={handleSignUpInput}

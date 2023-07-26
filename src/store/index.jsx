@@ -5,7 +5,8 @@ import quizR from './modules/quizSlice';
 import knowledgeR from './modules/knowledgeSlice';
 import authR from './modules/authSlice';
 import qnaR from './modules/qnaSlice';
+import noticeR from './modules/noticeSlice';
 
 export const store = configureStore({
-   reducer: { adoptionsR, storeR, quizR, knowledgeR, authR, qnaR },
+   reducer: { adoptionsR, storeR, quizR, knowledgeR, authR, qnaR, noticeR },
 });

@@ -7,15 +7,15 @@ import { Link } from 'react-router-dom';
 
 const menuData1 = [
    { title: '어쩌구', img: '../images/profile_img1.jpg', url: '/' },
-   { title: '어쩌구', img: '../images/profile_img1.jpg', url: '/' },
-   { title: '어쩌구', img: '../images/profile_img1.jpg', url: '/' },
-   { title: '어쩌구', img: '../images/profile_img1.jpg', url: '/' },
+   { title: '어쩌구', img: '../images/profile_img2.jpg', url: '/' },
+   { title: '어쩌구', img: '../images/profile_img3.jpg', url: '/' },
+   { title: '어쩌구', img: '../images/profile_img4.jpg', url: '/' },
 ];
 const menuData2 = [
    { title: '어쩌구', img: '../images/profile_img1.jpg', url: '/package.json' },
-   { title: '어쩌구', img: '../images/profile_img1.jpg', url: '/package.json' },
-   { title: '어쩌구', img: '../images/profile_img1.jpg', url: '/package.json' },
-   { title: '어쩌구', img: '../images/profile_img1.jpg', url: '/package.json' },
+   { title: '어쩌구', img: '../images/profile_img2.jpg', url: '/package.json' },
+   { title: '어쩌구', img: '../images/profile_img3.jpg', url: '/package.json' },
+   { title: '어쩌구', img: '../images/profile_img4.jpg', url: '/package.json' },
 ];
 const MenuCross = memo(() => {
    return (

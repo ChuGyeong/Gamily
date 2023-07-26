@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Notice = memo(() => {
    const { auth } = useSelector(state => state.authR);
+   const { data } = useSelector(state => state.noticeR);
    const navigate = useNavigate();
    return (
       <NoticeContainer>
@@ -26,12 +27,14 @@ const Notice = memo(() => {
                   </tr>
                </thead>
                <tbody>
-                  <tr>
-                     <td>1</td>
-                     <td onClick={() => navigate(`/noticeDetail/1`)}>공지사항을 오픈하였습니다.</td>
-                     <td>2023.07.16</td>
-                     <td>5</td>
-                  </tr>
+                  {data.map(item => (
+                     <tr key={item.id}>
+                        <td>{item.id}</td>
+                        <td onClick={() => navigate(`/noticeDetail/1`)}>{item.title}</td>
+                        <td>{item.date}</td>
+                        <td>{item.hits}</td>
+                     </tr>
+                  ))}
                </tbody>
             </table>
             {auth?.isManager && (

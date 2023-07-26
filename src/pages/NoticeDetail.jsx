@@ -1,9 +1,14 @@
 import React, { memo } from 'react';
 import { NoticeDetailContainer, InnerContainer, ParticleButton } from '../styled/GamilyStyle';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const NoticeDetail = memo(() => {
    const navigate = useNavigate();
+   const { data } = useSelector(state => state.noticeR);
+   const { noticeId } = useParams();
+   const notice = data.find(item => item.id === Number(noticeId));
+   console.log(notice);
 
    return (
       <NoticeDetailContainer>
@@ -11,24 +16,18 @@ const NoticeDetail = memo(() => {
             <div className="notice-view">
                <div className="tit-area">
                   <span>공지사항</span>
-                  <p>공지사항을 오픈하였습니다.</p>
-                  <span>2023.07.16</span>
+                  <p>{notice.title}</p>
+                  <span>{notice.date}</span>
                </div>
                <div className="text-area">
                   <p>
-                     게시글 내용입니다. <br />
-                     게시글 내용입니다. <br />
-                     게시글 내용입니다. <br />
-                     게시글 내용입니다. <br />
-                     게시글 내용입니다. <br />
-                     게시글 내용입니다. <br />
-                     게시글 내용입니다. <br />
-                     게시글 내용입니다. <br />
-                     게시글 내용입니다. <br />
-                     게시글 내용입니다. <br />
-                     게시글 내용입니다. <br />
-                     게시글 내용입니다. <br />
-                     게시글 내용입니다. <br />
+                     {notice.content.split('\n').map(line => (
+                        <span>
+                           {line}
+                           <br />
+                           <br />
+                        </span>
+                     ))}
                   </p>
                </div>
             </div>

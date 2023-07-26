@@ -3248,6 +3248,7 @@ export const SystemContainer = styled.div`
          height: 400px;
          background: #efefef;
          margin-bottom: 33px;
+         margin-top: 33px;
          line-height: 400px;
       }
       .data-summary-view {
@@ -3255,14 +3256,23 @@ export const SystemContainer = styled.div`
          justify-content: space-between;
          height: 150px;
          margin-bottom: 33px;
-         line-height: 150px;
          .result-display {
             width: 50%;
             display: flex;
             .result {
+               display: flex;
+               flex-direction: column;
+               justify-content: center;
+               align-items: center;
                width: 200px;
-               border: 1px solid #000;
+               border: 1px solid #efefef;
                margin-right: 33px;
+               span {
+               }
+               p {
+                  font-size: 50px;
+                  font-weight: 700;
+               }
             }
          }
          .stats {
@@ -3290,7 +3300,7 @@ export const SystemContainer = styled.div`
    }
    .popup {
       position: absolute;
-      width: 1000px;
+      width: 1500px;
       height: 800px;
       background: #efefef;
       top: 50%;
@@ -3306,7 +3316,29 @@ export const SystemContainer = styled.div`
          border: none;
          cursor: pointer;
          background: transparent;
-         font-size: 30px;
+         font-size: 20px;
+         z-index: 10;
+      }
+      .data-area {
+         position: relative;
+         .btn-area {
+            button {
+               width: 200px;
+               height: 40px;
+               background: ${subColor};
+               border-radius: 20px 20px 0 0;
+               color: #fff;
+               border: none;
+               margin-right: 4px;
+               cursor: pointer;
+            }
+         }
+         .list {
+            width: 100%;
+            height: 720px;
+            background: #fff;
+            border-radius: 0 0 20px 20px;
+         }
       }
    }
 `;
