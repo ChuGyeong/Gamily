@@ -8,7 +8,6 @@ const NoticeDetail = memo(() => {
    const { data } = useSelector(state => state.noticeR);
    const { noticeId } = useParams();
    const notice = data.find(item => item.id === Number(noticeId));
-   console.log(notice);
 
    return (
       <NoticeDetailContainer>
@@ -22,7 +21,7 @@ const NoticeDetail = memo(() => {
                <div className="text-area">
                   <p>
                      {notice.content.split('\n').map(line => (
-                        <span>
+                        <span key={line}>
                            {line}
                            <br />
                            <br />
