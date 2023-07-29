@@ -2827,7 +2827,7 @@ export const WagTailDogContainer = styled.div`
    align-items: center;
    background-size: fill;
    width: 800px;
-   height: 400px;
+   height: 600px;
    margin: 60px auto;
    padding: 0;
    position: relative;
