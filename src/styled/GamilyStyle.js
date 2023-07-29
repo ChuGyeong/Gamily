@@ -2826,9 +2826,9 @@ export const WagTailDogContainer = styled.div`
    justify-content: center;
    align-items: center;
    background-size: fill;
-   width: 100%;
+   width: 800px;
    height: 400px;
-   margin: 0;
+   margin: 60px auto;
    padding: 0;
    position: relative;
    .dog {
@@ -3377,29 +3377,59 @@ export const RollingBannerContainer = styled.div`
    }
 `;
 // MenuCross
-export const MenuCrossContainer = styled.div``;
-
-// SearchBox
-export const SearchBoxContainer = styled.table`
-   width: 100%;
-   th,
-   td {
-      text-align: center;
-      vertical-align: middle;
-      padding: 10px 20px;
-      box-sizing: border-box;
-   }
-   td {
-      border-bottom: 1px solid #dcdcdc;
-      &.notice {
-         &:nth-child(3) {
-            text-align-last: left;
+export const MenuCrossContainer = styled.div`
+   .mySwiper {
+      height: 600px;
+      .swiper-slide {
+         display: flex;
+         .icon-box {
+            width: 50%;
+            box-sizing: border-box;
+            text-align: center;
+            font-size: 200px;
+            line-height: 700px;
+            background: ${subColor};
+            color: #fff;
+            transition: 0.4s;
          }
-      }
-      &.qna {
-         &:nth-child(2),
-         &:nth-child(3) {
-            text-align-last: left;
+         .text-box {
+            width: 50%;
+            background: ${mainColor};
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+            transition: 0.4s;
+            a {
+               font-size: 70px;
+               display: block;
+               margin-bottom: 20px;
+               font-family: ${fontBagelFatOne};
+               color: ${subColor};
+            }
+            p {
+               text-align: center;
+               font-size: 20px;
+            }
+         }
+         &:hover {
+            .text-box {
+               background: #000;
+               a {
+                  font-size: 100px;
+                  color: #fff;
+               }
+               p {
+                  display: none;
+               }
+            }
+            .icon-box {
+               font-size: 300px;
+               background: ${pointColor};
+               color: #fff;
+            }
          }
       }
    }
