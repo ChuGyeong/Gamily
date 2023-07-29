@@ -3434,3 +3434,29 @@ export const MenuCrossContainer = styled.div`
       }
    }
 `;
+
+// SearchBox
+export const SearchBoxContainer = styled.table`
+   width: 100%;
+   th,
+   td {
+      text-align: center;
+      vertical-align: middle;
+      padding: 10px 20px;
+      box-sizing: border-box;
+   }
+   td {
+      border-bottom: 1px solid #dcdcdc;
+      &.notice {
+         &:nth-child(3) {
+            text-align-last: left;
+         }
+      }
+      &.qna {
+         &:nth-child(2),
+         &:nth-child(3) {
+            text-align-last: left;
+         }
+      }
+   }
+`;
