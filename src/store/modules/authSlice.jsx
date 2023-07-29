@@ -1,5 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const getToday = (daysBefore = 0) => {
+   const date = new Date();
+   date.setDate(date.getDate() - daysBefore);
+   const year = date.getFullYear();
+   const month = String(date.getMonth() + 1).padStart(2, '0');
+   const day = String(date.getDate()).padStart(2, '0');
+   return `${year}${month}${day}`;
+};
+
 const initialState = {
    auth: JSON.parse(localStorage.getItem('auth')) || null,
    authData: JSON.parse(localStorage.getItem('authData')) || [
@@ -12,6 +21,7 @@ const initialState = {
          badge: [],
          isManager: false,
          profileImg: './images/profile.jpg',
+         date: '20230729',
       },
       {
          email: '2@2.com',
@@ -22,6 +32,7 @@ const initialState = {
          badge: [],
          isManager: true,
          profileImg: './images/profile.jpg',
+         date: '20230729',
       },
    ],
    authState: {},
@@ -79,6 +90,7 @@ const authSlice = createSlice({
                badge: [],
                isManager: false,
                profileImg: './images/profile.jpg',
+               date: getToday(),
             },
          ];
          localStorage.setItem('authData', JSON.stringify(state.authData));
