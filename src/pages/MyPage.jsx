@@ -9,6 +9,7 @@ import Basket from '../components/mypage/Basket';
 import FavoritesDog from '../components/mypage/FavoritesDog';
 import MyQnA from '../components/mypage/MyQnA';
 import ProfileEdit from '../components/mypage/ProfileEdit';
+import MyAdoptionApp from '../components/mypage/MyAdoptionApp';
 
 const MyPage = memo(() => {
    const { auth, authData } = useSelector(state => state.authR);
@@ -40,6 +41,7 @@ const MyPage = memo(() => {
                <MyQnA />
                <Basket />
                <FavoritesDog />
+               <MyAdoptionApp />
             </div>
          </InnerContainer>
       </MyPageContainer>

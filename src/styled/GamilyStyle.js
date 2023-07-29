@@ -3331,9 +3331,12 @@ export const SystemContainer = styled.div`
                border: none;
                margin-right: 4px;
                cursor: pointer;
+               &.on {
+                  background-color: ${mainColor};
+               }
             }
          }
-         .list {
+         .content {
             width: 100%;
             height: 720px;
             background: #fff;
@@ -3375,3 +3378,29 @@ export const RollingBannerContainer = styled.div`
 `;
 // MenuCross
 export const MenuCrossContainer = styled.div``;
+
+// SearchBox
+export const SearchBoxContainer = styled.table`
+   width: 100%;
+   th,
+   td {
+      text-align: center;
+      vertical-align: middle;
+      padding: 10px 20px;
+      box-sizing: border-box;
+   }
+   td {
+      border-bottom: 1px solid #dcdcdc;
+      &.notice {
+         &:nth-child(3) {
+            text-align-last: left;
+         }
+      }
+      &.qna {
+         &:nth-child(2),
+         &:nth-child(3) {
+            text-align-last: left;
+         }
+      }
+   }
+`;

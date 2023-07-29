@@ -7,20 +7,64 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { clearState, getAdoptions, getOrgData, getVarietyData } from '../store/modules/adoptionSlice';
 import Loading from '../components/Loading';
 import Swal from 'sweetalert2';
+import { addAdoptionApp } from '../store/modules/adoptionAppSlice';
 
 const MyDogAdoption = memo(() => {
-   const [address, setAddress] = useState('');
-   const [zoneCode, setZoneCode] = useState('');
+   const { myDogId } = useParams();
+   const dispatch = useDispatch();
+   const navigate = useNavigate();
+   const { auth, authData } = useSelector(state => state.authR);
+   const { data = [], state } = useSelector(state => state.adoptionsR);
+   const date = useDate();
+   const [myDog, setMyDog] = useState({});
+   const [adoptionAppData, setAdoptionAppData] = useState({
+      date: date,
+      state: '서류검토중',
+      profileImg: myDog.popfile,
+      desertionNo: myDog.desertionNo,
+      name: '',
+      email: auth.email,
+      tel1: '010',
+      tel2: '',
+      tel3: '',
+      postCode: '',
+      address: '',
+      detailAddress: '',
+      adoptionAgree: false,
+      isRaisingPet: false,
+      animalKind: '',
+      animalAge: '',
+      reasonsForAdoption: '',
+      isSendNews: false,
+      etc: '',
+   });
    const [showPostCode, setShowPostCode] = useState(false);
 
-   const openPostCode = () => {
-      setShowPostCode(true);
+   const clearAdoptionAppData = () => {
+      setAdoptionAppData({
+         date: date,
+         state: '서류검토중',
+         profileImg: myDog.popfile,
+         desertionNo: myDog.desertionNo,
+         name: '',
+         email: auth.email,
+         tel1: '010',
+         tel2: '',
+         tel3: '',
+         postCode: '',
+         address: '',
+         detailAddress: '',
+         adoptionAgree: false,
+         isRaisingPet: false,
+         animalKind: '',
+         animalAge: '',
+         reasonsForAdoption: '',
+         isSendNews: false,
+         etc: '',
+      });
    };
-
-   const closePostCode = () => {
-      setShowPostCode(false);
-   };
-
+   const openPostCode = () => setShowPostCode(true);
+   const closePostCode = () => setShowPostCode(false);
    const userAddress = data => {
       let fullAddress = data.address;
       let extraAddress = '';
@@ -34,23 +78,17 @@ const MyDogAdoption = memo(() => {
          }
          fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
       }
-
-      setZoneCode(data.zonecode);
-      setAddress(fullAddress);
+      setAdoptionAppData({ ...adoptionAppData, postCode: data.zonecode, address: fullAddress });
       closePostCode();
    };
-
    const changeInput = e => {
-      if (e.target.name === 'name') {
-      } else if (e.target.name === 'tel') {
-      } else if (e.target.name === 'postCode') {
-         setZoneCode(e.target.value);
-      } else if (e.target.name === 'address') {
-         setAddress(e.target.value);
-      }
+      const { name, value, type } = e.target;
+      if (type === 'radio') {
+         const booleanValue = value === 'true';
+         setAdoptionAppData({ ...adoptionAppData, [name]: booleanValue });
+      } else setAdoptionAppData({ ...adoptionAppData, [name]: value });
    };
 
-   const date = useDate();
    const formatDate = date => {
       const year = date.slice(0, 4);
       const month = date.slice(4, 6);
@@ -59,28 +97,28 @@ const MyDogAdoption = memo(() => {
    };
    const formattedDate = formatDate(date);
 
-   const { auth, authData } = useSelector(state => state.authR);
-   const { data = [], state } = useSelector(state => state.adoptionsR);
-
-   const { myDogId } = useParams();
-   const dispatch = useDispatch();
-   const navigate = useNavigate();
-
-   const [myDog, setMyDog] = useState({});
-   useEffect(() => {
-      dispatch(getAdoptions({ adoptionId: myDogId }));
-      if (state === 'fulfilled' && data) setMyDog(data);
-   }, [myDogId]);
-
    const onSubmit = e => {
       e.preventDefault();
+      dispatch(addAdoptionApp(adoptionAppData));
       Swal.fire({
          icon: 'success',
          title: '작성 완료',
          text: '제출을 완료했습니다',
       });
       navigate('/adoption');
+      clearAdoptionAppData();
    };
+
+   useEffect(() => {
+      dispatch(getAdoptions({ adoptionId: myDogId }));
+      if (state === 'fulfilled' && data) {
+         setMyDog(data);
+         setAdoptionAppData({ ...adoptionAppData, profileImg: data.popfile, desertionNo: data.desertionNo });
+      }
+   }, [myDogId]);
+   useEffect(() => {
+      setAdoptionAppData(adoptionAppData => ({ ...adoptionAppData, date }));
+   }, [date]);
 
    return (
       <MyDogContainer>
@@ -127,6 +165,7 @@ const MyDogAdoption = memo(() => {
                               name="name"
                               placeholder="이름을 입력하세요"
                               onChange={changeInput}
+                              value={adoptionAppData.name}
                               className="wid400"
                               required
                            />
@@ -137,23 +176,25 @@ const MyDogAdoption = memo(() => {
                         </p>
                         <p>
                            <label>연락처</label>
-                           <select>
+                           <select name="tel1" value={adoptionAppData.tel1} onChange={changeInput}>
                               <option>010</option>
                               <option>011</option>
                            </select>
                            <input
                               type="number"
-                              name="subtel"
+                              name="tel2"
                               placeholder="1234"
                               onChange={changeInput}
+                              value={adoptionAppData.tel2}
                               className="wid100"
                               required
                            />
                            <input
                               type="number"
-                              name="lasttel"
+                              name="tel3"
                               placeholder="5678"
                               onChange={changeInput}
+                              value={adoptionAppData.tel3}
                               className="wid100"
                               required
                            />
@@ -164,8 +205,7 @@ const MyDogAdoption = memo(() => {
                               type="text"
                               name="postCode"
                               placeholder="우편번호"
-                              value={zoneCode}
-                              onChange={changeInput}
+                              value={adoptionAppData.postCode}
                               readOnly
                               className="wid100"
                            />
@@ -176,13 +216,20 @@ const MyDogAdoption = memo(() => {
                               type="text"
                               name="address"
                               placeholder="주소"
-                              value={address}
+                              value={adoptionAppData.address}
                               readOnly
                               style={{ backgroundColor: '#f5f5f5' }}
                               onChange={changeInput}
                               className="wid700"
                            />
-                           <input type="text" name="detailAddress" placeholder="상세주소" className="wid400" />
+                           <input
+                              type="text"
+                              name="detailAddress"
+                              value={adoptionAppData.detailAddress}
+                              onChange={changeInput}
+                              placeholder="상세주소"
+                              className="wid400"
+                           />
                         </p>
                         {showPostCode && (
                            <div className="modal">
@@ -198,36 +245,77 @@ const MyDogAdoption = memo(() => {
                         <p>
                            <strong>현재 함께 사는 가족들이 모두 입양에 동의하십니까?</strong>
                            <label>
-                              <input type="radio" name="ask1" />
+                              <input
+                                 type="radio"
+                                 name="adoptionAgree"
+                                 value={true}
+                                 checked={adoptionAppData.adoptionAgree === true}
+                                 onChange={changeInput}
+                              />
                               <span>네</span>
                            </label>
                            <label>
-                              <input type="radio" name="ask1" />
+                              <input
+                                 type="radio"
+                                 name="adoptionAgree"
+                                 value={false}
+                                 checked={adoptionAppData.adoptionAgree === false}
+                                 onChange={changeInput}
+                              />
                               <span>아니요</span>
                            </label>
                         </p>
                         <p>
                            <strong>현재 반려 동물을 키우고 계십니까?</strong>
                            <label>
-                              <input type="radio" name="ask2" />
+                              <input
+                                 type="radio"
+                                 name="isRaisingPet"
+                                 value={true}
+                                 checked={adoptionAppData.isRaisingPet === true}
+                                 onChange={changeInput}
+                              />
                               <span>네</span>
                            </label>
                            <label>
-                              <input type="radio" name="ask2" />
+                              <input
+                                 type="radio"
+                                 name="isRaisingPet"
+                                 value={false}
+                                 checked={adoptionAppData.isRaisingPet === false}
+                                 onChange={changeInput}
+                              />
                               <span>아니요</span>
                            </label>
                         </p>
                         <p>
                            <strong>있으면 어떤 종류의 동물이며 나이는 어떻게 되나요?</strong>
                            <label>
-                              <input type="text" className="wid200" />
-                              <input type="text" className="wid100" />
+                              <input
+                                 type="text"
+                                 className="wid200"
+                                 name="animalKind"
+                                 value={adoptionAppData.animalKind}
+                                 onChange={changeInput}
+                              />
+                              <input
+                                 type="text"
+                                 className="wid100"
+                                 name="animalAge"
+                                 value={adoptionAppData.animalAge}
+                                 onChange={changeInput}
+                              />
                            </label>
                         </p>
                         <p>
                            <strong>신청자분은 왜 이 아이를 반려 동물로 입양하고자 하나요?</strong>
                            <label>
-                              <input type="text" />
+                              <input
+                                 type="text"
+                                 name="reasonsForAdoption"
+                                 value={adoptionAppData.reasonsForAdoption}
+                                 onChange={changeInput}
+                              />
                            </label>
                         </p>
                         <p>
@@ -236,18 +324,36 @@ const MyDogAdoption = memo(() => {
                               블로그, 사진 등)
                            </strong>
                            <label>
-                              <input type="radio" name="ask3" />
-                              <span>네</span>{' '}
+                              <input
+                                 type="radio"
+                                 name="isSendNews"
+                                 value={true}
+                                 checked={adoptionAppData.isSendNews === true}
+                                 onChange={changeInput}
+                              />
+                              <span>네</span>
                            </label>
                            <label>
-                              <input type="radio" name="ask3" />
+                              <input
+                                 type="radio"
+                                 name="isSendNews"
+                                 value={false}
+                                 checked={adoptionAppData.isSendNews === false}
+                                 onChange={changeInput}
+                              />
                               <span>아니요</span>
                            </label>
                         </p>
                         <p>
                            <strong>기타 하실 말씀 있으시면 해주세요</strong>
                            <label>
-                              <textarea name="" id="" cols="30" rows="10"></textarea>
+                              <textarea
+                                 id=""
+                                 cols="30"
+                                 rows="10"
+                                 name="etc"
+                                 value={adoptionAppData.etc}
+                                 onChange={changeInput}></textarea>
                            </label>
                         </p>
                      </div>

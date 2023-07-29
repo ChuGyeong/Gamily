@@ -10,7 +10,7 @@ const AddQnA = memo(() => {
    const navigate = useNavigate();
    const dispatch = useDispatch();
    const { auth } = useSelector(state => state.authR);
-   const [txt, setTxt] = useState({ title: '', ask: '' });
+   const [txt, setTxt] = useState({ title: '', question: '', answer: '' });
    const date = useDate();
 
    const formatDate = date => {
@@ -59,8 +59,8 @@ const AddQnA = memo(() => {
                   placeholder="내용을 작성해주세요"
                   required
                   onChange={chnageInput}
-                  value={txt.ask}
-                  name="ask"></textarea>
+                  value={txt.question}
+                  name="question"></textarea>
                <div className="btn-area">
                   <ParticleButton type="submit">확인</ParticleButton>
                   <ParticleButton onClick={() => navigate('/qna')}>취소</ParticleButton>
