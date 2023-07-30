@@ -1,40 +1,46 @@
-import React, { useState, memo } from 'react';
+import React, { useState, memo, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-
-const navArr = [
-   {
-      name: 'Knowledge',
-      src: '/knowledge',
-      subMenu: [
-         { name: 'Knowledge', src: '/knowledge' },
-         { name: 'Quiz', src: '/quiz' },
-      ],
-   },
-   { name: 'Adoption', src: '/adoption', subMenu: [] },
-   {
-      name: 'Notice',
-      src: '/notice',
-      subMenu: [
-         { name: 'Notice', src: '/notice' },
-         { name: 'QnA', src: '/qna' },
-      ],
-   },
-   { name: 'Store', src: '/store', subMenu: [] },
-   { name: 'System', src: '/system', subMenu: [] },
-];
+import { useSelector } from 'react-redux';
 
 const Navbar = memo(() => {
    const [activeMenu, setActiveMenu] = useState(null);
    const location = useLocation();
+   const { auth } = useSelector(state => state.authR);
+   const [navArr, setNavArr] = useState([
+      {
+         name: 'Knowledge',
+         src: '/knowledge',
+         subMenu: [
+            { name: 'Knowledge', src: '/knowledge' },
+            { name: 'Quiz', src: '/quiz' },
+         ],
+      },
+      { name: 'Adoption', src: '/adoption', subMenu: [] },
+      {
+         name: 'Notice',
+         src: '/notice',
+         subMenu: [
+            { name: 'Notice', src: '/notice' },
+            { name: 'QnA', src: '/qna' },
+         ],
+      },
+      { name: 'Store', src: '/store', subMenu: [] },
+      { name: 'System', src: '/system', subMenu: [] },
+   ]);
 
    const handleMouseEnter = idx => {
       setActiveMenu(idx);
    };
-
    const handleMouseLeave = () => {
       setActiveMenu(null);
    };
-
+   useEffect(() => {
+      if (auth?.isManager) {
+         setNavArr([...navArr, { name: 'System', src: '/system', subMenu: [] }]);
+      } else {
+         setNavArr(navArr.filter(item => item.name !== 'System'));
+      }
+   }, [auth]);
    return (
       <nav className="gnb">
          <ul className="main-menu">
