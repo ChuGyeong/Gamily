@@ -4,8 +4,8 @@ import { MyDogContainer, InnerContainer, ParticleButton } from '../styled/Gamily
 import useDate from '../hooks/useDate';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { clearState, getAdoptions, getOrgData, getVarietyData } from '../store/modules/adoptionSlice';
-import Loading from '../components/Loading';
+import { getAdoptions } from '../store/modules/adoptionSlice';
+import Loading from '../components/common/Loading';
 import Swal from 'sweetalert2';
 import { addAdoptionApp } from '../store/modules/adoptionAppSlice';
 

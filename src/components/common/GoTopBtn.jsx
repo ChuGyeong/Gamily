@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from 'react';
-import { GoTopButton } from '../styled/GamilyStyle';
+import { GoTopButton } from '../../styled/GamilyStyle';
 import { AiFillCaretUp } from 'react-icons/ai';
 
 const GoTopBtn = memo(() => {

@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from 'react';
-import { FooterContainer, InnerContainer } from '../styled/GamilyStyle';
+import { FooterContainer, InnerContainer } from '../../styled/GamilyStyle';
 import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
 

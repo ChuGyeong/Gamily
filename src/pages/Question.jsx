@@ -3,7 +3,7 @@ import { getQuiz } from '../store/modules/quizSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { QuestionContainer, InnerContainer, ParticleButton } from '../styled/GamilyStyle';
-import Loading from '../components/Loading';
+import Loading from '../components/common/Loading';
 import AnswerSheet from '../components/quiz/AnswerSheet';
 import Swal from 'sweetalert2';
 import { addBadge } from '../store/modules/authSlice';

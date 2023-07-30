@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAdoptions, getOrgData, getVarietyData } from '../store/modules/adoptionSlice';
 import AdoptionList from '../components/adoption/AdoptionList';
 import AdoptionForm from '../components/adoption/AdoptionForm';
-import Loading from '../components/Loading';
+import Loading from '../components/common/Loading';
 import AdoptionPaging from '../components/adoption/AdoptionPaging';
 
 const itemsPerPage = 12;

@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useState } from 'react';
-import { InfoBubbleContainer } from '../styled/GamilyStyle';
+import { InfoBubbleContainer } from '../../styled/GamilyStyle';
 import { AiOutlineClose } from 'react-icons/ai';
-import useDate from '../hooks/useDate';
+import useDate from '../../hooks/useDate';
 
 const InfoBubble = memo(() => {
    const today = useDate();

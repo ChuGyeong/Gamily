@@ -2,9 +2,9 @@ import React, { memo, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getAdoptions } from '../store/modules/adoptionSlice';
-import Loading from '../components/Loading';
+import Loading from '../components/common/Loading';
 import { AdoptionDetailContainer, InnerContainer } from '../styled/GamilyStyle';
-import KakaoMap from '../components/KakaoMap';
+import KakaoMap from '../components/common/KakaoMap';
 import useAuth from '../hooks/useAuth';
 
 const AdoptionDetail = memo(() => {
