@@ -2756,8 +2756,6 @@ export const MenuSlideContainer = styled.div`
    padding: 400px 0;
    box-sizing: border-box;
    position: relative;
-   /* background-color: ${mainColor}; */
-   overflow: hidden;
    .menus {
       width: 600px;
       margin: auto;
@@ -3382,16 +3380,22 @@ export const MenuCrossContainer = styled.div`
    .mySwiper {
       height: 600px;
       .swiper-slide {
-         display: flex;
+         a {
+            display: flex;
+            height: 600px;
+         }
          .icon-box {
             width: 50%;
             box-sizing: border-box;
             text-align: center;
             font-size: 200px;
-            line-height: 700px;
+            line-height: 600px;
             background: ${subColor};
             color: #fff;
             transition: 0.4s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
          }
          .text-box {
             width: 50%;
@@ -3403,12 +3407,13 @@ export const MenuCrossContainer = styled.div`
             padding: 20px;
             box-sizing: border-box;
             transition: 0.4s;
-            a {
+            .title {
                font-size: 70px;
                display: block;
                margin-bottom: 20px;
                font-family: ${fontBagelFatOne};
                color: ${subColor};
+               transition: 0.4s;
             }
             p {
                text-align: center;
@@ -3418,12 +3423,12 @@ export const MenuCrossContainer = styled.div`
          &:hover {
             .text-box {
                background: #000;
-               a {
+               .title {
                   font-size: 100px;
                   color: #fff;
                }
                p {
-                  display: none;
+                  color: #999;
                }
             }
             .icon-box {
