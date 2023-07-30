@@ -2,10 +2,10 @@ import React, { memo, useEffect } from 'react';
 import { KnowledgeContainer, InnerContainer } from '../styled/GamilyStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import { getKnowledge } from '../store/modules/knowledgeSlice';
-import Loading from '../components/Loading';
+import Loading from '../components/common/Loading';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import WaveEffects from '../components/WaveEffects';
+import WaveEffects from '../components/common/WaveEffects';
 
 const Knowledge = memo(() => {
    const { data, status } = useSelector(state => state.knowledgeR);

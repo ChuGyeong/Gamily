@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { BsStarFill, BsStarHalf } from 'react-icons/bs';
 import { Pagination } from 'swiper/modules';
 import { getProduct } from '../store/modules/storeSlice';
-import Loading from '../components/Loading';
+import Loading from '../components/common/Loading';
 import Swal from 'sweetalert2';
 import { addInCart, resetAuthState } from '../store/modules/authSlice';
 import useAuth from '../hooks/useAuth';

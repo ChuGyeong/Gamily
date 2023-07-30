@@ -1,7 +1,7 @@
-import React, { memo, useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
-import { HeaderContainer } from '../styled/GamilyStyle';
+import { HeaderContainer } from '../../styled/GamilyStyle';
 import SubNav from './SubNav';
 
 const Header = ({ onEnter, isHeaderOn, inHeader, handleScroll }) => {

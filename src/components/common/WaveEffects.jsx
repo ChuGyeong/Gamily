@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { WaveEffect } from '../styled/GamilyStyle';
+import { WaveEffect } from '../../styled/GamilyStyle';
 
 const WaveEffects = memo(({ top = 0, left = 0, isAdd = false }) => {
    return (

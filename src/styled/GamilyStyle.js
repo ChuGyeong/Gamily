@@ -2745,6 +2745,7 @@ export const TypingContainer = styled.div`
       background-size: cover;
       background-position: 50% 50%;
       background-repeat: no-repeat;
+      height: 96px;
       div {
       }
    }
