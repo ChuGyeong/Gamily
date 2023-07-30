@@ -3309,6 +3309,8 @@ export const SystemContainer = styled.div`
       border-radius: 30px;
       padding: 20px;
       box-sizing: border-box;
+      overflow-y: auto;
+
       .close {
          position: absolute;
          top: 20px;
@@ -3337,8 +3339,8 @@ export const SystemContainer = styled.div`
             }
          }
          .content {
+            min-height: 720px;
             width: 100%;
-            height: 720px;
             background: #fff;
             border-radius: 0 0 20px 20px;
          }
@@ -3438,6 +3440,7 @@ export const MenuCrossContainer = styled.div`
 // SearchBox
 export const SearchBoxContainer = styled.table`
    width: 100%;
+
    th,
    td {
       text-align: center;
@@ -3445,18 +3448,27 @@ export const SearchBoxContainer = styled.table`
       padding: 10px 20px;
       box-sizing: border-box;
    }
-   td {
-      border-bottom: 1px solid #dcdcdc;
-      &.notice {
-         &:nth-child(3) {
-            text-align-last: left;
+   th {
+      background-color: ${mainColor};
+      color: #fff;
+   }
+   tr {
+      td {
+         border-bottom: 1px solid #dcdcdc;
+         &.notice {
+            &:nth-child(3) {
+               text-align-last: left;
+            }
+         }
+         &.qna {
+            &:nth-child(2),
+            &:nth-child(3) {
+               text-align-last: left;
+            }
          }
       }
-      &.qna {
-         &:nth-child(2),
-         &:nth-child(3) {
-            text-align-last: left;
-         }
+      &:last-child td {
+         border-bottom: none;
       }
    }
 `;
