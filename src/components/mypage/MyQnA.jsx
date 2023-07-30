@@ -32,7 +32,7 @@ const MyQnA = memo(() => {
             {data
                .filter(item => item.email === auth.email)
                .map(item => (
-                  <li>
+                  <li key={item.id}>
                      <p>
                         <strong>{item.title}</strong>
                         <span>답변이 없습니다.</span>

@@ -256,7 +256,7 @@ const authSlice = createSlice({
          );
          localStorage.setItem('authData', JSON.stringify(state.authData));
       },
-      allkProductDel: (state, action) => {
+      allProductDel: (state, action) => {
          state.authData = state.authData.map(user =>
             user.email === state.auth.email
                ? {
@@ -284,6 +284,6 @@ export const {
    onCheckbox,
    toggleCheckbox,
    checkProductDel,
-   allkProductDel,
+   allProductDel,
 } = authSlice.actions;
 export default authSlice.reducer;

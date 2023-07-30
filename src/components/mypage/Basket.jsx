@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import {
-   allkProductDel,
+   allProductDel,
    checkProductDel,
    onCheckbox,
    quantityDown,
@@ -10,6 +10,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { ParticleButton, MyPageContent } from '../../styled/GamilyStyle';
+import Swal from 'sweetalert2';
 
 const Basket = memo(() => {
    const { auth, authData } = useSelector(state => state.authR);
@@ -18,6 +19,22 @@ const Basket = memo(() => {
    };
    const dispatch = useDispatch();
    const navigate = useNavigate();
+
+   //  선택 상품 삭제
+   const onCheckProductDel = () => {
+      Swal.fire({
+         title: '해당 상품들을 삭제하시겠습니까?',
+         icon: 'warning',
+         showCancelButton: true,
+         confirmButtonText: '예',
+         cancelButtonText: '아니오',
+      }).then(result => {
+         if (result.isConfirmed) {
+            dispatch(checkProductDel());
+            Swal.fire('작업완료', '해당 상품들을 삭제했습니다', 'success');
+         }
+      });
+   };
 
    return (
       <MyPageContent>
@@ -29,10 +46,10 @@ const Basket = memo(() => {
                }}>
                {cart.every(cartItem => cartItem.isChk) ? '전체해제' : '전체선택'}
             </ParticleButton>
-            <ParticleButton onClick={() => dispatch(checkProductDel())}>선택상품삭제</ParticleButton>
-            <ParticleButton onClick={() => dispatch(allkProductDel())}>전체삭제</ParticleButton>
+            <ParticleButton onClick={onCheckProductDel}>선택상품삭제</ParticleButton>
+            <ParticleButton onClick={() => dispatch(allProductDel())}>전체삭제</ParticleButton>
             <ParticleButton onClick={() => dispatch(checkProductDel())}>선택상품주문</ParticleButton>
-            <ParticleButton onClick={() => dispatch(allkProductDel())}>전체주문</ParticleButton>
+            <ParticleButton onClick={() => dispatch(allProductDel())}>전체주문</ParticleButton>
          </div>
          <ul>
             {cart.length > 0 ? (

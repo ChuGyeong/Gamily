@@ -72,6 +72,7 @@ const AdoptionForm = memo(({ filter, setFilter, setCurrentPageNum }) => {
       if (e) e.preventDefault();
       performSearch(searchText);
       setIsSuggestionsVisible(false);
+      setIsFilterBoxOn(false);
    };
 
    return (
