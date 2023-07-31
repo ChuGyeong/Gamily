@@ -27,13 +27,13 @@ const Question = memo(() => {
          if (result >= 60) {
             let badge = null;
             const badgeData = [
-               { id: 'basic1', img: '../images/ranking-basic-1.png' },
-               { id: 'basic2', img: '../images/ranking-basic-2.png' },
-               { id: 'basic3', img: '../images/ranking-basic-3.png' },
-               { id: 'deepen1', img: '../images/ranking-deepen-1.png' },
-               { id: 'deepen2', img: '../images/ranking-deepen-2.png' },
-               { id: 'deepen3', img: '../images/ranking-deepen-3.png' },
-               { id: 'prize', img: '../images/ranking-trophy.png' },
+               { id: 'basic1', img: './images/ranking-basic-1.png' },
+               { id: 'basic2', img: './images/ranking-basic-2.png' },
+               { id: 'basic3', img: './images/ranking-basic-3.png' },
+               { id: 'deepen1', img: './images/ranking-deepen-1.png' },
+               { id: 'deepen2', img: './images/ranking-deepen-2.png' },
+               { id: 'deepen3', img: './images/ranking-deepen-3.png' },
+               { id: 'prize', img: './images/ranking-trophy.png' },
             ];
             if (questionId === 'basic' && result === 100) badge = badgeData.find(item => item.id === 'basic3');
             else if (questionId === 'basic' && result >= 80) badge = badgeData.find(item => item.id === 'basic2');

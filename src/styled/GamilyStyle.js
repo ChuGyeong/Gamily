@@ -2254,7 +2254,7 @@ export const MainVisualContainer = styled.div`
       .img-area {
          width: 100%;
          height: 100%;
-         background-image: url('../images/visual_2.jpg');
+         background-image: url('./images/visual_2.jpg');
          background-position: 50% 50%;
          background-size: cover;
          background-repeat: no-repeat;

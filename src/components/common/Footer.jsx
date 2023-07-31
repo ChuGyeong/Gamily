@@ -13,7 +13,7 @@ const Footer = memo(() => {
          <InnerContainer>
             <h2>
                <Link to={'/'}>
-                  <img src="../../public/images/logo.png" />
+                  <img src="./public/images/logo.png" />
                </Link>
             </h2>
             <div className="box-container">

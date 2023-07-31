@@ -15,7 +15,7 @@ const Header = ({ onEnter, isHeaderOn, inHeader, handleScroll }) => {
             <div className="content-inner">
                <h1>
                   <Link to={'/'}>
-                     <img src="../../images/logo.png" />
+                     <img src="./images/logo.png" />
                   </Link>
                </h1>
                <Navbar />
