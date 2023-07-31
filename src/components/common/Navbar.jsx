@@ -25,7 +25,6 @@ const Navbar = memo(() => {
          ],
       },
       { name: 'Store', src: '/store', subMenu: [] },
-      { name: 'System', src: '/system', subMenu: [] },
    ]);
 
    const handleMouseEnter = idx => {

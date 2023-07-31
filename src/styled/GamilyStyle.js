@@ -3309,7 +3309,9 @@ export const SystemContainer = styled.div`
       padding: 20px;
       box-sizing: border-box;
       overflow-y: auto;
-
+      &.on {
+         overflow: hidden;
+      }
       .close {
          position: absolute;
          top: 20px;
@@ -3425,6 +3427,7 @@ export const MenuCrossContainer = styled.div`
          &:hover {
             .text-box {
                background: #000;
+               overflow: hidden;
                .title {
                   font-size: 100px;
                   color: #fff;
@@ -3477,4 +3480,17 @@ export const SearchBoxContainer = styled.table`
          border-bottom: none;
       }
    }
+`;
+
+export const DetailDataContainer = styled.div`
+   position: absolute;
+   width: 1500px;
+   height: 100%;
+   background: #efefef;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   border-radius: 30px;
+   padding: 20px;
+   box-sizing: border-box;
 `;
