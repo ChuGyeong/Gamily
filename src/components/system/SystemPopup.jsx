@@ -1,7 +1,8 @@
 import React, { memo, useEffect, useState } from 'react';
 import SearchBox from './SearchBox';
 
-const cateArr = ['조회', '추가', '삭제', '수정'];
+const cateArr = ['조회', '추가'];
+
 const SystemPopup = memo(({ setIsPopUp, data, sliceName }) => {
    const [cate, setCate] = useState('조회');
    const selCate = item => {
@@ -24,20 +25,45 @@ const SystemPopup = memo(({ setIsPopUp, data, sliceName }) => {
       };
    }, []);
 
+   const [isDetailData, setIsDetailData] = useState(false);
+
+   const popupElement = document.querySelector('.popup');
+   if (popupElement) {
+      popupElement.scrollTop = 0;
+   }
    return (
-      <div className="popup">
-         <button className="close" onClick={() => setIsPopUp(false)}>
-            <i className="xi-close"></i>
-         </button>
+      <div className={`popup ${isDetailData ? 'on' : ''}`}>
+         {!isDetailData ? (
+            <button className="close" onClick={() => setIsPopUp(false)}>
+               <i className="xi-close"></i>
+            </button>
+         ) : (
+            <button className="close" onClick={() => setIsDetailData(false)}>
+               <i className="xi-undo"></i>
+            </button>
+         )}
          <div className="data-area">
             <div className="btn-area">
-               {cateArr.map(item => (
-                  <button key={item} className={cate === item ? 'on' : ''} onClick={() => selCate(item)}>
-                     {item}
-                  </button>
-               ))}
+               {sliceName !== 'qna' ? (
+                  cateArr.map(item => (
+                     <button key={item} className={cate === item ? 'on' : ''} onClick={() => selCate(item)}>
+                        {item}
+                     </button>
+                  ))
+               ) : (
+                  <button className="on">조회</button>
+               )}
             </div>
-            <div className="content">{cate === '조회' && <SearchBox sliceName={sliceName} data={data} />}</div>
+            <div className="content">
+               {cate === '조회' && (
+                  <SearchBox
+                     sliceName={sliceName}
+                     data={data}
+                     isDetailData={isDetailData}
+                     setIsDetailData={setIsDetailData}
+                  />
+               )}
+            </div>
          </div>
       </div>
    );
