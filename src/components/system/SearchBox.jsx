@@ -30,6 +30,11 @@ const searchInterface = {
 };
 
 const SearchBox = ({ sliceName, data, isDetailData, setIsDetailData }) => {
+   const [detailItem, setDetailItem] = useState(null);
+   const openDetailData = item => {
+      setDetailItem(item);
+      setIsDetailData(true);
+   };
    return (
       <>
          <SearchBoxContainer>
@@ -56,7 +61,7 @@ const SearchBox = ({ sliceName, data, isDetailData, setIsDetailData }) => {
                         </td>
                      ))}
                      <td>
-                        <button onClick={() => setIsDetailData(true)}>조회</button>
+                        <button onClick={() => openDetailData(item)}>조회</button>
                      </td>
                      <td className="td-btns">
                         {sliceName === 'qna' ? <button>답글</button> : <button>수정</button>}
@@ -66,7 +71,7 @@ const SearchBox = ({ sliceName, data, isDetailData, setIsDetailData }) => {
                ))}
             </tbody>
          </SearchBoxContainer>
-         {isDetailData && <DetailData sliceName={sliceName} />}
+         {isDetailData && <DetailData sliceName={sliceName} detailItem={detailItem} />}
       </>
    );
 };

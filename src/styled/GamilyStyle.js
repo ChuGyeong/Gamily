@@ -3493,4 +3493,29 @@ export const DetailDataContainer = styled.div`
    border-radius: 30px;
    padding: 20px;
    box-sizing: border-box;
+   h3 {
+      font-size: 30px;
+      font-weight: 700;
+      margin-bottom: 30px;
+      /*    position: absolute;
+      right: 5%;
+      top: 5%; */
+   }
+   ul {
+      li {
+         display: flex;
+         margin-bottom: 15px;
+         strong {
+            display: block;
+            width: 200px;
+            font-size: 18px;
+            font-weight: 700;
+            margin-right: 10px;
+         }
+         em {
+            display: block;
+            width: calc(100% - 200px);
+         }
+      }
+   }
 `;
