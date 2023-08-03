@@ -4,14 +4,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login, signUp } from '../store/modules/authSlice';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import useDate from '../hooks/useDate';
 
 const Login = memo(() => {
    const { auth, authState } = useSelector(state => state.authR);
    const dispatch = useDispatch();
    const navigate = useNavigate();
+   const today = useDate();
    const [isChk, setIsChk] = useState(false);
    const [loginUser, setLoginUser] = useState({ email: '', pw: '' });
-   const [signUpUser, setSignUpUser] = useState({ email: '', pw: '', username: '' });
+   const [signUpUser, setSignUpUser] = useState({ email: '', pw: '', username: '', date: today });
    const handleLogin = e => {
       e.preventDefault();
       dispatch(login(loginUser));
@@ -24,6 +26,7 @@ const Login = memo(() => {
    const handleSignUp = e => {
       e.preventDefault();
       dispatch(signUp(signUpUser));
+      setSignUpUser({ email: '', pw: '', username: '', date: today });
    };
    const handleSignUpInput = e => {
       const { name, value } = e.target;

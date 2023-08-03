@@ -35,6 +35,10 @@ const Basket = memo(() => {
          }
       });
    };
+  //  전체삭제
+  // 선택상품주문
+  // 전체주문
+  
 
    return (
       <MyPageContent>

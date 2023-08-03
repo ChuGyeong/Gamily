@@ -1,4 +1,24 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+
+const initialState = {
+   auth: JSON.parse(localStorage.getItem('auth')) || null,
+   authData: [],
+   authState: {},
+};
+
+export const getAuthData = createAsyncThunk('auth/getAuthData', async () => {
+   const res = await axios.get(`http://localhost:3000/auth`);
+   return res.data;
+});
+export const login = createAsyncThunk('auth/login', async loginData => {
+   const res = await axios.post(`http://localhost:3000/auth/login`, { loginData });
+   return res.data;
+});
+export const editAuth = createAsyncThunk('auth/editAuth', async editData => {
+   const res = await axios.put(`http://localhost:3000/auth`, { editData });
+   return res.data;
+});
 
 const getToday = (daysBefore = 0) => {
    const date = new Date();
@@ -9,67 +29,10 @@ const getToday = (daysBefore = 0) => {
    return `${year}${month}${day}`;
 };
 
-const initialState = {
-   auth: JSON.parse(localStorage.getItem('auth')) || null,
-   authData: JSON.parse(localStorage.getItem('authData')) || [
-      {
-         email: '1@1.com',
-         pw: '1',
-         username: '임시아이디1',
-         cart: [],
-         favDogs: [],
-         badge: [],
-         isManager: false,
-         profileImg: './images/profile.jpg',
-         date: '20230729',
-      },
-      {
-         email: '2@2.com',
-         pw: '2',
-         username: '임시아이디2',
-         cart: [],
-         favDogs: [],
-         badge: [],
-         isManager: true,
-         profileImg: './images/profile.jpg',
-         date: '20230729',
-      },
-   ],
-   authState: {},
-};
-
 const authSlice = createSlice({
    name: 'auth',
    initialState,
    reducers: {
-      login: (state, action) => {
-         const { email, pw } = action.payload;
-         const findItem = state.authData.find(item => item.email === email && item.pw === pw);
-         if (findItem) {
-            state.authState = { title: 'success', text: 'login' };
-            state.auth = {
-               email: findItem.email,
-               username: findItem.username,
-               profileImg: findItem.profileImg,
-               isManager: findItem.isManager,
-            };
-            localStorage.setItem(
-               'auth',
-               JSON.stringify({
-                  email: findItem.email,
-                  username: findItem.username,
-                  profileImg: findItem.profileImg,
-                  isManager: findItem.isManager,
-               }),
-            );
-         } else {
-            if (state.authData.find(item => item.email === email))
-               state.authState = { title: 'fail', text: 'notMatchPw' };
-            else {
-               state.authState = { title: 'fail', text: 'notFoundEmail' };
-            }
-         }
-      },
       logout: (state, action) => {
          state.auth = null;
          localStorage.removeItem('auth');
@@ -268,9 +231,27 @@ const authSlice = createSlice({
          localStorage.setItem('authData', JSON.stringify(state.authData));
       },
    },
+
+   extraReducers: builder => {
+      builder
+         .addCase(getAuthData.fulfilled, (state, action) => {
+            state.authData = action.payload;
+         })
+         .addCase(login.fulfilled, (state, action) => {
+            const { auth, authState } = action.payload;
+            state.auth = auth;
+            state.authState = authState;
+            localStorage.setItem('auth', JSON.stringify(auth));
+         })
+         .addCase(editAuth.fulfilled, (state, action) => {
+            const { auth, authState } = action.payload;
+            state.auth = auth;
+            state.authState = authState;
+            localStorage.setItem('auth', JSON.stringify(auth));
+         });
+   },
 });
 export const {
-   login,
    logout,
    signUp,
    toggleFavDogs,
