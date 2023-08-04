@@ -36,6 +36,26 @@ export const addInCart = createAsyncThunk('auth/addInCart', async addCartData =>
    const res = await axios.put(`http://localhost:3000/auth/addInCart`, { addCartData });
    return res.data;
 });
+export const removeInCart = createAsyncThunk('auth/removeInCart', async removeCartData => {
+   const res = await axios.delete(`http://localhost:3000/auth/removeInCart`, { removeCartData });
+   return res.data;
+});
+export const quantityUp = createAsyncThunk('auth/cart/quantityUp', async quantityUpData => {
+   const res = await axios.put(`http://localhost:3000/auth/cart/quantityUp`, { quantityUpData });
+   return res.data;
+});
+export const quantityDown = createAsyncThunk('auth/cart/quantityDown', async quantityDownData => {
+   const res = await axios.put(`http://localhost:3000/auth/cart/quantityDown`, { quantityDownData });
+   return res.data;
+});
+export const onCheckbox = createAsyncThunk('auth/cart/onCheckbox', async onCheckboxData => {
+   const res = await axios.put(`http://localhost:3000/auth/cart/onCheckbox`, { onCheckboxData });
+   return res.data;
+});
+export const toggleCheckbox = createAsyncThunk('auth/cart/toggleCheckbox', async toggleCheckboxData => {
+   const res = await axios.put(`http://localhost:3000/auth/cart/toggleCheckbox`, { toggleCheckboxData });
+   return res.data;
+});
 
 const authSlice = createSlice({
    name: 'auth',
@@ -45,40 +65,6 @@ const authSlice = createSlice({
          state.auth = null;
          (state.myAuth = {}), localStorage.removeItem('auth');
          state.authState = { title: 'success', text: 'logout' };
-      },
-      /*  addInCart: (state, action) => {
-         state.authData = state.authData.map(item => {
-            if (item.email === state.auth.email) {
-               if (item.cart.find(product => product.id === action.payload.id)) {
-                  state.authState = { title: 'fail', text: 'addInCart' };
-                  return item;
-               } else {
-                  state.authState = { title: 'success', text: 'addInCart' };
-                  const newProduct = [...item.cart, { ...action.payload, quantity: 1, isChk: false }];
-                  return { ...item, cart: newProduct };
-               }
-            } else {
-               return item;
-            }
-         });
-         localStorage.setItem('authData', JSON.stringify(state.authData));
-      }, */
-      removeInCart: (state, action) => {
-         state.authData = state.authData.map(item => {
-            if (item.email === state.auth.email) {
-               if (item.cart.find(product => product.id === action.payload.id)) {
-                  const newProduct = item.cart.filter(product => product.id !== action.payload.id);
-                  state.authState = { title: 'success', text: 'removeInCart' };
-                  return { ...item, cart: newProduct };
-               } else {
-                  state.authState = { title: 'fail', text: 'removeInCart' };
-                  return item;
-               }
-            } else {
-               return item;
-            }
-         });
-         localStorage.setItem('authData', JSON.stringify(state.authData));
       },
       resetAuthState: state => {
          state.authState = {};
@@ -108,67 +94,6 @@ const authSlice = createSlice({
                } else return item;
             } else return item;
          });
-         localStorage.setItem('authData', JSON.stringify(state.authData));
-      },
-      quantityUp: (state, action) => {
-         state.authData = state.authData.map(user =>
-            user.email === state.auth.email
-               ? {
-                    ...user,
-                    cart: user.cart.map(cartItem =>
-                       cartItem.id === action.payload ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem,
-                    ),
-                 }
-               : user,
-         );
-         localStorage.setItem('authData', JSON.stringify(state.authData));
-      },
-      quantityDown: (state, action) => {
-         state.authData = state.authData.map(user =>
-            user.email === state.auth.email
-               ? {
-                    ...user,
-                    cart: user.cart.map(cartItem =>
-                       cartItem.id === action.payload ? { ...cartItem, quantity: cartItem.quantity - 1 } : cartItem,
-                    ),
-                 }
-               : user,
-         );
-         localStorage.setItem('authData', JSON.stringify(state.authData));
-      },
-      onCheckbox: (state, action) => {
-         state.authData = state.authData.map(user =>
-            user.email === state.auth.email
-               ? {
-                    ...user,
-                    cart: user.cart.map(cartItem =>
-                       cartItem.id === action.payload ? { ...cartItem, isChk: !cartItem.isChk } : cartItem,
-                    ),
-                 }
-               : user,
-         );
-         localStorage.setItem('authData', JSON.stringify(state.authData));
-      },
-      toggleCheckbox: (state, action) => {
-         const isAllChecked = state.authData.some(user => {
-            if (user.email === state.auth.email) {
-               return user.cart.every(cartItem => cartItem.isChk);
-            }
-            return false;
-         });
-
-         // 전체 선택 상태에 따라 토글
-         state.authData = state.authData.map(user =>
-            user.email === state.auth.email
-               ? {
-                    ...user,
-                    cart: user.cart.map(cartItem => ({
-                       ...cartItem,
-                       isChk: isAllChecked ? false : true,
-                    })),
-                 }
-               : user,
-         );
          localStorage.setItem('authData', JSON.stringify(state.authData));
       },
       checkProductDel: (state, action) => {
@@ -234,19 +159,29 @@ const authSlice = createSlice({
             const { myAuth, authState } = action.payload;
             state.myAuth = myAuth;
             state.authState = authState;
+         })
+         .addCase(removeInCart.fulfilled, (state, action) => {
+            const { myAuth } = action.payload;
+            state.myAuth = myAuth;
+            state.authState = authState;
+         })
+         .addCase(quantityUp.fulfilled, (state, action) => {
+            const { myAuth } = action.payload;
+            state.myAuth = myAuth;
+         })
+         .addCase(quantityDown.fulfilled, (state, action) => {
+            const { myAuth } = action.payload;
+            state.myAuth = myAuth;
+         })
+         .addCase(onCheckbox.fulfilled, (state, action) => {
+            const { myAuth } = action.payload;
+            state.myAuth = myAuth;
+         })
+         .addCase(toggleCheckbox.fulfilled, (state, action) => {
+            const { myAuth } = action.payload;
+            state.myAuth = myAuth;
          });
    },
 });
-export const {
-   logout,
-   removeInCart,
-   resetAuthState,
-   addBadge,
-   quantityUp,
-   quantityDown,
-   onCheckbox,
-   toggleCheckbox,
-   checkProductDel,
-   allProductDel,
-} = authSlice.actions;
+export const { logout, resetAuthState, addBadge, checkProductDel, allProductDel } = authSlice.actions;
 export default authSlice.reducer;

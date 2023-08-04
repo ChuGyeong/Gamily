@@ -123,5 +123,115 @@ const addInCart = (req, res) => {
    result.myAuth = authData.find(item => item.id === authID);
    res.send(result);
 };
+// 상품 장바구니에서 제거
+const removeInCart = (req, res) => {
+   let result = {};
+   const { cartItem, authID } = req.body.addCartData;
+   authData = authData.map(item => {
+      if (item.id === authID) {
+         if (item.cart.find(product => product.id === cartItem.id)) {
+            const newProduct = item.cart.filter(product => product.id !== cartItem.id);
+            state.authState = { title: 'success', text: 'removeInCart' };
+            return { ...item, cart: newProduct };
+         } else {
+            state.authState = { title: 'fail', text: 'removeInCart' };
+            return item;
+         }
+      } else {
+         return item;
+      }
+   });
+   result.myAuth = authData.find(item => item.id === authID);
+   res.send(result);
+};
+// 장바구니 상품 수량 증가
+const quantityUp = (req, res) => {
+   let result = {};
+   const { productID, authID } = req.body.quantityUpData;
+   authData = authData.map(user =>
+      user.id === authID
+         ? {
+              ...user,
+              cart: user.cart.map(cartItem =>
+                 cartItem.id === productID ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem,
+              ),
+           }
+         : user,
+   );
+   result.myAuth = authData.find(item => item.id === authID);
+   res.send(result);
+};
+// 장바구니 상품 수량 감소
+const quantityDown = (req, res) => {
+   let result = {};
+   const { productID, authID } = req.body.quantityDownData;
+   authData = authData.map(user =>
+      user.id === authID
+         ? {
+              ...user,
+              cart: user.cart.map(cartItem =>
+                 cartItem.id === productID ? { ...cartItem, quantity: cartItem.quantity - 1 } : cartItem,
+              ),
+           }
+         : user,
+   );
+   result.myAuth = authData.find(item => item.id === authID);
+   res.send(result);
+};
+// 장바구니 해당 상품 체크 토글
+const onCheckbox = (req, res) => {
+   let result = {};
+   const { productID, authID } = req.body.onCheckboxData;
+   authData = authData.map(user =>
+      user.id === authID
+         ? {
+              ...user,
+              cart: user.cart.map(cartItem =>
+                 cartItem.id === productID ? { ...cartItem, isChk: !cartItem.isChk } : cartItem,
+              ),
+           }
+         : user,
+   );
+   result.myAuth = authData.find(item => item.id === authID);
+   res.send(result);
+};
+// 장바구니 전체 체크 토글
+const toggleCheckbox = (req, res) => {
+   let result = {};
+   const { authID } = req.body.toggleCheckboxData;
 
-module.exports = { getAllAuthData, login, signUp, editAuth, getMyAuth, toggleFavDogs, addInCart };
+   const isAllChecked = authData.some(user => {
+      if (user.id === authID) {
+         return user.cart.every(cartItem => cartItem.isChk);
+      }
+      return false;
+   });
+   authData = authData.map(user =>
+      user.id === authID
+         ? {
+              ...user,
+              cart: user.cart.map(cartItem => ({
+                 ...cartItem,
+                 isChk: isAllChecked ? false : true,
+              })),
+           }
+         : user,
+   );
+   result.myAuth = authData.find(item => item.id === authID);
+   res.send(result);
+};
+
+module.exports = {
+   getAllAuthData,
+   login,
+   signUp,
+   editAuth,
+   getMyAuth,
+   toggleFavDogs,
+   addInCart,
+   removeInCart,
+   quantityUp,
+   quantityDown,
+   onCheckbox,
+   toggleCheckbox,
+};

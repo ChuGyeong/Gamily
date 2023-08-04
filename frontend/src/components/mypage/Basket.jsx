@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
 
 const Basket = memo(() => {
    const { auth, myAuth } = useSelector(state => state.authR);
-   const cart = myAuth.cart || [];
+   const cart = myAuth.cart;
 
    const dispatch = useDispatch();
    const navigate = useNavigate();
@@ -44,7 +44,7 @@ const Basket = memo(() => {
          <div className="btn-area">
             <ParticleButton
                onClick={() => {
-                  dispatch(toggleCheckbox());
+                  dispatch(toggleCheckbox({ authID: auth.id }));
                }}>
                {cart && cart.every(cartItem => cartItem.isChk) ? '전체해제' : '전체선택'}
             </ParticleButton>
@@ -54,7 +54,7 @@ const Basket = memo(() => {
             <ParticleButton onClick={() => dispatch(allProductDel())}>전체주문</ParticleButton>
          </div>
          <ul>
-            {cart.length > 0 ? (
+            {cart ? (
                cart.map(item => (
                   <li key={item.id}>
                      {/* <button onClick={() => dispatch(removeInCart(item))} className="close">
@@ -65,18 +65,25 @@ const Basket = memo(() => {
                         name=""
                         id=""
                         checked={item.isChk}
-                        onChange={() => dispatch(onCheckbox(item.id))}
+                        onChange={() => dispatch(onCheckbox({ productID: item.id, authID: auth.id }))}
                      />
                      <img src={item.image} alt={item.description} onClick={() => navigate(`/product/${item.id}`)} />
                      <p onClick={() => navigate(`/product/${item.id}`)} className="name">
                         {item.description}
                      </p>
                      <div className="quantity-up-down">
-                        <button onClick={() => item.quantity < item.count && dispatch(quantityUp(item.id))}>
+                        <button
+                           onClick={() =>
+                              item.quantity < item.count &&
+                              dispatch(quantityUp({ productID: item.id, authID: auth.id }))
+                           }>
                            <i className="xi-angle-up"></i>
                         </button>
                         <span>{item.quantity}</span>
-                        <button onClick={() => item.quantity > 1 && dispatch(quantityDown(item.id))}>
+                        <button
+                           onClick={() =>
+                              item.quantity > 1 && dispatch(quantityDown({ productID: item.id, authID: auth.id }))
+                           }>
                            <i className="xi-angle-down"></i>
                         </button>
                      </div>

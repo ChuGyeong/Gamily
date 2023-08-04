@@ -23,7 +23,7 @@ const ProductDetail = memo(() => {
    const addCart = () => {
       if (!auth) checkAuth();
       else {
-         dispatch(addInCart(product));
+         dispatch(addInCart({ authID: auth.id, cartItem: product }));
       }
    };
    useEffect(() => {
