@@ -3,8 +3,69 @@ import { SystemContainer, InnerContainer, ParticleButton } from '../styled/Gamil
 import { useDispatch, useSelector } from 'react-redux';
 import { getProduct } from '../store/modules/storeSlice';
 import SystemPopup from '../components/system/SystemPopup';
+import Barchart from '../components/system/Barchart';
+import Piechart from '../components/system/Piechart';
+import Calendarchart from '../components/system/Calendarchart';
 
 const System = memo(() => {
+   let tempData = [
+      { id: 'cola', value: 324 },
+      { id: 'cidar', value: 88 },
+      { id: 'fanta', value: 221 },
+   ];
+
+   let tempData1 = [
+      { id: '사료', value: 1 },
+      { id: '간식', value: 2 },
+      { id: '건강관리', value: 1 },
+      { id: '장난감', value: 1 },
+   ];
+
+   let tempData2 = [
+      { id: 'basic', value: 1 },
+      { id: 'deepen', value: 1 },
+      { id: 'trophy', value: 3 },
+   ];
+
+   let calendarData = [
+      {
+         value: 1,
+         day: '2022-12-30',
+      },
+      {
+         value: 2,
+         day: '2022-12-08',
+      },
+      {
+         value: 3,
+         day: '2022-06-21',
+      },
+      {
+         value: 5,
+         day: '2023-10-24',
+      },
+      {
+         value: 7,
+         day: '2022-09-22',
+      },
+      {
+         value: 10,
+         day: '2023-04-24',
+      },
+      {
+         value: 50,
+         day: '2022-08-01',
+      },
+      {
+         value: 3,
+         day: '2023-02-03',
+      },
+      {
+         value: 20,
+         day: '2022-12-13',
+      },
+   ];
+
    const { data: qnaData } = useSelector(state => state.qnaR);
    const { data: noticeData } = useSelector(state => state.noticeR);
    const { authData } = useSelector(state => state.authR);
@@ -55,23 +116,24 @@ const System = memo(() => {
                <ParticleButton onClick={() => onShow('adoptionApp')}>입양신청서조회</ParticleButton>
             </div>
             <div className="dashboard">
-               <div className="main-graph">대충 큰 그래프 영역</div>
+               <div className="main-graph">
+                  <Barchart />
+               </div>
                <div className="data-summary-view">
                   <div className="result-display">
                      <div className="result">
-                        <span>새로운문의글</span>
-                        <p>0</p>
+                        <Piechart tempData={tempData} />
                      </div>
                      <div className="result">
-                        <span>입양횟수</span>
-                        <p>0</p>
+                        <Piechart tempData={tempData1} />
                      </div>
                      <div className="result">
-                        <span>상품판매수량</span>
-                        <p>5</p>
+                        <Piechart tempData={tempData2} />
                      </div>
                   </div>
-                  <div className="stats">작은 영역</div>
+                  <div className="stats">
+                     <Calendarchart tempData={calendarData} />
+                  </div>
                </div>
             </div>
             {isPopUp && (

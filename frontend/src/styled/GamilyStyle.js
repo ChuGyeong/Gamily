@@ -3256,27 +3256,20 @@ export const SystemContainer = styled.div`
          height: 150px;
          margin-bottom: 33px;
          .result-display {
-            width: 50%;
+            width: 840px;
             display: flex;
             .result {
                display: flex;
                flex-direction: column;
                justify-content: center;
                align-items: center;
-               width: 200px;
+               width: (840px/3);
                border: 1px solid #efefef;
                margin-right: 33px;
-               span {
-               }
-               p {
-                  font-size: 50px;
-                  font-weight: 700;
-               }
             }
          }
          .stats {
-            width: 50%;
-            background: ${pointColor};
+            width: 40%;
          }
       }
    }
