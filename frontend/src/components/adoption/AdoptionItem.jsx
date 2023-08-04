@@ -27,12 +27,12 @@ const AdoptionItem = memo(({ item }) => {
    const navigate = useNavigate();
    const dispatch = useDispatch();
    const { auth, checkAuth } = useAuth();
-   const { authData } = useSelector(state => state.authR);
-   const { favDogs } = (auth && authData.find(item => item.email === auth.email)) || { favDogs: [] };
+   const { myAuth } = useSelector(state => state.authR);
+   const { favDogs } = myAuth;
    const handleLike = () => {
       if (!auth) checkAuth();
       else {
-         dispatch(toggleFavDogs(item));
+         dispatch(toggleFavDogs({ authID: auth.id, AdoptionItem: item }));
       }
    };
    return (
@@ -51,7 +51,7 @@ const AdoptionItem = memo(({ item }) => {
          <div className="btn-box">
             <ParticleButton onClick={() => navigate(`/adoptiondetail/${desertionNo}`)}>상세정보</ParticleButton>
             <ParticleButton onClick={() => handleLike(desertionNo)}>
-               {favDogs.find(item => item.desertionNo === desertionNo) ? (
+               {favDogs && favDogs.find(item => item.desertionNo === desertionNo) ? (
                   <AiFillHeart />
                ) : (
                   <AiOutlineHeart></AiOutlineHeart>

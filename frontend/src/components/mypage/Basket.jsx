@@ -13,10 +13,9 @@ import { ParticleButton, MyPageContent } from '../../styled/GamilyStyle';
 import Swal from 'sweetalert2';
 
 const Basket = memo(() => {
-   const { auth, authData } = useSelector(state => state.authR);
-   const { cart } = (auth && authData.find(item => item.email === auth.email)) || {
-      cart: [],
-   };
+   const { auth, myAuth } = useSelector(state => state.authR);
+   const cart = myAuth.cart || [];
+
    const dispatch = useDispatch();
    const navigate = useNavigate();
 
@@ -35,10 +34,9 @@ const Basket = memo(() => {
          }
       });
    };
-  //  전체삭제
-  // 선택상품주문
-  // 전체주문
-  
+   //  전체삭제
+   // 선택상품주문
+   // 전체주문
 
    return (
       <MyPageContent>
@@ -48,7 +46,7 @@ const Basket = memo(() => {
                onClick={() => {
                   dispatch(toggleCheckbox());
                }}>
-               {cart.every(cartItem => cartItem.isChk) ? '전체해제' : '전체선택'}
+               {cart && cart.every(cartItem => cartItem.isChk) ? '전체해제' : '전체선택'}
             </ParticleButton>
             <ParticleButton onClick={onCheckProductDel}>선택상품삭제</ParticleButton>
             <ParticleButton onClick={() => dispatch(allProductDel())}>전체삭제</ParticleButton>

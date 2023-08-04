@@ -13,7 +13,7 @@ const Login = memo(() => {
    const today = useDate();
    const [isChk, setIsChk] = useState(false);
    const [loginUser, setLoginUser] = useState({ email: '', pw: '' });
-   const [signUpUser, setSignUpUser] = useState({ email: '', pw: '', username: '', date: today });
+   const [signUpUser, setSignUpUser] = useState({ email: '', pw: '', username: '' });
    const handleLogin = e => {
       e.preventDefault();
       dispatch(login(loginUser));
@@ -25,8 +25,9 @@ const Login = memo(() => {
    };
    const handleSignUp = e => {
       e.preventDefault();
-      dispatch(signUp(signUpUser));
-      setSignUpUser({ email: '', pw: '', username: '', date: today });
+      const signUpUserDataWithDate = { ...signUpUser, date: today };
+      dispatch(signUp(signUpUserDataWithDate));
+      setSignUpUser({ email: '', pw: '', username: '' });
    };
    const handleSignUpInput = e => {
       const { name, value } = e.target;

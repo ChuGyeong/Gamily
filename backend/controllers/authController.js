@@ -2,8 +2,16 @@ let { authData } = require('../models/authModel');
 let no = authData.length + 1;
 
 // get 전체데이터
-const getAuthData = (req, res) => {
+const getAllAuthData = (req, res) => {
    res.send(authData);
+};
+// post 내 데이터 가져오기
+const getMyAuth = (req, res) => {
+   const { authID } = req.body;
+   const myAuthData = authData.find(item => item.id === authID);
+   if (myAuthData) {
+      res.send(myAuthData);
+   }
 };
 // post 로그인
 const login = (req, res) => {
@@ -13,12 +21,13 @@ const login = (req, res) => {
    if (myAuth) {
       const { id, email, username, isManager } = myAuth;
       result.authState = { title: 'success', text: 'login' };
+      result.myAuth = myAuth;
       result.auth = { id, email, username, isManager };
    } else {
       if (authData.find(item => item.email === email)) {
-         state.authState = { title: 'fail', text: 'notMatchPw' };
+         result.authState = { title: 'fail', text: 'notMatchPw' };
       } else {
-         state.authState = { title: 'fail', text: 'notFoundEmail' };
+         result.authState = { title: 'fail', text: 'notFoundEmail' };
       }
    }
    res.send(result);
@@ -27,8 +36,9 @@ const login = (req, res) => {
 const signUp = (req, res) => {
    let result = {};
    let id = null;
-   const { email, username, pw, date } = req.body;
-   if (state.authData.find(item => item.email === email)) {
+   const { email, username, pw, date } = req.body.signUpData;
+   console.log(req.body.signUpData, email);
+   if (authData.find(item => item.email === email)) {
       result.authState = { title: 'fail', text: 'duplicate' };
    } else {
       id = no++;
@@ -57,10 +67,61 @@ const signUp = (req, res) => {
    }
    res.send(result);
 };
-// edit my auth
+// put 내정보 수정
 const editAuth = (req, res) => {
+   let result = {};
    const { editData } = req.body;
-   console.log(editData);
+   authData = authData.map(item => (item.id === editData.id ? { ...item, ...editData } : item));
+   let myAuthData = authData.find(item => item.id === editData.id);
+   result.myAuth = myAuthData;
+   result.auth = {
+      id: myAuthData.id,
+      email: myAuthData.email,
+      username: myAuthData.username,
+      isManager: myAuthData.isManager,
+   };
+   result.myAuth = res.send(result);
+};
+// 토글 관심있는 강아지
+const toggleFavDogs = (req, res) => {
+   let result = {};
+   const { AdoptionItem, authID } = req.body.toggleFavDogsData;
+   const { desertionNo } = AdoptionItem;
+
+   authData = authData.map(item => {
+      if (item.id === authID) {
+         const newFavDogs = item.favDogs.find(dog => dog.desertionNo === desertionNo)
+            ? item.favDogs.filter(dog => dog.desertionNo !== desertionNo)
+            : [...item.favDogs, AdoptionItem];
+         return { ...item, favDogs: newFavDogs };
+      } else {
+         return item;
+      }
+   });
+
+   result.myAuth = authData.find(item => item.id === authID);
+   res.send(result);
+};
+// 상품 장바구니에 넣기
+const addInCart = (req, res) => {
+   let result = {};
+   const { cartItem, authID } = req.body.addCartData;
+   authData = authData.map(item => {
+      if (item.id === authID) {
+         if (item.cart.find(product => product.id === cartItem.id)) {
+            result.authState = { title: 'fail', text: 'addInCart' };
+            return item;
+         } else {
+            result.authState = { title: 'success', text: 'addInCart' };
+            const newProduct = [...item.cart, { ...cartItem, quantity: 1, isChk: false }];
+            return { ...item, cart: newProduct };
+         }
+      } else {
+         return item;
+      }
+   });
+   result.myAuth = authData.find(item => item.id === authID);
+   res.send(result);
 };
 
-module.exports = { getAuthData, login, signUp, editAuth };
+module.exports = { getAllAuthData, login, signUp, editAuth, getMyAuth, toggleFavDogs, addInCart };

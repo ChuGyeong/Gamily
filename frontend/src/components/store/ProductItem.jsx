@@ -15,7 +15,7 @@ const ProductItem = memo(({ item }) => {
    const addCart = () => {
       if (!auth) checkAuth();
       else {
-         dispatch(addInCart(item));
+         dispatch(addInCart({ authID: auth.id, cartItem: item }));
       }
    };
    useEffect(() => {

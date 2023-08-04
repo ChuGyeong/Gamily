@@ -5,13 +5,10 @@ import { toggleFavDogs } from '../../store/modules/authSlice';
 import { ParticleButton, MyPageContent } from '../../styled/GamilyStyle';
 
 const FavoritesDog = memo(() => {
-   const { auth, authData } = useSelector(state => state.authR);
-   const { favDogs } = (auth && authData.find(item => item.email === auth.email)) || {
-      favDogs: [],
-   };
+   const { auth, myAuth } = useSelector(state => state.authR);
+   const favDogs = (myAuth && myAuth.favDogs) || [];
    const dispatch = useDispatch();
    const navigate = useNavigate();
-
    return (
       <MyPageContent>
          <h3>관심있는 강아지</h3>
@@ -19,7 +16,9 @@ const FavoritesDog = memo(() => {
             {favDogs.length > 0 ? (
                favDogs.map(item => (
                   <li key={item.desertionNo}>
-                     <button onClick={() => dispatch(toggleFavDogs(item))} className="close">
+                     <button
+                        onClick={() => dispatch(toggleFavDogs({ authID: auth.id, AdoptionItem: item }))}
+                        className="close">
                         <i className="xi-close"></i>
                      </button>
                      <img

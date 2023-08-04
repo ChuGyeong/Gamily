@@ -2,32 +2,40 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
-   auth: JSON.parse(localStorage.getItem('auth')) || null,
-   authData: [],
+   auth: JSON.parse(localStorage.getItem('auth')) || null, // 내 계정(일부만, ls저장용)
+   myAuth: {},
+   authData: [], // 전체 계정
    authState: {},
 };
 
-export const getAuthData = createAsyncThunk('auth/getAuthData', async () => {
-   const res = await axios.get(`http://localhost:3000/auth`);
+export const getAllAuthData = createAsyncThunk('auth/getAuthData', async () => {
+   const res = await axios.get(`http://localhost:3000/auth/getAllAuth`);
+   return res.data;
+});
+export const getMyAuth = createAsyncThunk('auth/getMyAuth', async authID => {
+   const res = await axios.post(`http://localhost:3000/auth/getMyAuth`, { authID });
    return res.data;
 });
 export const login = createAsyncThunk('auth/login', async loginData => {
    const res = await axios.post(`http://localhost:3000/auth/login`, { loginData });
    return res.data;
 });
+export const signUp = createAsyncThunk('auth/signUp', async signUpData => {
+   const res = await axios.post(`http://localhost:3000/auth/signUp`, { signUpData });
+   return res.data;
+});
 export const editAuth = createAsyncThunk('auth/editAuth', async editData => {
    const res = await axios.put(`http://localhost:3000/auth`, { editData });
    return res.data;
 });
-
-const getToday = (daysBefore = 0) => {
-   const date = new Date();
-   date.setDate(date.getDate() - daysBefore);
-   const year = date.getFullYear();
-   const month = String(date.getMonth() + 1).padStart(2, '0');
-   const day = String(date.getDate()).padStart(2, '0');
-   return `${year}${month}${day}`;
-};
+export const toggleFavDogs = createAsyncThunk('auth/toggleFavDogs', async toggleFavDogsData => {
+   const res = await axios.put(`http://localhost:3000/auth/toggleFavDogs`, { toggleFavDogsData });
+   return res.data;
+});
+export const addInCart = createAsyncThunk('auth/addInCart', async addCartData => {
+   const res = await axios.put(`http://localhost:3000/auth/addInCart`, { addCartData });
+   return res.data;
+});
 
 const authSlice = createSlice({
    name: 'auth',
@@ -35,46 +43,10 @@ const authSlice = createSlice({
    reducers: {
       logout: (state, action) => {
          state.auth = null;
-         localStorage.removeItem('auth');
+         (state.myAuth = {}), localStorage.removeItem('auth');
          state.authState = { title: 'success', text: 'logout' };
       },
-      signUp: (state, action) => {
-         const { email, username } = action.payload;
-         if (state.authData.find(item => item.email === email)) {
-            state.authState = { title: 'fail', text: 'duplicate' };
-            return;
-         }
-         state.authData = [
-            ...state.authData,
-            {
-               ...action.payload,
-               cart: [],
-               favDogs: [],
-               badge: [],
-               isManager: false,
-               profileImg: './images/profile.jpg',
-               date: getToday(),
-            },
-         ];
-         localStorage.setItem('authData', JSON.stringify(state.authData));
-         state.auth = { email, username };
-         localStorage.setItem('auth', JSON.stringify({ email, username }));
-         state.authState = { title: 'success', text: 'signUp' };
-      },
-      toggleFavDogs: (state, action) => {
-         state.authData = state.authData.map(item => {
-            if (item.email === state.auth.email) {
-               const newFavDogs = item.favDogs.find(dog => dog.desertionNo === action.payload.desertionNo)
-                  ? item.favDogs.filter(dog => dog.desertionNo !== action.payload.desertionNo)
-                  : [...item.favDogs, action.payload];
-               return { ...item, favDogs: newFavDogs };
-            } else {
-               return item;
-            }
-         });
-         localStorage.setItem('authData', JSON.stringify(state.authData));
-      },
-      addInCart: (state, action) => {
+      /*  addInCart: (state, action) => {
          state.authData = state.authData.map(item => {
             if (item.email === state.auth.email) {
                if (item.cart.find(product => product.id === action.payload.id)) {
@@ -90,7 +62,7 @@ const authSlice = createSlice({
             }
          });
          localStorage.setItem('authData', JSON.stringify(state.authData));
-      },
+      }, */
       removeInCart: (state, action) => {
          state.authData = state.authData.map(item => {
             if (item.email === state.auth.email) {
@@ -110,15 +82,6 @@ const authSlice = createSlice({
       },
       resetAuthState: state => {
          state.authState = {};
-      },
-      editUser: (state, action) => {
-         const { email, pw, profileImg, username } = action.payload;
-         state.authData = state.authData.map(item =>
-            item.email === email ? { ...item, username, profileImg, pw } : item,
-         );
-         state.auth = { ...state.auth, username, profileImg };
-         localStorage.setItem('authData', JSON.stringify(state.authData));
-         localStorage.setItem('auth', JSON.stringify({ email, username, profileImg }));
       },
       addBadge: (state, action) => {
          const { id } = action.payload;
@@ -234,8 +197,11 @@ const authSlice = createSlice({
 
    extraReducers: builder => {
       builder
-         .addCase(getAuthData.fulfilled, (state, action) => {
+         .addCase(getAllAuthData.fulfilled, (state, action) => {
             state.authData = action.payload;
+         })
+         .addCase(getMyAuth.fulfilled, (state, action) => {
+            state.myAuth = action.payload;
          })
          .addCase(login.fulfilled, (state, action) => {
             const { auth, authState } = action.payload;
@@ -243,22 +209,38 @@ const authSlice = createSlice({
             state.authState = authState;
             localStorage.setItem('auth', JSON.stringify(auth));
          })
-         .addCase(editAuth.fulfilled, (state, action) => {
+         .addCase(signUp.fulfilled, (state, action) => {
             const { auth, authState } = action.payload;
-            state.auth = auth;
+            if ((authState.title = 'success')) {
+               state.auth = auth;
+            }
             state.authState = authState;
             localStorage.setItem('auth', JSON.stringify(auth));
+         })
+         .addCase(editAuth.fulfilled, (state, action) => {
+            const { auth, authState, myAuth } = action.payload;
+            if ((authState.title = 'success')) {
+               state.auth = auth;
+               state.myAuth = myAuth;
+               localStorage.setItem('auth', JSON.stringify(auth));
+            }
+            state.authState = authState;
+         })
+         .addCase(toggleFavDogs.fulfilled, (state, action) => {
+            const { myAuth } = action.payload;
+            state.myAuth = myAuth;
+         })
+         .addCase(addInCart.fulfilled, (state, action) => {
+            const { myAuth, authState } = action.payload;
+            state.myAuth = myAuth;
+            state.authState = authState;
          });
    },
 });
 export const {
    logout,
-   signUp,
-   toggleFavDogs,
-   addInCart,
    removeInCart,
    resetAuthState,
-   editUser,
    addBadge,
    quantityUp,
    quantityDown,

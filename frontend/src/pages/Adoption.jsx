@@ -6,10 +6,12 @@ import AdoptionList from '../components/adoption/AdoptionList';
 import AdoptionForm from '../components/adoption/AdoptionForm';
 import Loading from '../components/common/Loading';
 import AdoptionPaging from '../components/adoption/AdoptionPaging';
+import { getMyAuth } from '../store/modules/authSlice';
 
 const itemsPerPage = 12;
 
 const Adoption = memo(() => {
+   const { auth } = useSelector(state => state.authR);
    const { data, state } = useSelector(state => state.adoptionsR);
    const [filter, setFilter] = useState({
       kindCd: null,
@@ -29,6 +31,9 @@ const Adoption = memo(() => {
    useEffect(() => {
       dispatch(getVarietyData());
       dispatch(getOrgData());
+      if (auth) {
+         dispatch(getMyAuth(auth.id));
+      }
    }, []);
    return (
       <AdoptionContainer>

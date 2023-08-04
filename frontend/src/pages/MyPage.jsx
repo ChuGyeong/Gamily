@@ -1,8 +1,8 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { InnerContainer, MyPageContainer, ParticleButton } from '../styled/GamilyStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { logout } from '../store/modules/authSlice';
+import { getMyAuth, logout } from '../store/modules/authSlice';
 import Swal from 'sweetalert2';
 import MyBadge from '../components/mypage/MyBadge';
 import Basket from '../components/mypage/Basket';
@@ -12,7 +12,7 @@ import ProfileEdit from '../components/mypage/ProfileEdit';
 import MyAdoptionApp from '../components/mypage/MyAdoptionApp';
 
 const MyPage = memo(() => {
-   const { auth, authData } = useSelector(state => state.authR);
+   const { auth, myAuth } = useSelector(state => state.authR);
    const dispatch = useDispatch();
    const navigate = useNavigate();
    const handleLogout = () => {
@@ -22,12 +22,16 @@ const MyPage = memo(() => {
    };
    const [isEdit, setIsEdit] = useState(false);
 
+   useEffect(() => {
+      dispatch(getMyAuth(auth.id));
+   }, []);
+
    return (
       <MyPageContainer>
          <InnerContainer>
             {isEdit && <ProfileEdit setIsEdit={setIsEdit} />}
             <div className="profile">
-               <img src={auth.profileImg ? auth.profileImg : './images/profile.jpg'} alt="" />
+               <img src={myAuth.profileImg ? myAuth.profileImg : './images/profile.jpg'} alt="" />
                <p>
                   <span>{auth.username}</span>
                </p>

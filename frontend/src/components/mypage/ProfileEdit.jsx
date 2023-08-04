@@ -15,7 +15,7 @@ const profileImg = [
 const ProfileEdit = memo(({ setIsEdit }) => {
    const { auth } = useSelector(state => state.authR);
    const [previewImg, setPreviewImg] = useState(auth.profileImg ? auth.profileImg : './images/profile.jpg');
-   const [txt, setTxt] = useState({ username: auth.username, pw: '', pwCheck: '' });
+   const [txt, setTxt] = useState({ id: auth.id, username: auth.username, pw: '', pwCheck: '' });
    const dispatch = useDispatch();
 
    const changeInput = e => {

@@ -7,11 +7,8 @@ import MenuSlide from '../components/home/MenuSlide';
 import RollingBanner from '../components/home/RollingBanner';
 import MenuCross from '../components/home/MenuCross';
 import { useDispatch } from 'react-redux';
-import { getAuthData } from '../store/modules/authSlice';
 
 const Home = memo(() => {
-   const dispatch = useDispatch();
-   useEffect(() => {}, []);
    return (
       <>
          <MainVisual />
