@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import { SystemContainer, InnerContainer, ParticleButton } from '../styled/GamilyStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProduct } from '../store/modules/storeSlice';
@@ -80,9 +80,17 @@ const System = memo(() => {
       dispatch(getProduct());
    }, []);
 
-   const onShow = sliceName => {
-      setSliceName(sliceName);
-      switch (sliceName) {
+   const [currentSliceName, setCurrentSliceName] = useState(null);
+
+   const onShow = newSliceName => {
+      setSliceName(newSliceName);
+      if (newSliceName === currentSliceName) {
+         setIsPopUp(!isPopUp);
+      } else {
+         setIsPopUp(true);
+         setCurrentSliceName(newSliceName);
+      }
+      switch (newSliceName) {
          case 'notice':
             setData(noticeData);
             break;
@@ -101,7 +109,6 @@ const System = memo(() => {
          default:
             setData([]);
       }
-      setIsPopUp(true);
    };
 
    return (

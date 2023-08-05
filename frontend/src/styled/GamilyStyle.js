@@ -3249,6 +3249,7 @@ export const SystemContainer = styled.div`
          margin-bottom: 33px;
          margin-top: 33px;
          line-height: 400px;
+         overflow: hidden;
       }
       .data-summary-view {
          display: flex;
@@ -3282,6 +3283,20 @@ export const SystemContainer = styled.div`
       }
    }
    .popup {
+      margin-top: 30px;
+      .btn-area {
+         button {
+            width: 150px;
+            height: 50px;
+            border: none;
+            cursor: pointer;
+            border-radius: 30px 30px 0 0;
+            margin-right: 5px;
+         }
+      }
+   }
+
+   /* .popup {
       position: relative;
       width: 1400px;
       margin: auto;
@@ -3319,12 +3334,11 @@ export const SystemContainer = styled.div`
          }
          .content {
             min-height: 720px;
-            /* width: 100%; */
             background: #fff;
             border-radius: 0 0 20px 20px;
          }
       }
-   }
+   } */
 `;
 
 // RollingBanner
@@ -3463,6 +3477,7 @@ export const SearchBoxContainer = styled.table`
 
 export const DetailDataContainer = styled.div`
    position: absolute;
+
    width: 1500px;
    height: 100%;
    background: #efefef;

@@ -17,15 +17,6 @@ const SystemPopup = memo(({ setIsPopUp, data, sliceName }) => {
 
    return (
       <div className={`popup ${isDetailData ? 'on' : ''}`}>
-         {!isDetailData ? (
-            <button className="close" onClick={() => setIsPopUp(false)}>
-               <i className="xi-close"></i>
-            </button>
-         ) : (
-            <button className="close" onClick={() => setIsDetailData(false)}>
-               <i className="xi-undo"></i>
-            </button>
-         )}
          <div className="data-area">
             <div className="btn-area">
                {sliceName !== 'qna' ? (
