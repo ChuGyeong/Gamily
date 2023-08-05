@@ -12,13 +12,22 @@ const initialState = {
    ],
 };
 
+let no = JSON.parse(localStorage.getItem('qnaData'))
+   ? JSON.parse(localStorage.getItem('qnaData')).reduce((max, current) => {
+        return current.id > max ? current.id : max;
+     }, 0) + 1
+   : initialState.data.length + 1;
+
 export const noticeSlice = createSlice({
-   name: 'xxx',
+   name: 'notice',
    initialState,
    reducers: {
-      xxx(state, action) {},
+      addNotice(state, action) {
+         state.data = [{ id: no++, hits: 0, ...action.payload }, ...state.data];
+         localStorage.setItem('noticeData', JSON.stringify(state.data));
+      },
    },
 });
 
-export const {} = noticeSlice.actions;
+export const { addNotice } = noticeSlice.actions;
 export default noticeSlice.reducer;

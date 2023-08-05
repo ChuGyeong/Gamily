@@ -12,25 +12,9 @@ const SystemPopup = memo(({ setIsPopUp, data, sliceName }) => {
       setCate('조회');
    };
    console.log(data, sliceName);
-   useEffect(() => {
-      document.body.style.cssText = `
-      position: fixed; 
-      top: -${window.scrollY}px;
-      overflow-y: scroll;
-      width: 100%;`;
-      return () => {
-         const scrollY = document.body.style.top;
-         document.body.style.cssText = '';
-         window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
-      };
-   }, []);
 
    const [isDetailData, setIsDetailData] = useState(false);
 
-   const popupElement = document.querySelector('.popup');
-   if (popupElement) {
-      popupElement.scrollTop = 0;
-   }
    return (
       <div className={`popup ${isDetailData ? 'on' : ''}`}>
          {!isDetailData ? (

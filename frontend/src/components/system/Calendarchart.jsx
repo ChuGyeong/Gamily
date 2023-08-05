@@ -3,8 +3,8 @@ import { ResponsiveCalendar } from '@nivo/calendar';
 const Calendarchart = ({ tempData }) => (
    <ResponsiveCalendar
       data={tempData}
-      from="2022-03-01"
-      to="2023-07-12"
+      from="2022-01-01"
+      to="2023-12-31"
       emptyColor="#f6f6f6"
       colors={['#999', '#666', '#333', '#000']}
       minValue={18}

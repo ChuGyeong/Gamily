@@ -22,8 +22,8 @@ const System = memo(() => {
    ];
 
    let tempData2 = [
-      { id: 'basic', value: 1 },
-      { id: 'deepen', value: 1 },
+      { id: 'basic', value: 13 },
+      { id: 'deepen', value: 20 },
       { id: 'trophy', value: 3 },
    ];
 
@@ -108,17 +108,8 @@ const System = memo(() => {
       <SystemContainer>
          <InnerContainer>
             <h2>Gamily Dashboard</h2>
-            <div className="page-controller">
-               <ParticleButton onClick={() => onShow('notice')}>공지사항</ParticleButton>
-               <ParticleButton onClick={() => onShow('qna')}>QnA</ParticleButton>
-               <ParticleButton onClick={() => onShow('auth')}>유저정보</ParticleButton>
-               <ParticleButton onClick={() => onShow('store')}>Store</ParticleButton>
-               <ParticleButton onClick={() => onShow('adoptionApp')}>입양신청서조회</ParticleButton>
-            </div>
             <div className="dashboard">
-               <div className="main-graph">
-                  <Barchart />
-               </div>
+               {' '}
                <div className="data-summary-view">
                   <div className="result-display">
                      <div className="result">
@@ -135,12 +126,18 @@ const System = memo(() => {
                      <Calendarchart tempData={calendarData} />
                   </div>
                </div>
-            </div>
-            {isPopUp && (
-               <div className="bg">
-                  <SystemPopup setIsPopUp={setIsPopUp} data={data} sliceName={sliceName} />
+               <div className="main-graph">
+                  <Barchart />
                </div>
-            )}
+            </div>
+            <div className="page-controller">
+               <ParticleButton onClick={() => onShow('notice')}>공지사항</ParticleButton>
+               <ParticleButton onClick={() => onShow('qna')}>QnA</ParticleButton>
+               <ParticleButton onClick={() => onShow('auth')}>유저정보</ParticleButton>
+               <ParticleButton onClick={() => onShow('store')}>Store</ParticleButton>
+               <ParticleButton onClick={() => onShow('adoptionApp')}>입양신청서조회</ParticleButton>
+            </div>
+            {isPopUp && <SystemPopup setIsPopUp={setIsPopUp} data={data} sliceName={sliceName} />}
          </InnerContainer>
       </SystemContainer>
    );
