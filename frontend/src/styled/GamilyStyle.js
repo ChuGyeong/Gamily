@@ -3249,6 +3249,7 @@ export const SystemContainer = styled.div`
          margin-bottom: 33px;
          margin-top: 33px;
          line-height: 400px;
+         overflow: hidden;
       }
       .data-summary-view {
          display: flex;
@@ -3281,30 +3282,29 @@ export const SystemContainer = styled.div`
          width: 19%;
       }
    }
-   .bg {
-      position: fixed;
-      background: rgba(0, 0, 0, 0.5);
-      width: 100vw;
-      height: 100vh;
-      left: 0;
-      top: 0;
-      z-index: 500;
-   }
    .popup {
-      position: absolute;
-      width: 1500px;
-      height: 800px;
+      margin-top: 30px;
+      .btn-area {
+         button {
+            width: 150px;
+            height: 50px;
+            border: none;
+            cursor: pointer;
+            border-radius: 30px 30px 0 0;
+            margin-right: 5px;
+         }
+      }
+   }
+
+   /* .popup {
+      position: relative;
+      width: 1400px;
+      margin: auto;
       background: #efefef;
-      top: 50%;
-      left: 50%;
       transform: translate(-50%, -50%);
       border-radius: 30px;
       padding: 20px;
       box-sizing: border-box;
-      overflow-y: auto;
-      &.on {
-         overflow: hidden;
-      }
       .close {
          position: absolute;
          top: 20px;
@@ -3334,13 +3334,13 @@ export const SystemContainer = styled.div`
          }
          .content {
             min-height: 720px;
-            width: 100%;
             background: #fff;
             border-radius: 0 0 20px 20px;
          }
       }
-   }
+   } */
 `;
+
 // RollingBanner
 export const RollingBannerContainer = styled.div`
    .mySwiper {
@@ -3477,6 +3477,7 @@ export const SearchBoxContainer = styled.table`
 
 export const DetailDataContainer = styled.div`
    position: absolute;
+
    width: 1500px;
    height: 100%;
    background: #efefef;

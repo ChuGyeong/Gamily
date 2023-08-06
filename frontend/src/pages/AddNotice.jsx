@@ -3,10 +3,10 @@ import { AddQnAContainer, InnerContainer, ParticleButton } from '../styled/Gamil
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import useDate from '../hooks/useDate';
-import { addQuestion } from '../store/modules/qnaSlice';
 import Swal from 'sweetalert2';
+import { addNotice } from '../store/modules/noticeSlice';
 
-const AddQnA = memo(() => {
+const AddNotice = memo(() => {
    const navigate = useNavigate();
    const dispatch = useDispatch();
    const { auth } = useSelector(state => state.authR);
@@ -32,16 +32,16 @@ const AddQnA = memo(() => {
       Swal.fire({
          icon: 'success',
          title: '제출 성공',
-         text: 'QnA 작성 완료',
+         text: 'notice 작성 완료',
       });
-      dispatch(addQuestion({ ...txt, date: formattedDate, ...auth }));
-      navigate('/qna');
+      dispatch(addNotice({ ...txt, date: formattedDate, ...auth }));
+      navigate('/notice');
    };
 
    return (
       <AddQnAContainer>
          <InnerContainer>
-            <h2>문의글 작성하기</h2>
+            <h2>공지글 작성하기</h2>
             <form onSubmit={onSubmit}>
                <label>제목</label>
                <input
@@ -59,11 +59,11 @@ const AddQnA = memo(() => {
                   placeholder="내용을 작성해주세요"
                   required
                   onChange={chnageInput}
-                  value={txt.question}
-                  name="question"></textarea>
+                  value={txt.content}
+                  name="content"></textarea>
                <div className="btn-area">
                   <ParticleButton type="submit">확인</ParticleButton>
-                  <ParticleButton onClick={() => navigate('/qna')}>취소</ParticleButton>
+                  <ParticleButton onClick={() => navigate('/notice')}>취소</ParticleButton>
                </div>
             </form>
          </InnerContainer>
@@ -71,4 +71,4 @@ const AddQnA = memo(() => {
    );
 });
 
-export default AddQnA;
+export default AddNotice;

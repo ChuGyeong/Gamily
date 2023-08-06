@@ -30,7 +30,7 @@ const Notice = memo(() => {
                   {data.map(item => (
                      <tr key={item.id}>
                         <td>{item.id}</td>
-                        <td onClick={() => navigate(`/noticeDetail/1`)}>{item.title}</td>
+                        <td onClick={() => navigate(`/noticeDetail/${item.id}`)}>{item.title}</td>
                         <td>{item.date}</td>
                         <td>{item.hits}</td>
                      </tr>
@@ -39,7 +39,7 @@ const Notice = memo(() => {
             </table>
             {auth?.isManager && (
                <div className="btn-area">
-                  <button>작성하기</button>
+                  <button onClick={() => navigate('/noticeAdd')}>작성하기</button>
                </div>
             )}
          </InnerContainer>
