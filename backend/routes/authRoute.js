@@ -6,12 +6,7 @@ const {
    editAuth,
    getMyAuth,
    toggleFavDogs,
-   addInCart,
-   removeInCart,
-   quantityUp,
-   quantityDown,
-   onCheckbox,
-   toggleCheckbox,
+   addBadge,
 } = require('../controllers/authController');
 const authRouter = express.Router();
 
@@ -21,11 +16,6 @@ authRouter.put('/', editAuth);
 authRouter.post('/login', login);
 authRouter.post('/signUp', signUp);
 authRouter.put('/toggleFavDogs', toggleFavDogs);
-authRouter.put('/addInCart', addInCart);
-authRouter.delete('/removeInCart', removeInCart);
-authRouter.put('/cart/quantityUp', quantityUp);
-authRouter.put('/cart/quantityDown', quantityDown);
-authRouter.put('/cart/onCheckbox', onCheckbox);
-authRouter.put('/cart/toggleCheckbox', toggleCheckbox);
+authRouter.post('/quiz', addBadge);
 
 module.exports = authRouter;

@@ -10,9 +10,12 @@ import FavoritesDog from '../components/mypage/FavoritesDog';
 import MyQnA from '../components/mypage/MyQnA';
 import ProfileEdit from '../components/mypage/ProfileEdit';
 import MyAdoptionApp from '../components/mypage/MyAdoptionApp';
+import { getMyCart } from '../store/modules/cartSlice';
+import { getStoreData } from '../store/modules/storeSlice';
 
 const MyPage = memo(() => {
    const { auth, myAuth } = useSelector(state => state.authR);
+   const { myCart } = useSelector(state => state.cartR);
    const dispatch = useDispatch();
    const navigate = useNavigate();
    const handleLogout = () => {
@@ -23,7 +26,11 @@ const MyPage = memo(() => {
    const [isEdit, setIsEdit] = useState(false);
 
    useEffect(() => {
-      dispatch(getMyAuth(auth.id));
+      dispatch(getMyAuth({ authEmail: auth.email }));
+      dispatch(getMyCart({ authEmail: auth.email }));
+      if (myCart) {
+         dispatch(getStoreData());
+      }
    }, []);
 
    return (
@@ -31,7 +38,7 @@ const MyPage = memo(() => {
          <InnerContainer>
             {isEdit && <ProfileEdit setIsEdit={setIsEdit} />}
             <div className="profile">
-               <img src={myAuth.profileImg ? myAuth.profileImg : './images/profile.jpg'} alt="" />
+               <img src={myAuth?.profileImg ? myAuth.profileImg : './images/profile.jpg'} alt="" />
                <p>
                   <span>{auth.username}</span>
                </p>

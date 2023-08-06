@@ -2,24 +2,18 @@ import React, { memo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ParticleButton } from '../../styled/GamilyStyle';
 import { useDispatch, useSelector } from 'react-redux';
-import { addInCart, resetAuthState } from '../../store/modules/authSlice';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
+import { addInCart, resetCartState } from '../../store/modules/cartSlice';
 
 const ProductItem = memo(({ item }) => {
    const { id, image, title, price, count } = item;
-   const { authState } = useSelector(state => state.authR);
+   const { cartState } = useSelector(state => state.cartR);
    const dispatch = useDispatch();
    const navigate = useNavigate();
    const { auth, checkAuth } = useAuth();
-   const addCart = () => {
-      if (!auth) checkAuth();
-      else {
-         dispatch(addInCart({ authID: auth.id, cartItem: item }));
-      }
-   };
    useEffect(() => {
-      if ((authState.title === 'success') & (authState.text === 'addInCart')) {
+      if ((cartState.title === 'success') & (cartState.text === 'addInCart')) {
          Swal.fire({
             title: '해당 상품을 장바구니에 담았습니다',
             text: '장바구니로 가시겠습니까?',
@@ -28,10 +22,10 @@ const ProductItem = memo(({ item }) => {
             confirmButtonText: '예',
             cancelButtonText: '아니오',
          }).then(result => {
-            dispatch(resetAuthState());
+            dispatch(resetCartState());
             if (result.isConfirmed) navigate('/mypage');
          });
-      } else if ((authState.title === 'fail') & (authState.text === 'addInCart')) {
+      } else if ((cartState.title === 'fail') & (cartState.text === 'addInCart')) {
          Swal.fire({
             title: '해당 상품이 장바구니에 이미 있습니다',
             text: '장바구니로 가시겠습니까?',
@@ -40,11 +34,11 @@ const ProductItem = memo(({ item }) => {
             confirmButtonText: '예',
             cancelButtonText: '아니오',
          }).then(result => {
-            dispatch(resetAuthState());
+            dispatch(resetCartState());
             if (result.isConfirmed) navigate('/mypage');
          });
       }
-   }, [authState]);
+   }, [cartState]);
    return (
       <li>
          <div className="img-area">
@@ -58,7 +52,9 @@ const ProductItem = memo(({ item }) => {
          </div>
          <div className="btn-area">
             <ParticleButton onClick={() => navigate(`/product/${id}`)}>상세정보</ParticleButton>
-            <ParticleButton onClick={addCart}>상품담기</ParticleButton>
+            <ParticleButton onClick={() => dispatch(addInCart({ authEmail: auth.email, productID: item.id }))}>
+               상품담기
+            </ParticleButton>
          </div>
       </li>
    );

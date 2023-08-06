@@ -15,7 +15,7 @@ const profileImg = [
 const ProfileEdit = memo(({ setIsEdit }) => {
    const { auth } = useSelector(state => state.authR);
    const [previewImg, setPreviewImg] = useState(auth.profileImg ? auth.profileImg : './images/profile.jpg');
-   const [txt, setTxt] = useState({ id: auth.id, username: auth.username, pw: '', pwCheck: '' });
+   const [txt, setTxt] = useState({ username: auth.username, pw: '', pwCheck: '' });
    const dispatch = useDispatch();
 
    const changeInput = e => {
@@ -26,10 +26,11 @@ const ProfileEdit = memo(({ setIsEdit }) => {
    const onSubmit = e => {
       e.preventDefault();
       if (txt.pw !== txt.pwCheck) {
-         alert('비밀번호가 일치하지 않습니다.');
+         Swal.fire('제출 실패', '비밀번호가 일치하지 않습니다.', 'error');
          return;
       }
-      dispatch(editAuth({ ...txt, profileImg: previewImg, email: auth.email }));
+      const propsData = { ...txt, profileImg: previewImg, email: auth.email };
+      dispatch(editAuth(propsData));
       setIsEdit(false);
       Swal.fire('제출 완료', '회원정보를 수정했습니다', 'success');
    };

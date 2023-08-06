@@ -5,37 +5,31 @@ import { ProductContainer, InnerContainer, ParticleButton } from '../styled/Gami
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { BsStarFill, BsStarHalf } from 'react-icons/bs';
 import { Pagination } from 'swiper/modules';
-import { getProduct } from '../store/modules/storeSlice';
+import { getStoreItem } from '../store/modules/storeSlice';
 import Loading from '../components/common/Loading';
 import Swal from 'sweetalert2';
-import { addInCart, resetAuthState } from '../store/modules/authSlice';
+import { addInCart, resetCartState } from '../store/modules/cartSlice';
 import useAuth from '../hooks/useAuth';
 
 const ProductDetail = memo(() => {
-   const { data, status } = useSelector(state => state.storeR);
-   const { authState } = useSelector(state => state.authR);
+   const { storeItem, status } = useSelector(state => state.storeR);
+   const { cartState } = useSelector(state => state.cartR);
    const dispatch = useDispatch();
    const { productId } = useParams();
-   const [product, setProduct] = useState({});
-   const { title, price, description, detailImg, id, image, rate, subImg, summary, category, count } = product;
+   const { title, price, description, detailImg, id, image, rate, subImg, summary, category, count } = storeItem;
    const navigate = useNavigate();
    const { auth, checkAuth } = useAuth();
    const addCart = () => {
       if (!auth) checkAuth();
       else {
-         dispatch(addInCart({ authID: auth.id, cartItem: product }));
+         dispatch(addInCart({ authEmail: auth.email, productID: storeItem.id }));
       }
    };
    useEffect(() => {
-      dispatch(getProduct());
+      dispatch(getStoreItem(productId));
    }, []);
    useEffect(() => {
-      if (status === 'fulfilled') {
-         setProduct(data.find(item => item.id === Number(productId)));
-      }
-   }, [data, productId, status]);
-   useEffect(() => {
-      if ((authState.title === 'success') & (authState.text === 'addInCart')) {
+      if ((cartState.title === 'success') & (cartState.text === 'addInCart')) {
          Swal.fire({
             title: '해당 상품을 장바구니에 담았습니다',
             text: '장바구니로 가시겠습니까?',
@@ -44,10 +38,10 @@ const ProductDetail = memo(() => {
             confirmButtonText: '예',
             cancelButtonText: '아니오',
          }).then(result => {
-            dispatch(resetAuthState());
+            dispatch(resetCartState());
             if (result.isConfirmed) navigate('/mypage');
          });
-      } else if ((authState.title === 'fail') & (authState.text === 'addInCart')) {
+      } else if ((cartState.title === 'fail') & (cartState.text === 'addInCart')) {
          Swal.fire({
             title: '해당 상품이 장바구니에 이미 있습니다',
             text: '장바구니로 가시겠습니까?',
@@ -56,11 +50,11 @@ const ProductDetail = memo(() => {
             confirmButtonText: '예',
             cancelButtonText: '아니오',
          }).then(result => {
-            dispatch(resetAuthState());
+            dispatch(resetCartState());
             if (result.isConfirmed) navigate('/mypage');
          });
       }
-   }, [authState]);
+   }, [cartState]);
    const starRating = (rating, color = '#BB1628') => {
       return (
          <>
@@ -81,7 +75,7 @@ const ProductDetail = memo(() => {
 
    return (
       <ProductContainer>
-         {status === 'fulfilled' && Object.keys(product).length > 0 ? (
+         {status === 'fulfilled' && Object.keys(storeItem).length > 0 ? (
             <InnerContainer>
                <Swiper
                   pagination={{

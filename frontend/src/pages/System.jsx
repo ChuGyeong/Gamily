@@ -1,11 +1,11 @@
 import React, { memo, useEffect, useState } from 'react';
 import { SystemContainer, InnerContainer, ParticleButton } from '../styled/GamilyStyle';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProduct } from '../store/modules/storeSlice';
 import SystemPopup from '../components/system/SystemPopup';
 import Barchart from '../components/system/Barchart';
 import Piechart from '../components/system/Piechart';
 import Calendarchart from '../components/system/Calendarchart';
+import { getStoreData } from '../store/modules/storeSlice';
 
 const System = memo(() => {
    let tempData = [
@@ -69,7 +69,7 @@ const System = memo(() => {
    const { data: qnaData } = useSelector(state => state.qnaR);
    const { data: noticeData } = useSelector(state => state.noticeR);
    const { authData } = useSelector(state => state.authR);
-   const { data: storeData } = useSelector(state => state.storeR);
+   const { storeData } = useSelector(state => state.storeR);
    const { data: adoptionAppData } = useSelector(state => state.adoptionAppR);
    const dispatch = useDispatch();
    const [data, setData] = useState([]);
@@ -77,7 +77,7 @@ const System = memo(() => {
    const [sliceName, setSliceName] = useState(null);
 
    useEffect(() => {
-      dispatch(getProduct());
+      dispatch(getStoreData());
    }, []);
 
    const onShow = sliceName => {

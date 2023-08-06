@@ -1,30 +1,30 @@
-let { authData } = require('../models/authModel');
-let no = authData.length + 1;
+let { authTable } = require('../models/authModel');
+let no = authTable.length + 1;
 
-// get 전체데이터
+// 전체데이터 가져오기
 const getAllAuthData = (req, res) => {
-   res.send(authData);
+   res.send(authTable);
 };
-// post 내 데이터 가져오기
+// 내 데이터 가져오기
 const getMyAuth = (req, res) => {
-   const { authID } = req.body;
-   const myAuthData = authData.find(item => item.id === authID);
+   const { authEmail } = req.body.propsData;
+   const myAuthData = authTable.find(item => item.email === authEmail);
    if (myAuthData) {
       res.send(myAuthData);
    }
 };
-// post 로그인
+// 로그인
 const login = (req, res) => {
    let result = {};
-   const { email, pw } = req.body.loginData;
-   const myAuth = authData.find(item => item.email === email && item.pw === pw);
+   const { email, pw } = req.body.propsData;
+   const myAuth = authTable.find(item => item.email === email && item.pw === pw);
    if (myAuth) {
-      const { id, email, username, isManager } = myAuth;
+      const { email, username } = myAuth;
       result.authState = { title: 'success', text: 'login' };
       result.myAuth = myAuth;
-      result.auth = { id, email, username, isManager };
+      result.auth = { email, username };
    } else {
-      if (authData.find(item => item.email === email)) {
+      if (authTable.find(item => item.email === email)) {
          result.authState = { title: 'fail', text: 'notMatchPw' };
       } else {
          result.authState = { title: 'fail', text: 'notFoundEmail' };
@@ -32,24 +32,22 @@ const login = (req, res) => {
    }
    res.send(result);
 };
-// post 회원가입
+// 회원가입
 const signUp = (req, res) => {
    let result = {};
    let id = null;
-   const { email, username, pw, date } = req.body.signUpData;
-   console.log(req.body.signUpData, email);
-   if (authData.find(item => item.email === email)) {
+   const { email, username, pw, date } = req.body.propsData;
+   if (authTable.find(item => item.email === email)) {
       result.authState = { title: 'fail', text: 'duplicate' };
    } else {
       id = no++;
-      authData = [
-         ...authData,
+      authTable = [
+         ...authTable,
          {
             id,
             email,
             username,
             pw,
-            cart: [],
             favDogs: [],
             badge: [],
             isManager: false,
@@ -58,24 +56,21 @@ const signUp = (req, res) => {
          },
       ];
       result.auth = {
-         id,
          email,
          username,
-         isManager: false,
       };
       result.authState = { title: 'success', text: 'signUp' };
    }
    res.send(result);
 };
-// put 내정보 수정
+// 내정보 수정
 const editAuth = (req, res) => {
    let result = {};
-   const { editData } = req.body;
-   authData = authData.map(item => (item.id === editData.id ? { ...item, ...editData } : item));
-   let myAuthData = authData.find(item => item.id === editData.id);
+   const { propsData } = req.body;
+   authTable = authTable.map(item => (item.email === propsData.email ? { ...item, ...propsData } : item));
+   let myAuthData = authTable.find(item => item.email === propsData.email);
    result.myAuth = myAuthData;
    result.auth = {
-      id: myAuthData.id,
       email: myAuthData.email,
       username: myAuthData.username,
       isManager: myAuthData.isManager,
@@ -85,11 +80,11 @@ const editAuth = (req, res) => {
 // 토글 관심있는 강아지
 const toggleFavDogs = (req, res) => {
    let result = {};
-   const { AdoptionItem, authID } = req.body.toggleFavDogsData;
+   const { AdoptionItem, authEmail } = req.body.propsData;
    const { desertionNo } = AdoptionItem;
 
-   authData = authData.map(item => {
-      if (item.id === authID) {
+   authTable = authTable.map(item => {
+      if (item.email === authEmail) {
          const newFavDogs = item.favDogs.find(dog => dog.desertionNo === desertionNo)
             ? item.favDogs.filter(dog => dog.desertionNo !== desertionNo)
             : [...item.favDogs, AdoptionItem];
@@ -98,126 +93,38 @@ const toggleFavDogs = (req, res) => {
          return item;
       }
    });
-
-   result.myAuth = authData.find(item => item.id === authID);
+   result.myAuth = authTable.find(item => item.email === authEmail);
    res.send(result);
 };
-// 상품 장바구니에 넣기
-const addInCart = (req, res) => {
+
+// 뱃지 추가
+const addBadge = (req, res) => {
    let result = {};
-   const { cartItem, authID } = req.body.addCartData;
-   authData = authData.map(item => {
-      if (item.id === authID) {
-         if (item.cart.find(product => product.id === cartItem.id)) {
-            result.authState = { title: 'fail', text: 'addInCart' };
+   const { badgeData, authEmail } = req.body.propsData;
+   authTable = authTable.map(item => {
+      if (item.email === authEmail) {
+         if (item.badge.find(badge => badge.id === badgeData.id)) {
             return item;
          } else {
-            result.authState = { title: 'success', text: 'addInCart' };
-            const newProduct = [...item.cart, { ...cartItem, quantity: 1, isChk: false }];
-            return { ...item, cart: newProduct };
+            const newBadge = [...item.badge, badgeData];
+            return { ...item, badge: newBadge };
          }
-      } else {
-         return item;
-      }
+      } else return item;
    });
-   result.myAuth = authData.find(item => item.id === authID);
-   res.send(result);
-};
-// 상품 장바구니에서 제거
-const removeInCart = (req, res) => {
-   let result = {};
-   const { cartItem, authID } = req.body.addCartData;
-   authData = authData.map(item => {
-      if (item.id === authID) {
-         if (item.cart.find(product => product.id === cartItem.id)) {
-            const newProduct = item.cart.filter(product => product.id !== cartItem.id);
-            state.authState = { title: 'success', text: 'removeInCart' };
-            return { ...item, cart: newProduct };
-         } else {
-            state.authState = { title: 'fail', text: 'removeInCart' };
-            return item;
-         }
-      } else {
-         return item;
-      }
+   //  최종뱃지2종 획득시 트로피 추가
+   authTable = authTable.map(item => {
+      if (item.email === authEmail) {
+         if (
+            !item.badge.find(badge => badge.id === 'prize') &&
+            item.badge.find(badge => badge.id === 'basic3') &&
+            item.badge.find(badge => badge.id === 'deepen3')
+         ) {
+            const newBadge = [...item.badge, { id: 'prize', img: '../images/ranking-trophy.png' }];
+            return { ...item, badge: newBadge };
+         } else return item;
+      } else return item;
    });
-   result.myAuth = authData.find(item => item.id === authID);
-   res.send(result);
-};
-// 장바구니 상품 수량 증가
-const quantityUp = (req, res) => {
-   let result = {};
-   const { productID, authID } = req.body.quantityUpData;
-   authData = authData.map(user =>
-      user.id === authID
-         ? {
-              ...user,
-              cart: user.cart.map(cartItem =>
-                 cartItem.id === productID ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem,
-              ),
-           }
-         : user,
-   );
-   result.myAuth = authData.find(item => item.id === authID);
-   res.send(result);
-};
-// 장바구니 상품 수량 감소
-const quantityDown = (req, res) => {
-   let result = {};
-   const { productID, authID } = req.body.quantityDownData;
-   authData = authData.map(user =>
-      user.id === authID
-         ? {
-              ...user,
-              cart: user.cart.map(cartItem =>
-                 cartItem.id === productID ? { ...cartItem, quantity: cartItem.quantity - 1 } : cartItem,
-              ),
-           }
-         : user,
-   );
-   result.myAuth = authData.find(item => item.id === authID);
-   res.send(result);
-};
-// 장바구니 해당 상품 체크 토글
-const onCheckbox = (req, res) => {
-   let result = {};
-   const { productID, authID } = req.body.onCheckboxData;
-   authData = authData.map(user =>
-      user.id === authID
-         ? {
-              ...user,
-              cart: user.cart.map(cartItem =>
-                 cartItem.id === productID ? { ...cartItem, isChk: !cartItem.isChk } : cartItem,
-              ),
-           }
-         : user,
-   );
-   result.myAuth = authData.find(item => item.id === authID);
-   res.send(result);
-};
-// 장바구니 전체 체크 토글
-const toggleCheckbox = (req, res) => {
-   let result = {};
-   const { authID } = req.body.toggleCheckboxData;
-
-   const isAllChecked = authData.some(user => {
-      if (user.id === authID) {
-         return user.cart.every(cartItem => cartItem.isChk);
-      }
-      return false;
-   });
-   authData = authData.map(user =>
-      user.id === authID
-         ? {
-              ...user,
-              cart: user.cart.map(cartItem => ({
-                 ...cartItem,
-                 isChk: isAllChecked ? false : true,
-              })),
-           }
-         : user,
-   );
-   result.myAuth = authData.find(item => item.id === authID);
+   result.myAuth = authTable.find(item => item.email === authEmail);
    res.send(result);
 };
 
@@ -228,10 +135,5 @@ module.exports = {
    editAuth,
    getMyAuth,
    toggleFavDogs,
-   addInCart,
-   removeInCart,
-   quantityUp,
-   quantityDown,
-   onCheckbox,
-   toggleCheckbox,
+   addBadge,
 };

@@ -4,28 +4,28 @@ import { StoreContainer, InnerContainer } from '../styled/GamilyStyle';
 import StoreMenu from '../components/store/StoreMenu';
 import ProductList from '../components/store/ProductList';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProduct } from '../store/modules/storeSlice';
+import { getStoreData } from '../store/modules/storeSlice';
 
 const Store = memo(() => {
    const dispatch = useDispatch();
-   const { data } = useSelector(state => state.storeR);
+   const { storeData } = useSelector(state => state.storeR);
    const [currentData, setCurrentData] = useState([]);
    const [option, setOption] = useState({
       category: '',
       filter: '',
    });
    useEffect(() => {
-      dispatch(getProduct());
+      dispatch(getStoreData());
    }, []);
    useEffect(() => {
-      setCurrentData(data);
-   }, [data]);
+      setCurrentData(storeData);
+   }, [storeData]);
    useEffect(() => {
       const { category, filter } = option;
-      let current = [...currentData];
+      let current = [...storeData];
       if (category) {
-         if (category === 'ALL') current = [...data];
-         else current = [...data].filter(item => item.category === category);
+         if (category === 'ALL') current = [...storeData];
+         else current = [...storeData].filter(item => item.category === category);
       }
       if (filter) {
          switch (filter) {

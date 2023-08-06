@@ -1,10 +1,10 @@
-let authData = [
+let authTable = [
    {
       id: 1,
       email: '1@1.com',
       pw: '1',
       username: '임시아이디1',
-      cart: [],
+      cartID: 1,
       favDogs: [],
       badge: [],
       isManager: false,
@@ -25,4 +25,4 @@ let authData = [
    },
 ];
 
-module.exports = { authData };
+module.exports = { authTable };

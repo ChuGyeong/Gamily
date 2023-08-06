@@ -9,7 +9,8 @@ import Swal from 'sweetalert2';
 import { addBadge } from '../store/modules/authSlice';
 
 const Question = memo(() => {
-   const { data, status } = useSelector(state => state.quizR);
+   const { auth } = useSelector(state => state.authR);
+   const { quizData, status } = useSelector(state => state.quizR);
    const dispatch = useDispatch();
    const { questionId } = useParams();
    const [question, setQuestion] = useState([]);
@@ -47,7 +48,7 @@ const Question = memo(() => {
                title: `${result}점으로 합격입니다`,
                text: '축하드립니다',
             });
-            dispatch(addBadge(badge));
+            dispatch(addBadge({ badgeData: badge, authEmail: auth.email }));
          } else {
             Swal.fire({
                icon: 'error',
@@ -68,9 +69,9 @@ const Question = memo(() => {
    }, []);
    useEffect(() => {
       if (status === 'fulfilled') {
-         setQuestion(data[questionId]);
+         setQuestion(quizData[questionId]);
       }
-   }, [data, status]);
+   }, [quizData, status]);
    return (
       <QuestionContainer>
          {status === 'fulfilled' ? (
