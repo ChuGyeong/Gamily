@@ -20,6 +20,7 @@ import EditQnA from './pages/EditQnA';
 import MyDogAdoption from './pages/myDogAdoption';
 import System from './pages/System';
 import AddNotice from './pages/AddNotice';
+import AnswerQnA from './components/system/AnswerQnA';
 
 const App = () => {
    return (
@@ -45,6 +46,9 @@ const App = () => {
                   <Route path="/qnaAdd" element={<AddQnA />} />
                   <Route path="/qnaEdit">
                      <Route path=":qnaEditId" element={<EditQnA />} />
+                  </Route>
+                  <Route path="/qnaAnswer">
+                     <Route path=":qnaAnswerId" element={<AnswerQnA />} />
                   </Route>
                   <Route path="/store" element={<Store />} />
                   <Route path="/product">

@@ -14,6 +14,7 @@ const QnA = memo(() => {
       if (auth) navigate('/qnaAdd');
       else checkAuth();
    };
+
    return (
       <QnAContainer>
          <InnerContainer>

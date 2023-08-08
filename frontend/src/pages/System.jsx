@@ -116,7 +116,6 @@ const System = memo(() => {
          <InnerContainer>
             <h2>Gamily Dashboard</h2>
             <div className="dashboard">
-               {' '}
                <div className="data-summary-view">
                   <div className="result-display">
                      <div className="result">

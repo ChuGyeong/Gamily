@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SearchBoxContainer } from '../../styled/GamilyStyle';
 import DetailData from './DetailData';
+import { useNavigate } from 'react-router-dom';
 
 const SearchBox = ({ sliceName, data, isDetailData, setIsDetailData, searchInterface }) => {
    const [detailItem, setDetailItem] = useState(null);
@@ -8,6 +9,7 @@ const SearchBox = ({ sliceName, data, isDetailData, setIsDetailData, searchInter
       setDetailItem(item);
       setIsDetailData(true);
    };
+   const navigate = useNavigate();
    return (
       <>
          <SearchBoxContainer>
@@ -37,14 +39,20 @@ const SearchBox = ({ sliceName, data, isDetailData, setIsDetailData, searchInter
                         <button onClick={() => openDetailData(item)}>조회</button>
                      </td>
                      <td className="td-btns">
-                        {sliceName === 'qna' ? <button>답글</button> : <button>수정</button>}
+                        {sliceName === 'qna' ? (
+                           <button onClick={() => navigate(`/qnaAnswer/${item.id}`)}>답글</button>
+                        ) : (
+                           <button>수정</button>
+                        )}
                         <button>삭제</button>
                      </td>
                   </tr>
                ))}
             </tbody>
          </SearchBoxContainer>
-         {isDetailData && <DetailData sliceName={sliceName} detailItem={detailItem} />}
+         {isDetailData && (
+            <DetailData sliceName={sliceName} detailItem={detailItem} setIsDetailData={setIsDetailData} />
+         )}
       </>
    );
 };

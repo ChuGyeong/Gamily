@@ -1,8 +1,10 @@
 import React, { memo } from 'react';
+import { SystemFormContainer } from '../../styled/GamilyStyle';
 
 const SystemForm = memo(({ searchInterface, sliceName }) => {
    return (
-      <form>
+      <SystemFormContainer>
+         <h3>add {sliceName}</h3>
          <ul>
             {searchInterface[sliceName]['head'].map((item, idx) => (
                <li key={item}>
@@ -11,7 +13,7 @@ const SystemForm = memo(({ searchInterface, sliceName }) => {
                </li>
             ))}
          </ul>
-      </form>
+      </SystemFormContainer>
    );
 });
 
