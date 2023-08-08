@@ -7,6 +7,7 @@ const cartRouter = require('./routes/cartRoute');
 const storeRouter = require('./routes/storeRoute');
 const quizRouter = require('./routes/quizRoute');
 const badgeRouter = require('./routes/badgeRoute');
+const qnaRouter = require('./routes/qnaRoute');
 
 app.use(express.json());
 app.use(cors());
@@ -15,6 +16,7 @@ app.use('/cart', cartRouter);
 app.use('/store', storeRouter);
 app.use('/quiz', quizRouter);
 app.use('/badge', badgeRouter);
+app.use('/qna', qnaRouter);
 
 app.listen(port, () => {
    console.log(`서버 실행 (:${port})`);

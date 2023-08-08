@@ -1,7 +1,7 @@
 const express = require('express');
 const { getAllQuizData } = require('../controllers/quizController');
-const authRouter = express.Router();
+const quizRouter = express.Router();
 
-authRouter.get('/', getAllQuizData);
+quizRouter.get('/', getAllQuizData);
 
-module.exports = authRouter;
+module.exports = quizRouter;

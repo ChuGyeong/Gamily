@@ -1,8 +1,8 @@
 const express = require('express');
 const { getMyBadge, getBadgeData } = require('../controllers/badgeController');
-const authRouter = express.Router();
+const badgeRouter = express.Router();
 
-authRouter.get('/', getBadgeData);
-authRouter.get('/:email', getMyBadge);
+badgeRouter.get('/', getBadgeData);
+badgeRouter.get('/:email', getMyBadge);
 
-module.exports = authRouter;
+module.exports = badgeRouter;

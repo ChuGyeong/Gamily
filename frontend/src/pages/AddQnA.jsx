@@ -10,7 +10,7 @@ const AddQnA = memo(() => {
    const navigate = useNavigate();
    const dispatch = useDispatch();
    const { auth } = useSelector(state => state.authR);
-   const [txt, setTxt] = useState({ title: '', question: '', answer: '' });
+   const [txt, setTxt] = useState({ title: '', question: '' });
    const date = useDate();
 
    const formatDate = date => {
@@ -29,12 +29,12 @@ const AddQnA = memo(() => {
 
    const onSubmit = e => {
       e.preventDefault();
+      dispatch(addQuestion({ ...txt, authEmail: auth.email, username: auth.username, date: formattedDate }));
       Swal.fire({
          icon: 'success',
          title: '제출 성공',
          text: 'QnA 작성 완료',
       });
-      dispatch(addQuestion({ ...txt, date: formattedDate, ...auth }));
       navigate('/qna');
    };
 
