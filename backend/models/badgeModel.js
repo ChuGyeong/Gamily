@@ -1,4 +1,4 @@
-const badgeTable = [
+let badgeTable = [
    { id: 'basic1', name: '기본1단계', img: './images/ranking-basic-1.png' },
    { id: 'basic2', name: '기본2단계', img: './images/ranking-basic-2.png' },
    { id: 'basic3', name: '기본3단계', img: './images/ranking-basic-3.png' },

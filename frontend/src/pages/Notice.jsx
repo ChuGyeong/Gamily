@@ -1,12 +1,27 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import { NoticeContainer, InnerContainer } from '../styled/GamilyStyle';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { getNoticeData, increaseHitsNotice } from '../store/modules/noticeSlice';
+import { getMyAuth } from '../store/modules/authSlice';
 
 const Notice = memo(() => {
-   const { auth } = useSelector(state => state.authR);
-   const { data } = useSelector(state => state.noticeR);
+   const { auth, myAuth } = useSelector(state => state.authR);
+   const { noticeData } = useSelector(state => state.noticeR);
    const navigate = useNavigate();
+   const dispatch = useDispatch();
+   const goNoticeDetail = item => {
+      navigate(`/noticeDetail/${item.id}`);
+      dispatch(increaseHitsNotice({ noticeItemID: item.id }));
+   };
+
+   useEffect(() => {
+      dispatch(getNoticeData());
+   }, []);
+   useEffect(() => {
+      dispatch(getMyAuth({ authEmail: auth.email }));
+   }, [auth]);
+
    return (
       <NoticeContainer>
          <InnerContainer>
@@ -27,17 +42,17 @@ const Notice = memo(() => {
                   </tr>
                </thead>
                <tbody>
-                  {data.map(item => (
+                  {noticeData.map(item => (
                      <tr key={item.id}>
                         <td>{item.id}</td>
-                        <td onClick={() => navigate(`/noticeDetail/${item.id}`)}>{item.title}</td>
+                        <td onClick={() => goNoticeDetail(item)}>{item.title}</td>
                         <td>{item.date}</td>
                         <td>{item.hits}</td>
                      </tr>
                   ))}
                </tbody>
             </table>
-            {auth?.isManager && (
+            {myAuth?.isManager && (
                <div className="btn-area">
                   <button onClick={() => navigate('/noticeAdd')}>작성하기</button>
                </div>

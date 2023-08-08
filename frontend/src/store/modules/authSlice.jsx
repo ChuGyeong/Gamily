@@ -32,10 +32,6 @@ export const toggleFavDogs = createAsyncThunk('auth/toggleFavDogs', async propsD
    const res = await axios.put(`http://localhost:3000/auth/toggleFavDogs`, { propsData });
    return res.data;
 });
-export const addBadge = createAsyncThunk('auth/quiz', async propsData => {
-   const res = await axios.put(`http://localhost:3000/auth/quiz`, { propsData });
-   return res.data;
-});
 
 const authSlice = createSlice({
    name: 'auth',
@@ -80,10 +76,6 @@ const authSlice = createSlice({
             state.authState = authState;
          })
          .addCase(toggleFavDogs.fulfilled, (state, action) => {
-            const { myAuth } = action.payload;
-            state.myAuth = myAuth;
-         })
-         .addCase(addBadge.fulfilled, (state, action) => {
             const { myAuth } = action.payload;
             state.myAuth = myAuth;
          });

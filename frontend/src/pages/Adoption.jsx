@@ -32,7 +32,7 @@ const Adoption = memo(() => {
       dispatch(getVarietyData());
       dispatch(getOrgData());
       if (auth) {
-         dispatch(getMyAuth(auth.id));
+         dispatch(getMyAuth({ authEmail: auth.email }));
       }
    }, []);
    return (

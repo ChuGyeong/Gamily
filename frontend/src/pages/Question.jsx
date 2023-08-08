@@ -6,11 +6,12 @@ import { QuestionContainer, InnerContainer, ParticleButton } from '../styled/Gam
 import Loading from '../components/common/Loading';
 import AnswerSheet from '../components/quiz/AnswerSheet';
 import Swal from 'sweetalert2';
-import { addBadge } from '../store/modules/authSlice';
+import { addBadge, getBadgeData } from '../store/modules/badgeSlice';
 
 const Question = memo(() => {
    const { auth } = useSelector(state => state.authR);
    const { quizData, status } = useSelector(state => state.quizR);
+   const { badgeData } = useSelector(state => state.badgeR);
    const dispatch = useDispatch();
    const { questionId } = useParams();
    const [question, setQuestion] = useState([]);
@@ -27,15 +28,6 @@ const Question = memo(() => {
          const result = question.reduce((acc, cur) => (cur.answer === userAnswer[cur.id] ? acc + cur.score : acc), 0);
          if (result >= 60) {
             let badge = null;
-            const badgeData = [
-               { id: 'basic1', img: './images/ranking-basic-1.png' },
-               { id: 'basic2', img: './images/ranking-basic-2.png' },
-               { id: 'basic3', img: './images/ranking-basic-3.png' },
-               { id: 'deepen1', img: './images/ranking-deepen-1.png' },
-               { id: 'deepen2', img: './images/ranking-deepen-2.png' },
-               { id: 'deepen3', img: './images/ranking-deepen-3.png' },
-               { id: 'prize', img: './images/ranking-trophy.png' },
-            ];
             if (questionId === 'basic' && result === 100) badge = badgeData.find(item => item.id === 'basic3');
             else if (questionId === 'basic' && result >= 80) badge = badgeData.find(item => item.id === 'basic2');
             else if (questionId === 'basic' && result >= 60) badge = badgeData.find(item => item.id === 'basic1');
@@ -66,6 +58,7 @@ const Question = memo(() => {
    };
    useEffect(() => {
       dispatch(getQuiz());
+      dispatch(getBadgeData());
    }, []);
    useEffect(() => {
       if (status === 'fulfilled') {

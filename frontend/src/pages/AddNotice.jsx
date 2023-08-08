@@ -9,8 +9,9 @@ import { addNotice } from '../store/modules/noticeSlice';
 const AddNotice = memo(() => {
    const navigate = useNavigate();
    const dispatch = useDispatch();
+   const today = useDate();
    const { auth } = useSelector(state => state.authR);
-   const [txt, setTxt] = useState({ title: '', question: '', answer: '' });
+   const [txt, setTxt] = useState({ title: '', content: '', hits: 0 });
    const date = useDate();
 
    const formatDate = date => {
@@ -32,9 +33,9 @@ const AddNotice = memo(() => {
       Swal.fire({
          icon: 'success',
          title: '제출 성공',
-         text: 'notice 작성 완료',
+         text: '공지사항 작성 완료',
       });
-      dispatch(addNotice({ ...txt, date: formattedDate, ...auth }));
+      dispatch(addNotice({ ...txt, date: formattedDate }));
       navigate('/notice');
    };
 

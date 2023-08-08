@@ -11,13 +11,17 @@ const getMyBadge = (req, res) => {
    const myBadge = authBadgeTable.filter(item => item.email === userEmail);
    res.send(myBadge);
 };
-// 내 데이터 가져오기
-/* const getMyAuth = (req, res) => {
-   const { authEmail } = req.body.propsData;
-   const myAuthData = authTable.find(item => item.email === authEmail);
-   if (myAuthData) {
-      res.send(myAuthData);
-   }
-}; */
+// 뱃지 추가하기
+const addBadge = (req, res) => {
+   const { authEmail, badgeData } = req.body.propsData;
+   if (!authBadgeTable.find(badgeItem => badgeItem.email === authEmail && badgeItem.badgeID === badgeData.id))
+      authBadgeTable.push({
+         id: no++,
+         email: authEmail,
+         badgeID: badgeData.id,
+         name: badgeData.name,
+         img: badgeData.img,
+      });
+};
 
-module.exports = { getBadgeData, getMyBadge };
+module.exports = { getBadgeData, getMyBadge, addBadge };
