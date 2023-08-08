@@ -9,6 +9,7 @@ const quizRouter = require('./routes/quizRoute');
 const badgeRouter = require('./routes/badgeRoute');
 const qnaRouter = require('./routes/qnaRoute');
 const noticeRouter = require('./routes/noticeRoute');
+const adoptionAppRouter = require('./routes/adoptionAppRoute');
 
 app.use(express.json());
 app.use(cors());
@@ -19,6 +20,7 @@ app.use('/quiz', quizRouter);
 app.use('/badge', badgeRouter);
 app.use('/qna', qnaRouter);
 app.use('/notice', noticeRouter);
+app.use('/adoptionApp', adoptionAppRouter);
 
 app.listen(port, () => {
    console.log(`서버 실행 (:${port})`);
