@@ -1,4 +1,3 @@
-typeS/react 로 만들기
 스타일컴포넌트 사용
 
 yarn add sass
@@ -10,16 +9,11 @@ yarn add @reduxjs/toolkit
 yarn add react-redux
 
 강아지 - 유기견 //개밀리
-음식
-여행
-음료수(카페)
 
 1. 주제 정하기
 2. 기획 - 기능, 구조 선정
 3. 기획 - 디자인 대충 정하기
 4. 코딩
-
-
 
 
 메인

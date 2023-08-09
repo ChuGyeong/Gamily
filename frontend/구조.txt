@@ -1,0 +1,136 @@
+frontend
+ ┣ assets
+ ┃ ┣ data
+ ┃ ┃ ┣ gamilyStore.json
+ ┃ ┃ ┣ knowledge.json
+ ┃ ┃ ┣ quiz.json
+ ┃ ┃ ┗ variety.json
+ ┃ ┣ fonts
+ ┃ ┃ ┗ NanumSquareNeo-Variable.woff2
+ ┣ components
+ ┃ ┣ adoption
+ ┃ ┃ ┣ AdoptionFilterBox.jsx
+ ┃ ┃ ┣ AdoptionForm.jsx
+ ┃ ┃ ┣ AdoptionItem.jsx
+ ┃ ┃ ┣ AdoptionList.jsx
+ ┃ ┃ ┗ AdoptionPaging.jsx
+ ┃ ┣ common
+ ┃ ┃ ┣ Footer.jsx
+ ┃ ┃ ┣ GoTopBtn.jsx
+ ┃ ┃ ┣ Header.jsx
+ ┃ ┃ ┣ InfoBubble.jsx
+ ┃ ┃ ┣ KakaoMap.jsx
+ ┃ ┃ ┣ Layout.jsx
+ ┃ ┃ ┣ Loading.jsx
+ ┃ ┃ ┣ Navbar.jsx
+ ┃ ┃ ┣ SubNav.jsx
+ ┃ ┃ ┗ WaveEffects.jsx
+ ┃ ┣ home
+ ┃ ┃ ┣ Lp.jsx
+ ┃ ┃ ┣ MainVisual.jsx
+ ┃ ┃ ┣ MenuCross.jsx
+ ┃ ┃ ┣ MenuSlide.jsx
+ ┃ ┃ ┣ RollingBanner.jsx
+ ┃ ┃ ┣ TailWagCountdown.jsx
+ ┃ ┃ ┣ Typing.jsx
+ ┃ ┃ ┣ VisualText.jsx
+ ┃ ┃ ┗ WagTailDog.jsx
+ ┃ ┣ mypage
+ ┃ ┃ ┣ Basket.jsx
+ ┃ ┃ ┣ FavoritesDog.jsx
+ ┃ ┃ ┣ MyAdoptionApp.jsx
+ ┃ ┃ ┣ MyBadge.jsx
+ ┃ ┃ ┣ MyQnA.jsx
+ ┃ ┃ ┗ ProfileEdit.jsx
+ ┃ ┣ quiz
+ ┃ ┃ ┗ AnswerSheet.jsx
+ ┃ ┣ store
+ ┃ ┃ ┣ ProductItem.jsx
+ ┃ ┃ ┣ ProductList.jsx
+ ┃ ┃ ┣ StarRating.jsx
+ ┃ ┃ ┣ StoreMenu.jsx
+ ┃ ┃ ┗ TimeSale.jsx
+ ┃ ┗ system
+ ┃ ┃ ┣ AnswerQnA.jsx
+ ┃ ┃ ┣ Barchart.jsx
+ ┃ ┃ ┣ Calendarchart.jsx
+ ┃ ┃ ┣ DetailData.jsx
+ ┃ ┃ ┣ Piechart.jsx
+ ┃ ┃ ┣ SearchBox.jsx
+ ┃ ┃ ┣ SystemForm.jsx
+ ┃ ┃ ┗ SystemPopup.jsx
+ ┣ hooks
+ ┃ ┣ useAuth.jsx
+ ┃ ┣ useDate.jsx
+ ┃ ┗ useDateMinus.jsx
+ ┣ pages
+ ┃ ┣ AddNotice.jsx
+ ┃ ┣ AddQnA.jsx
+ ┃ ┣ Adoption.jsx
+ ┃ ┣ AdoptionDetail.jsx
+ ┃ ┣ EditQnA.jsx
+ ┃ ┣ Home.jsx
+ ┃ ┣ Knowledge.jsx
+ ┃ ┣ Login.jsx
+ ┃ ┣ MyDogAdoption.jsx
+ ┃ ┣ MyPage.jsx
+ ┃ ┣ NotFound.jsx
+ ┃ ┣ Notice.jsx
+ ┃ ┣ NoticeDetail.jsx
+ ┃ ┣ ProductDetail.jsx
+ ┃ ┣ QnA.jsx
+ ┃ ┣ QnAItem.jsx
+ ┃ ┣ Question.jsx
+ ┃ ┣ Quiz.jsx
+ ┃ ┣ Store.jsx
+ ┃ ┗ System.jsx
+ ┣ store
+ ┃ ┣ modules
+ ┃ ┃ ┣ adoptionAppSlice.jsx
+ ┃ ┃ ┣ adoptionSlice.jsx
+ ┃ ┃ ┣ authSlice.jsx
+ ┃ ┃ ┣ badgeSlice.jsx
+ ┃ ┃ ┣ cartSlice.jsx
+ ┃ ┃ ┣ knowledgeSlice.jsx
+ ┃ ┃ ┣ noticeSlice.jsx
+ ┃ ┃ ┣ qnaSlice.jsx
+ ┃ ┃ ┣ quizSlice.jsx
+ ┃ ┃ ┗ storeSlice.jsx
+ ┃ ┗ index.jsx
+ ┣ styled
+ ┃ ┣ GamilyStyle.js
+ ┃ ┗ GlobalStyle.js
+ ┣ App.css
+ ┣ App.jsx
+ ┣ index.css
+ ┗ main.jsx
+
+
+
+
+ backend
+ ┣ controllers
+ ┃ ┣ authController.js
+ ┃ ┣ badgeController.js
+ ┃ ┣ cartController.js
+ ┃ ┣ qnaController.js
+ ┃ ┣ quizController.js
+ ┃ ┗ storeController.js
+ ┣ models
+ ┃ ┣ authModel.js
+ ┃ ┣ badgeModel.js
+ ┃ ┣ cartModel.js
+ ┃ ┣ qnaModel.js
+ ┃ ┣ quizModel.js
+ ┃ ┗ storeModel.js
+ ┣ routes
+ ┃ ┣ authRoute.js
+ ┃ ┣ badgeRoute.js
+ ┃ ┣ cartRoute.js
+ ┃ ┣ qnaRoute.js
+ ┃ ┣ quizRoute.js
+ ┃ ┗ storeRoute.js
+ ┣ index.js
+ ┣ package-lock.json
+ ┣ package.json
+ ┗ yarn.lock
