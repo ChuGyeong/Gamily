@@ -52,6 +52,12 @@ const SearchBox = ({ sliceName, data, isDetailData, setIsDetailData, searchInter
                         ) : (
                            <button>수정</button>
                         )}
+                        {sliceName === 'adoptionApp' && (
+                           <>
+                              <button>승인</button>
+                              <button>거절</button>
+                           </>
+                        )}
                         <button>삭제</button>
                      </td>
                   </tr>

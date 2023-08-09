@@ -9,6 +9,7 @@ import { getStoreData } from '../store/modules/storeSlice';
 import { getQnaData } from '../store/modules/qnaSlice';
 import { getNoticeData } from '../store/modules/noticeSlice';
 import { getAllAuthData } from '../store/modules/authSlice';
+import { getAdoptionAppData } from '../store/modules/adoptionAppSlice';
 
 const System = memo(() => {
    let tempData = [
@@ -73,7 +74,7 @@ const System = memo(() => {
    const { noticeData } = useSelector(state => state.noticeR);
    const { authData } = useSelector(state => state.authR);
    const { storeData } = useSelector(state => state.storeR);
-   const { data: adoptionAppData } = useSelector(state => state.adoptionAppR);
+   const { adoptionAppData } = useSelector(state => state.adoptionAppR);
    const dispatch = useDispatch();
    const [data, setData] = useState([]);
    const [isPopUp, setIsPopUp] = useState(false);
@@ -84,6 +85,7 @@ const System = memo(() => {
       dispatch(getQnaData());
       dispatch(getNoticeData());
       dispatch(getAllAuthData());
+      dispatch(getAdoptionAppData());
    }, []);
 
    const [currentSliceName, setCurrentSliceName] = useState(null);
