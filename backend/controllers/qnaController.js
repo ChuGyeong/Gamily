@@ -19,9 +19,10 @@ const addQuestion = (req, res) => {
 };
 // 질문 수정
 const editQuestion = (req, res) => {
-   const { questionID, title, question } = req.body.propsData;
+   const { id: questionID, title, question } = req.body.propsData;
    qnaTable = qnaTable.map(qnaItem => (qnaItem.id === questionID ? { ...qnaItem, title, question } : qnaItem));
    res.send(qnaTable);
+   console.log(qnaTable);
 };
 // 질문 삭제
 const delQuestion = (req, res) => {

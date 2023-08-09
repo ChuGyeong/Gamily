@@ -151,7 +151,7 @@ const System = memo(() => {
                <ParticleButton onClick={() => onShow('store')}>Store</ParticleButton>
                <ParticleButton onClick={() => onShow('adoptionApp')}>입양신청서조회</ParticleButton>
             </div>
-            {isPopUp && <SystemPopup setIsPopUp={setIsPopUp} data={data} sliceName={sliceName} />}
+            {isPopUp && <SystemPopup setIsPopUp={setIsPopUp} data={data} sliceName={sliceName} setData={setData} />}
          </InnerContainer>
       </SystemContainer>
    );

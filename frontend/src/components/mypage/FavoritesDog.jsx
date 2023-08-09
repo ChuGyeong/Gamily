@@ -17,7 +17,7 @@ const FavoritesDog = memo(() => {
                favDogs.map(item => (
                   <li key={item.desertionNo}>
                      <button
-                        onClick={() => dispatch(toggleFavDogs({ authID: auth.id, AdoptionItem: item }))}
+                        onClick={() => dispatch(toggleFavDogs({ authEmail: auth.email, AdoptionItem: item }))}
                         className="close">
                         <i className="xi-close"></i>
                      </button>

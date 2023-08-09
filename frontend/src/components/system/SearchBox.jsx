@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SearchBoxContainer } from '../../styled/GamilyStyle';
 import DetailData from './DetailData';
 import { useNavigate } from 'react-router-dom';
-import { toggleManager } from '../../store/modules/authSlice';
+import authSlice, { toggleManager } from '../../store/modules/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const SearchBox = ({ sliceName, data, isDetailData, setIsDetailData, searchInterface }) => {
    const [detailItem, setDetailItem] = useState(null);
@@ -10,11 +11,18 @@ const SearchBox = ({ sliceName, data, isDetailData, setIsDetailData, searchInter
       setDetailItem(item);
       setIsDetailData(true);
    };
+   const { authData } = useSelector(state => state.authR);
    const navigate = useNavigate();
+   const dispatch = useDispatch();
 
-   const isManager = () => {
-      dispatch(toggleManager());
+   const handleToggleManager = item => {
+      dispatch(toggleManager({ authEmail: item.email }));
    };
+   /*    useEffect(() => {
+      if (sliceName === 'auth') {
+         setData(authData);
+      }
+   }, [authData]); */
 
    return (
       <>
@@ -48,16 +56,18 @@ const SearchBox = ({ sliceName, data, isDetailData, setIsDetailData, searchInter
                         {sliceName === 'qna' ? (
                            <button onClick={() => navigate(`/qnaAnswer/${item.id}`)}>답글</button>
                         ) : sliceName === 'auth' ? (
-                           <button>관리자 권환 부여</button>
-                        ) : (
-                           <button>수정</button>
-                        )}
-                        {sliceName === 'adoptionApp' && (
+                           <button onClick={() => handleToggleManager(item)}>
+                              {item.isManager ? '관리자 권환 해제' : '관리자 권환 부여'}
+                           </button>
+                        ) : sliceName === 'adoptionApp' ? (
                            <>
                               <button>승인</button>
                               <button>거절</button>
                            </>
+                        ) : (
+                           <button>수정</button>
                         )}
+
                         <button>삭제</button>
                      </td>
                   </tr>

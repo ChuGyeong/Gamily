@@ -82,6 +82,10 @@ const authSlice = createSlice({
          .addCase(toggleFavDogs.fulfilled, (state, action) => {
             const { myAuth } = action.payload;
             state.myAuth = myAuth;
+         })
+         .addCase(toggleManager.fulfilled, (state, action) => {
+            console.log(action.payload);
+            state.authData = action.payload;
          });
    },
 });

@@ -80,9 +80,13 @@ const editAuth = (req, res) => {
 // 토글 관심있는 강아지
 const toggleFavDogs = (req, res) => {
    let result = {};
+
    const { AdoptionItem, authEmail } = req.body.propsData;
    const { desertionNo } = AdoptionItem;
-
+   console.log(
+      '작업 전',
+      authTable.find(item => item.email === authEmail),
+   );
    authTable = authTable.map(item => {
       if (item.email === authEmail) {
          const newFavDogs = item.favDogs.find(dog => dog.desertionNo === desertionNo)
@@ -93,16 +97,18 @@ const toggleFavDogs = (req, res) => {
          return item;
       }
    });
+   console.log(
+      '작업 후',
+      authTable.find(item => item.email === authEmail),
+   );
    result.myAuth = authTable.find(item => item.email === authEmail);
    res.send(result);
 };
 // 토글 매니저 권한
 const toggleManager = (req, res) => {
    const { authEmail } = req.body.propsData;
-
    authTable = authTable.map(item => (item.email === authEmail ? { ...item, isManager: !item.isManager } : item));
-   const result = { myAuth: authTable.find(item => item.email === authEmail) };
-   res.send(result);
+   res.send(authTable);
 };
 
 // 뱃지 추가
