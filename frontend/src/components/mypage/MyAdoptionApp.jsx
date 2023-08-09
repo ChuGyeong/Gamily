@@ -1,25 +1,33 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { ParticleButton, MyPageContent } from '../../styled/GamilyStyle';
-import { delAdoptionApp } from '../../store/modules/adoptionAppSlice';
+import { delAdoptionApp, getMyAdoptionApp } from '../../store/modules/adoptionAppSlice';
 
 const MyAdoptionApp = memo(() => {
-   const { data } = useSelector(state => state.adoptionAppR);
+   const { myAdoptionApp } = useSelector(state => state.adoptionAppR);
    const { auth } = useSelector(state => state.authR);
    const dispatch = useDispatch();
    const navigate = useNavigate();
-
+   const handleDeleteAdoptionApp = item => {
+      dispatch(delAdoptionApp(item.id));
+      setTimeout(() => {
+         dispatch(getMyAdoptionApp(auth.email));
+      }, 100);
+   };
+   useEffect(() => {
+      dispatch(getMyAdoptionApp(auth.email));
+   }, []);
    return (
       <MyPageContent>
          <h3>나의 입양신청서</h3>
          <ul>
-            {data.length > 0 ? (
-               data
+            {myAdoptionApp.length > 0 ? (
+               myAdoptionApp
                   .filter(item => item.email === auth.email)
                   .map(item => (
                      <li key={item.desertionNo}>
-                        <button onClick={() => dispatch(delAdoptionApp(item.id))} className="close">
+                        <button onClick={() => handleDeleteAdoptionApp(item)} className="close">
                            <i className="xi-close"></i>
                         </button>
                         <img
