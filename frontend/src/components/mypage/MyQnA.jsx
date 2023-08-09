@@ -20,13 +20,16 @@ const MyQnA = memo(() => {
          cancelButtonText: '취소',
       }).then(result => {
          if (result.isConfirmed) {
-            Swal.fire('작업 성공', '삭제가 완료되었습니다.', 'success');
             dispatch(delQuestion(id));
+            Swal.fire('작업 성공', '삭제가 완료되었습니다.', 'success');
+            setTimeout(() => {
+               dispatch(getMyQna(auth.email));
+            }, 0);
          }
       });
    };
    useEffect(() => {
-      dispatch(getMyQna());
+      dispatch(getMyQna(auth.email));
    }, []);
    return (
       <UserQnAContent>

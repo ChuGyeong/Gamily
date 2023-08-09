@@ -16,21 +16,20 @@ const QnA = memo(() => {
       if (auth) navigate('/qnaAdd');
       else checkAuth();
    };
-
    useEffect(() => {
-      console.log(' dispatch(getQnaData());');
       dispatch(getQnaData());
    }, []);
-   useEffect(() => {
-      console.log(qnaData);
-   }, [qnaData]);
    return (
       <QnAContainer>
          <InnerContainer>
             <h2>QnA</h2>
-            <div className="contents">
-               <ul>{qnaData && qnaData.map(item => <QnAItem key={item.id} item={item} />)}</ul>
-            </div>
+            {qnaData && qnaData.length > 0 ? (
+               <div className="contents">
+                  <ul>{qnaData && qnaData.map(item => <QnAItem key={item.id} item={item} />)}</ul>
+               </div>
+            ) : (
+               <div>작성된 질문이 없습니다</div>
+            )}
             <div className="btn-area">
                <button onClick={goToAdd}>작성하기</button>
             </div>

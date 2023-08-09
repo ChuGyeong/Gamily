@@ -51,7 +51,9 @@ const QnAItem = memo(({ item }) => {
                   </div>
                )}
             </div>
-            <div className="answer-area"></div>
+            <div className="answer-area">
+               <p>{answer}</p>
+            </div>
          </div>
       </li>
    );

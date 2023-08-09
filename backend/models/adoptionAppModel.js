@@ -1,4 +1,4 @@
-let badgeTable = [
+let adoptionAppTable = [
    { id: 'basic1', name: '기본1단계', img: './images/ranking-basic-1.png' },
    { id: 'basic2', name: '기본2단계', img: './images/ranking-basic-2.png' },
    { id: 'basic3', name: '기본3단계', img: './images/ranking-basic-3.png' },
@@ -7,5 +7,5 @@ let badgeTable = [
    { id: 'deepen3', name: '심화3단계', img: './images/ranking-deepen-3.png' },
    { id: 'prize', name: '퀴즈마스터', img: './images/ranking-trophy.png' },
 ];
-let authBadgeTable = [{ id: 1, email: '1@1.com', badgeID: 'basic1' }];
-module.exports = { badgeTable, authBadgeTable };
+
+module.exports = { adoptionAppTable };

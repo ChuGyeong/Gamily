@@ -6,6 +6,8 @@ import Barchart from '../components/system/Barchart';
 import Piechart from '../components/system/Piechart';
 import Calendarchart from '../components/system/Calendarchart';
 import { getStoreData } from '../store/modules/storeSlice';
+import { getQnaData } from '../store/modules/qnaSlice';
+import { getNoticeData } from '../store/modules/noticeSlice';
 
 const System = memo(() => {
    let tempData = [
@@ -66,8 +68,8 @@ const System = memo(() => {
       },
    ];
 
-   const { data: qnaData } = useSelector(state => state.qnaR);
-   const { data: noticeData } = useSelector(state => state.noticeR);
+   const { qnaData } = useSelector(state => state.qnaR);
+   const { noticeData } = useSelector(state => state.noticeR);
    const { authData } = useSelector(state => state.authR);
    const { storeData } = useSelector(state => state.storeR);
    const { data: adoptionAppData } = useSelector(state => state.adoptionAppR);
@@ -78,6 +80,8 @@ const System = memo(() => {
 
    useEffect(() => {
       dispatch(getStoreData());
+      dispatch(getQnaData());
+      dispatch(getNoticeData());
    }, []);
 
    const [currentSliceName, setCurrentSliceName] = useState(null);

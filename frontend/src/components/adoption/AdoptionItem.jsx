@@ -32,7 +32,7 @@ const AdoptionItem = memo(({ item }) => {
    const handleLike = () => {
       if (!auth) checkAuth();
       else {
-         dispatch(toggleFavDogs({ authID: auth.id, AdoptionItem: item }));
+         dispatch(toggleFavDogs({ authEmail: auth.email, AdoptionItem: item }));
       }
    };
    return (
