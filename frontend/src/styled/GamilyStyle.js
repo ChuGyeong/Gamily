@@ -3512,6 +3512,7 @@ export const DetailDataContainer = styled.div`
       padding: 20px;
       box-sizing: border-box;
       background: #fff;
+      overflow-y: scroll;
       h3 {
          font-size: 30px;
          font-weight: 700;

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { SearchBoxContainer } from '../../styled/GamilyStyle';
 import DetailData from './DetailData';
 import { useNavigate } from 'react-router-dom';
+import { toggleManager } from '../../store/modules/authSlice';
 
 const SearchBox = ({ sliceName, data, isDetailData, setIsDetailData, searchInterface }) => {
    const [detailItem, setDetailItem] = useState(null);
@@ -10,6 +11,11 @@ const SearchBox = ({ sliceName, data, isDetailData, setIsDetailData, searchInter
       setIsDetailData(true);
    };
    const navigate = useNavigate();
+
+   const isManager = () => {
+      dispatch(toggleManager());
+   };
+
    return (
       <>
          <SearchBoxContainer>
@@ -41,6 +47,8 @@ const SearchBox = ({ sliceName, data, isDetailData, setIsDetailData, searchInter
                      <td className="td-btns">
                         {sliceName === 'qna' ? (
                            <button onClick={() => navigate(`/qnaAnswer/${item.id}`)}>답글</button>
+                        ) : sliceName === 'auth' ? (
+                           <button>관리자 권환 부여</button>
                         ) : (
                            <button>수정</button>
                         )}

@@ -8,6 +8,7 @@ import Calendarchart from '../components/system/Calendarchart';
 import { getStoreData } from '../store/modules/storeSlice';
 import { getQnaData } from '../store/modules/qnaSlice';
 import { getNoticeData } from '../store/modules/noticeSlice';
+import { getAllAuthData } from '../store/modules/authSlice';
 
 const System = memo(() => {
    let tempData = [
@@ -82,6 +83,7 @@ const System = memo(() => {
       dispatch(getStoreData());
       dispatch(getQnaData());
       dispatch(getNoticeData());
+      dispatch(getAllAuthData());
    }, []);
 
    const [currentSliceName, setCurrentSliceName] = useState(null);

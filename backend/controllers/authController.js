@@ -96,6 +96,14 @@ const toggleFavDogs = (req, res) => {
    result.myAuth = authTable.find(item => item.email === authEmail);
    res.send(result);
 };
+// 토글 매니저 권한
+const toggleManager = (req, res) => {
+   const { authEmail } = req.body.propsData;
+
+   authTable = authTable.map(item => (item.email === authEmail ? { ...item, isManager: !item.isManager } : item));
+   const result = { myAuth: authTable.find(item => item.email === authEmail) };
+   res.send(result);
+};
 
 // 뱃지 추가
 const addBadge = (req, res) => {
@@ -136,4 +144,5 @@ module.exports = {
    getMyAuth,
    toggleFavDogs,
    addBadge,
+   toggleManager,
 };

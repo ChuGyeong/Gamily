@@ -32,6 +32,10 @@ export const toggleFavDogs = createAsyncThunk('auth/toggleFavDogs', async propsD
    const res = await axios.put(`http://localhost:3000/auth/toggleFavDogs`, { propsData });
    return res.data;
 });
+export const toggleManager = createAsyncThunk('auth/toggleManager', async propsData => {
+   const res = await axios.put(`http://localhost:3000/auth/toggleManager`, { propsData });
+   return res.data;
+});
 
 const authSlice = createSlice({
    name: 'auth',
